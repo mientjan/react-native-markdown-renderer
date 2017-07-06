@@ -1,6 +1,9 @@
 # React Native Markdown Renderer
 
-React Native 100% compatible CommonMark renderer
+React Native 100% compatible CommonMark renderer, this renderer uses markdown-it as 
+its base to tokenise the markdown, after that a ast is generated and given to the AstRenderer.
+ 
+You can 
 
 #### npm
 ```npm
@@ -27,7 +30,7 @@ const copy = `# h1 Heading 8-)
 | ext    | extension to be used for dest files. |
 `;
 
-class Page extends PureComponent {
+export default class Page extends PureComponent {
 
   static propTypes = {};
   static defaultProps = {};
@@ -39,8 +42,6 @@ class Page extends PureComponent {
     );
   }
 }
-
-export default Markdown;
 ```
 
 ---
