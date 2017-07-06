@@ -3,12 +3,44 @@
 React Native 100% compatible CommonMark renderer
 
 #### npm
-```
+```npm
 npm install -S react-native-markdown-renderer
 ```
 #### yarn
-```
+```npm
 yarn add react-native-markdown-renderer
+```
+
+How to use this library:
+```js
+
+import react from 'react';
+import {View, PureComponent} from 'react-native';
+import markdown from 'react-native-markdown-renderer';
+
+const copy = `# h1 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+class Page extends PureComponent {
+
+  static propTypes = {};
+  static defaultProps = {};
+
+  render() {
+
+    return (
+    	<View>{markdown(copy)}</View>
+    );
+  }
+}
+
+export default Markdown;
 ```
 
 ---
