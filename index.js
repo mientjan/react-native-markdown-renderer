@@ -4,10 +4,10 @@ import FitImage from 'react-native-fit-image';
 
 import MarkdownIt from 'markdown-it';
 
-import { markdownStyles } from './markdown/style';
-import tokenToAST from './markdown/tokenToAST';
-import { AstRenderer } from './markdown/AstGenerator';
-import markdownItBlockPlugin from './markdown/markdownItBlockPlugin';
+import { markdownStyles } from './lib/style';
+import tokenToAST from './lib/tokenToAST';
+import { AstRenderer } from './lib/AstGenerator';
+import markdownItBlockPlugin from './lib/markdownItBlockPlugin';
 
 /* code is still in beta, thats why im disabling linter */
 /* eslint-disable */
