@@ -1,4 +1,4 @@
-# React Native Markdown Renderer
+# (beta) React Native Markdown Renderer
 
 React Native 100% compatible CommonMark renderer, this renderer uses markdown-it as 
 its base to tokenise the markdown, after that a ast is generated and given to the AstRenderer.
@@ -19,7 +19,7 @@ How to use this library:
 
 import react from 'react';
 import {View, PureComponent} from 'react-native';
-import markdown from 'react-native-markdown-renderer';
+import Markdown from 'react-native-markdown-renderer';
 
 const copy = `# h1 Heading 8-)
 
@@ -38,7 +38,49 @@ export default class Page extends PureComponent {
   render() {
 
     return (
-    	<View>{markdown(copy)}</View>
+    	<Markdown>{copy}</Markdown>
+    );
+  }
+}
+```
+
+How to use this library with custom renderer:
+```js
+
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown from 'react-native-markdown-renderer';
+import AstRenderer from 'react-native-markdown-renderer/lib/AstRenderer';
+import defaultRendererFunctions from 'react-native-markdown-renderer/lib/defaultRendererFunctions';
+
+
+
+const copy = `# h1 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+/**
+ * i'm overriding the default h1 render function.
+ */
+const renderer = new AstRenderer(Object.assign({}, defaultRendererFunctions, {
+  h1: (node, children) => {
+    return <Text style={{backgroundColor: 'red'}}>{children}</Text>;
+  },
+}));
+
+export default class Page extends PureComponent {
+
+  static propTypes = {};
+  static defaultProps = {};
+
+  render() {
+    return (
+    	<Markdown renderer={renderer}>{copy}</Markdown>
     );
   }
 }
