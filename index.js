@@ -1,32 +1,50 @@
-import React from 'react';
-import { Linking, View } from 'react-native';
-
-import MarkdownIt from 'markdown-it';
-import tokenToAST from './lib/tokenToAST';
-import { AstRenderer } from './lib/AstGenerator';
+import { Component, PropTypes } from 'react';
+import markdownParser from './lib/markdown';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
+import {AstRenderer} from "./lib/AstGenerator";
 
-const reactRenderer = new AstRenderer(defaultRenderFunctions);
+export default class Markdown extends Component {
+  /**
+	 * Definition of the prop types
+	 */
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    renderer: PropTypes.instanceOf(AstRenderer),
+  };
 
-let md = MarkdownIt();
+  /**
+	 * Default Props
+	 */
+  static defaultProps = {
+    renderer: new AstRenderer(defaultRenderFunctions),
+  };
 
-function convertToTokens(source) {
-  let result = [];
-  try {
-    result = md.parse(source, {});
-  } catch (err) {}
-  return result;
-}
+  copy = '';
 
-/**
- *
- * @param source
- * @param {AstRenderer} [renderer]
- * @returns {XML}
- */
-export default function markdown(source, renderer = reactRenderer) {
-  const tokens = convertToTokens(source);
-  const asttree = tokenToAST(tokens);
+  /**
+   *
+   * @param nextProps
+   * @param nextState
+   * @return {boolean}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
 
-  return <View>{renderer.render(asttree)}</View>;
+    const copy = nextProps.children instanceof Array
+        ? nextProps.children.join('')
+        : nextProps.children;
+
+    if (copy !== this.copy) {
+      this.copy = copy;
+      return true;
+    }
+
+    return false;
+  }
+
+  render() {
+    const { renderer } = this.props;
+    const copy = this.copy;
+
+    return markdownParser(copy, renderer);
+  }
 }
