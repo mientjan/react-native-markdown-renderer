@@ -3,6 +3,10 @@ import markdownParser from './lib/markdown';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import {AstRenderer} from "./lib/AstGenerator";
 
+/**
+ * Base Markdown component
+ * @author Mient-jan Stelling
+ */
 export default class Markdown extends Component {
   /**
 	 * Definition of the prop types
@@ -22,7 +26,7 @@ export default class Markdown extends Component {
   copy = '';
 
   /**
-   *
+   * Only when the copy changes will the markdown render again.
    * @param nextProps
    * @param nextState
    * @return {boolean}
@@ -41,6 +45,10 @@ export default class Markdown extends Component {
     return false;
   }
 
+	/**
+     *
+	 * @return {View}
+	 */
   render() {
     const { renderer } = this.props;
     const copy = this.copy;

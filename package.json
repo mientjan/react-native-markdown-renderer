@@ -13,8 +13,10 @@
   "keywords": [
     "react",
     "react-native",
+    "native",
     "markdown",
-    "commonmark"
+    "commonmark",
+    "markdown-it"
   ],
   "author": "Mient-jan Stelling",
   "license": "MIT",
