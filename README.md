@@ -3,6 +3,8 @@
 React Native 100% compatible CommonMark renderer, this renderer uses markdown-it as 
 its base to tokenise the markdown, after that a ast is generated and given to the AstRenderer.
  
+Code in examples is not yet working, looks to be related to this issue. https://github.com/facebook/react-native/issues/14209
+ 
 You can 
 
 #### npm
@@ -14,7 +16,7 @@ npm install -S react-native-markdown-renderer
 yarn add react-native-markdown-renderer
 ```
 
-How to use this library:
+How to use:
 ```js
 
 import react from 'react';
