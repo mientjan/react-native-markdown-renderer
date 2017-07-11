@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "expo": "^18.0.3",
+    "npm": "^4.6.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.45.1"
   }
