@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 import markdownParser from './lib/markdown';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
-import {AstRenderer} from "./lib/AstGenerator";
+import { AstRenderer } from './lib/AstGenerator';
 
 /**
  * Base Markdown component
@@ -32,10 +32,9 @@ export default class Markdown extends Component {
    * @return {boolean}
    */
   shouldComponentUpdate(nextProps, nextState) {
-
     const copy = nextProps.children instanceof Array
-        ? nextProps.children.join('')
-        : nextProps.children;
+      ? nextProps.children.join('')
+      : nextProps.children;
 
     if (copy !== this.copy) {
       this.copy = copy;
@@ -45,7 +44,7 @@ export default class Markdown extends Component {
     return false;
   }
 
-	/**
+  /**
      *
 	 * @return {View}
 	 */
