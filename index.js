@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import markdownParser from './lib/markdownParser';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import { AstRenderer } from './lib/AstRenderer';
