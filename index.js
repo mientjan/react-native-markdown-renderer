@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import markdownParser from './lib/markdownParser';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
-import { AstRenderer } from './lib/AstRenderer';
+import AstRenderer from './lib/AstRenderer';
 
 /**
  * Base Markdown component
@@ -49,8 +50,14 @@ export default class Markdown extends Component {
 	 * @return {View}
 	 */
   render() {
+
+    const copy = this.props.children instanceof Array
+      ? this.props.children.join('')
+      : this.props.children;
+
+    this.copy = copy;
+
     const { renderer } = this.props;
-    const copy = this.copy;
 
     return markdownParser(copy, renderer);
   }
