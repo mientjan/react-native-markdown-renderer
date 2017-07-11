@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Markdown from "../index";
+import Markdown from "react-native-markdown-renderer";
 
 const copy = `
 ---
