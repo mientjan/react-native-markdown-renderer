@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 import markdownParser from './lib/markdown';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
-import { AstRenderer } from './lib/AstGenerator';
+import { AstRenderer } from './lib/AstRenderer';
 
 /**
  * Base Markdown component
