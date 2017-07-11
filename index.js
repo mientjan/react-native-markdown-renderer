@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import markdownParser from './lib/markdown';
+import markdownParser from './lib/markdownParser';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import { AstRenderer } from './lib/AstRenderer';
 
