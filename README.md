@@ -3,8 +3,14 @@
 React Native 100% compatible CommonMark renderer, this renderer uses markdown-it as 
 its base to tokenise the markdown, after that a ast is generated and given to the AstRenderer.
  
-Code in examples is not yet working, looks to be related to this issue. https://github.com/facebook/react-native/issues/14209
- 
+**Project has been tested on:**
+
+| Type | Version |
+| ---- | ------- |
+| react | 16.0.0-alpha.12 |
+| react-native | 0.45.1 |
+
+
 You can 
 
 #### npm
