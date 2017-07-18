@@ -45,18 +45,18 @@ export default class Markdown extends Component {
     return false;
   }
 
-  /**
-     *
-	 * @return {View}
-	 */
-  render() {
-
-    const copy = this.props.children instanceof Array
+  getCopyFromProps() {
+    return this.props.children instanceof Array
       ? this.props.children.join('')
       : this.props.children;
+  }
 
-    this.copy = copy;
-
+  /**
+   *
+   * @return {View}
+   */
+  render() {
+    const copy = (this.copy = this.getCopyFromProps());
     const { renderer } = this.props;
 
     return markdownParser(copy, renderer);

@@ -8,6 +8,7 @@ its base to tokenise the markdown, after that a ast is generated and given to th
 | react | react-native |
 | ---- | ------- |
 | 16.0.0-alpha.12 | 0.45.1 |
+| 16.0.0-alpha.6 | 0.44.0
 
 
 You can 
