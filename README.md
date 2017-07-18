@@ -5,10 +5,9 @@ its base to tokenise the markdown, after that a ast is generated and given to th
  
 **Project has been tested on:**
 
-| Type | Version |
+| react | react-native |
 | ---- | ------- |
-| react | 16.0.0-alpha.12 |
-| react-native | 0.45.1 |
+| 16.0.0-alpha.12 | 0.45.1 |
 
 
 You can 
