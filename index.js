@@ -1,23 +1,20 @@
+/**
+ * Base Markdown component
+ * @author Mient-jan Stelling
+ */
 import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import { parser, stringToTokens, tokensToAST } from './lib/parser';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
-
-export {
-  defaultRenderFunctions,
-  AstRenderer,
-  parser,
-  stringToTokens,
-  tokensToAST,
-  MarkdownIt
-};
+import PluginContainer from "./lib/PluginContainer";
 
 /**
- * Base Markdown component
- * @author Mient-jan Stelling
+ *
  */
+export { defaultRenderFunctions, AstRenderer, parser, stringToTokens, tokensToAST, MarkdownIt, PluginContainer };
+
 export default class Markdown extends Component {
   /**
 	 * Definition of the prop types
@@ -25,6 +22,7 @@ export default class Markdown extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     renderer: PropTypes.instanceOf(AstRenderer),
+    plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
   };
 
   /**
@@ -32,6 +30,7 @@ export default class Markdown extends Component {
 	 */
   static defaultProps = {
     renderer: new AstRenderer(defaultRenderFunctions),
+    plugins: [],
   };
 
   copy = '';
@@ -55,6 +54,19 @@ export default class Markdown extends Component {
     return false;
   }
 
+  componentWillMount() {
+  	if(this.props.plugins && this.props.plugins.length > 0 && !this.md)
+    {
+    	let md = MarkdownIt();
+
+    	this.props.plugins.forEach(plugin => {
+		    md = md.use.apply(md, plugin.toArray());
+	    });
+
+	    this.md = md;
+    }
+  }
+
   getCopyFromProps() {
     return this.props.children instanceof Array
       ? this.props.children.join('')
@@ -69,6 +81,6 @@ export default class Markdown extends Component {
     const copy = (this.copy = this.getCopyFromProps());
     const { renderer } = this.props;
 
-    return parser(copy, renderer);
+    return parser(copy, renderer, this.md);
   }
 }
