@@ -13,6 +13,7 @@ its base to tokenise the markdown, after that a ast is generated and given to th
 **todo**
  - add styleSheet support
  - add styleSheet inheritance support
+ - ~~adding plugin support~~
 
 You can 
 
