@@ -10,6 +10,9 @@ its base to tokenise the markdown, after that a ast is generated and given to th
 | 16.0.0-alpha.12 | 0.45.1 |
 | 16.0.0-alpha.6 | 0.44.0
 
+**todo**
+ - add styleSheet support
+ - add styleSheet inheritance support
 
 You can 
 
