@@ -9,11 +9,12 @@ import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
 import PluginContainer from "./lib/PluginContainer";
+import blockPlugin from "./lib/blockPlugin";
 
 /**
  *
  */
-export { defaultRenderFunctions, AstRenderer, parser, stringToTokens, tokensToAST, MarkdownIt, PluginContainer };
+export { defaultRenderFunctions, AstRenderer, parser, stringToTokens, tokensToAST, MarkdownIt, PluginContainer, blockPlugin };
 
 export default class Markdown extends Component {
   /**

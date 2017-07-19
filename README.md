@@ -60,11 +60,7 @@ How to use this library with custom renderer:
 
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
-import Markdown from 'react-native-markdown-renderer';
-import AstRenderer from 'react-native-markdown-renderer/lib/AstRenderer';
-import defaultRendererFunctions from 'react-native-markdown-renderer/lib/defaultRendererFunctions';
-
-
+import Markdown, { AstRenderer, defaultRendererFunctions, PluginContainer, blockPlugin} from 'react-native-markdown-renderer';
 
 const copy = `# h1 Heading 8-)
 
@@ -73,6 +69,10 @@ const copy = `# h1 Heading 8-)
 | data   | path to data files to supply the data that will be passed into templates. |
 | engine | engine to be used for processing templates. Handlebars is the default. |
 | ext    | extension to be used for dest files. |
+
+[block]
+I'm in a block
+[/block]
 `;
 
 /**
@@ -82,16 +82,26 @@ const renderer = new AstRenderer(Object.assign({}, defaultRendererFunctions, {
   h1: (node, children) => {
     return <Text style={{backgroundColor: 'red'}}>{children}</Text>;
   },
+  // added custom block element
+  block: (node, children) => {
+  	return <Text style={{backgroundColor: 'green'}}>{children}</Text>;
+  }
 }));
 
 export default class Page extends PureComponent {
 
   static propTypes = {};
   static defaultProps = {};
+  
+  markdownPlugins = [
+  	new PluginContainer(blockPlugin, 'block', {})
+  ];
 
   render() {
+  	
+  	
     return (
-    	<Markdown renderer={renderer}>{copy}</Markdown>
+    	<Markdown renderer={renderer} plugins={this.markdownPlugins}>{copy}</Markdown>
     );
   }
 }
