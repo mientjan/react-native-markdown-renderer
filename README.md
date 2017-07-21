@@ -25,7 +25,7 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  
 ### tested on:
 
-| check | react | react-native |
+| [] | react | react-native |
 | ---- | ---- | ------- |
 | v | 16.0.0-alpha.12 | 0.45.1 |
 | v | 16.0.0-alpha.6 | 0.44.0 |
