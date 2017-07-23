@@ -2,7 +2,8 @@
  * Base Markdown component
  * @author Mient-jan Stelling
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { parser, stringToTokens, tokensToAST } from './lib/parser';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
@@ -24,6 +25,7 @@ export default class Markdown extends Component {
     children: PropTypes.node.isRequired,
     renderer: PropTypes.instanceOf(AstRenderer),
     plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
+    styles: PropTypes.any
   };
 
   /**
@@ -32,6 +34,7 @@ export default class Markdown extends Component {
   static defaultProps = {
     renderer: new AstRenderer(defaultRenderFunctions),
     plugins: [],
+    styles: {},
   };
 
   copy = '';
@@ -80,8 +83,8 @@ export default class Markdown extends Component {
    */
   render() {
     const copy = (this.copy = this.getCopyFromProps());
-    const { renderer } = this.props;
-
-    return parser(copy, renderer, this.md);
+    const { renderer, styles } = this.props;
+    const asttree = parser(copy, this.md);
+    return renderer.render(asttree, styles);
   }
 }
