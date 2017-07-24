@@ -1,6 +1,6 @@
 # React Native Markdown Renderer
 
-Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__ 
+Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
 To give a summary of the supported syntax react-native-markdown-renderer supports.
@@ -20,9 +20,9 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Syntax highlighting
  - Links
  - Images
- - Plugins for extra syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support. 
- 
- 
+ - Plugins for extra syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
+
+
 ### tested on:
 
 | [] | react | react-native |
@@ -82,7 +82,7 @@ export default class Page extends PureComponent {
 
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
-import Markdown, { AstRenderer, defaultRendererFunctions, PluginContainer, blockPlugin} from 'react-native-markdown-renderer';
+import Markdown, { AstRenderer, defaultRenderFunctions, PluginContainer, blockPlugin} from 'react-native-markdown-renderer';
 
 const copy = `# h1 Heading 8-)
 
@@ -101,7 +101,7 @@ I'm in a block
  * i'm overriding the default h1 render function.
  */
 const renderer = new AstRenderer({
-  ...defaultRendererFunctions,
+  ...defaultRenderFunctions,
   h1: (node, children, parents) => {
     return <Text style={{backgroundColor: 'red'}}>{children}</Text>;
   },
@@ -117,11 +117,11 @@ export default class Page extends PureComponent {
   static defaultProps = {};
 
   render() {
-  	
+
   	const plugins = [
   	  new PluginContainer(blockPlugin, 'block', {})
   	];
-  	
+
     return (
     	<Markdown renderer={renderer} plugins={plugins}>{copy}</Markdown>
     );
