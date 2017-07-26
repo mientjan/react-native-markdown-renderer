@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Markdown from 'react-native-markdown-renderer';
-import { AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin } from '../index';
+import Markdown, { AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin } from 'react-native-markdown-renderer';
 
 const markdownText = `
  # Syntax Support
@@ -163,7 +162,6 @@ With a reference later in the document defining the URL location:
 
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 `;
-
 /**
  * i'm overriding the default h1 render function.
  */
@@ -189,7 +187,7 @@ export default class App extends React.Component {
         <ScrollView>
           <Text>Markdown</Text>
           <Text>--------</Text>
-          <Markdown plugins={[]} children={markdownText2} />
+          <Markdown plugins={[]} children={markdownText} />
         </ScrollView>
       </View>
     );
