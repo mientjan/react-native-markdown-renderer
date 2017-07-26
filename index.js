@@ -52,7 +52,7 @@ export default class Markdown extends Component {
    * @return {boolean}
    */
   shouldComponentUpdate(nextProps, nextState) {
-    const copy = this.getCopyFromProps(nextProps);
+    const copy = this.getCopyFromChildren(nextProps.children);
 
     if (copy !== this.copy) {
       this.copy = copy;
@@ -77,10 +77,10 @@ export default class Markdown extends Component {
     }
   }
 
-  getCopyFromProps(props = this.props.children) {
-    return props.children instanceof Array
-      ? props.children.join('')
-      : props.children;
+  getCopyFromChildren(children = this.props.children) {
+    return children instanceof Array
+      ? children.join('')
+      : children;
   }
 
   /**
@@ -88,7 +88,7 @@ export default class Markdown extends Component {
    * @return {View}
    */
   render() {
-    const copy = (this.copy = this.getCopyFromProps());
+    const copy = (this.copy = this.getCopyFromChildren());
     const { renderer } = this.props;
 
     return parser(copy, renderer, this.md);
