@@ -1,9 +1,91 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Markdown from 'react-native-markdown-renderer';
-import { AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin } from '../index';
 
-const markdownText = `
+const fs = require('fs');
+const MarkdownIt = require('markdown-it');
+
+let md = MarkdownIt();
+
+/**
+ *
+ * @param {{type: string, tag:string, content: string, children: *, attrs: Array}} token
+ * @param {number} tokenIndex
+ * @return {{type: string, content, tokenIndex: *, index: number, attributes: {}, children: *}}
+ */
+function createNode(token, tokenIndex) {
+	let type = 'root';
+
+	if (token) {
+		if (!token.tag) {
+			type = token.type;
+		} else {
+			type = token.tag;
+		}
+	}
+
+	const content = token.content;
+	let attributes = {};
+
+	if (token.attrs) {
+		attributes = token.attrs.reduce((prev, curr) => {
+			const [name, value] = curr;
+			return Object.assign({}, prev, { [name]: value });
+		}, {});
+	}
+
+	return {
+		type,
+		content,
+		tokenIndex,
+		index: 0,
+		attributes,
+		children: tokensToAST(token.children),
+	};
+}
+
+/**
+ *
+ * @param {Array<{type: string, tag:string, content: string, children: *, attrs: Array}>}tokens
+ * @return {Array}
+ */
+function tokensToAST(tokens) {
+	const stack = [];
+	const stackText = [];
+	let children = [];
+
+	if (!tokens || tokens.length === 0) {
+		return [];
+	}
+
+	for (let i = 0; i < tokens.length; i++) {
+		const token = tokens[i];
+		const astNode = createNode(token, i);
+
+		if (!(astNode.type === 'text' && astNode.children.length === 0 && astNode.content === '')) {
+			astNode.index = children.length;
+
+			if (token.nesting === 1) {
+				children.push(astNode);
+				stack.push(children);
+				children = astNode.children;
+			} else if (token.nesting === -1) {
+				children = stack.pop();
+			} else if (token.nesting === 0) {
+				children.push(astNode);
+			}
+		}
+	}
+
+	return children;
+}
+
+function stringToTokens(source, markdownIt = md) {
+	let result = [];
+	try {
+		result = md.parse(source, {});
+	} catch (err) {}
+	return result;
+}
+
+let text = `
  # Syntax Support
 
 __Advertisement :)__
@@ -161,45 +243,9 @@ Like links, Images also have a footnote style syntax
 
 With a reference later in the document defining the URL location:
 
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-`;
+[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"`;
 
-/**
- * i'm overriding the default h1 render function.
- */
-const renderer = new AstRenderer({
-  ...defaultRenderFunctions,
-  h1: (node, children, parents) => {
-    return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
-    );
-  },
-  // added custom block element defined by plugin
-  block: (node, children, parents) => {
-    return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
-    );
-  },
-});
+const data = tokensToAST(stringToTokens(text));
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Text>Markdown</Text>
-          <Text>--------</Text>
-          <Markdown plugins={[]} children={markdownText2} />
-        </ScrollView>
-      </View>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffcc00',
-    paddingTop: 20,
-  },
-});
+fs.writeFileSync('./output.json', JSON.stringify(data));
