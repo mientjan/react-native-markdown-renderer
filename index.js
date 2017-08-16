@@ -77,7 +77,7 @@ export default class Markdown extends Component {
     }
   }
 
-  getCopyFromProps(props = this.props.children) {
+  getCopyFromProps(props = this.props) {
     return props.children instanceof Array
       ? props.children.join('')
       : props.children;
