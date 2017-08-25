@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/mientjan/react-native-markdown-renderer#readme",
   "dependencies": {
-    "markdown-it": "^8.3.1",
-    "react-native-fit-image": "^1.4.9"
+    "markdown-it": "^8.4.0",
+    "react-native-fit-image": "^1.5.2"
   },
   "peerDependencies": {
     "react": ">=16.0.0-alpha.6",
