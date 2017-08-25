@@ -4,7 +4,8 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
-import { parser, stringToTokens, tokensToAST } from './lib/parser';
+import { parser, stringToTokens } from './lib/parser';
+import tokensToAST from './lib/util/tokensToAST';
 import defaultRenderFunctions from './lib/defaultRenderFunctions';
 import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
