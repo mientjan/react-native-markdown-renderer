@@ -162,6 +162,13 @@ With a reference later in the document defining the URL location:
 
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 `;
+
+const markdownText2 = ` # Syntax Support
+
+__Advertisement :)__
+
+This is a text. Click [here](https://google.com) to open a link. Let's add some more text to see how this behaves.`;
+
 /**
  * i'm overriding the default h1 render function.
  */
