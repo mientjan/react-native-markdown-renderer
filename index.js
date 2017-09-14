@@ -2,21 +2,29 @@
  * Base Markdown component
  * @author Mient-jan Stelling
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { parser, stringToTokens } from './lib/parser';
+import getUniqueID from './lib/util/getUniqueID';
+import hasParents from './lib/util/hasParents';
+import openUrl from './lib/util/openUrl';
 import tokensToAST from './lib/util/tokensToAST';
-import defaultRenderFunctions from './lib/defaultRenderFunctions';
+import renderRules from './lib/renderRules';
 import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
-import PluginContainer from './lib/PluginContainer';
-import blockPlugin from './lib/blockPlugin';
+import PluginContainer from './lib/plugin/PluginContainer';
+import blockPlugin from './lib/plugin/blockPlugin';
+import { styles } from './lib/styles';
 
 /**
  *
  */
 export {
-  defaultRenderFunctions,
+  getUniqueID,
+	openUrl,
+	hasParents,
+  renderRules,
   AstRenderer,
   parser,
   stringToTokens,
@@ -33,18 +41,43 @@ export default class Markdown extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     renderer: PropTypes.instanceOf(AstRenderer),
+    rules: (props, propName, componentName) => {
+      let invalidProps = [];
+      const prop = props[propName];
+      if (typeof prop === 'object') {
+        invalidProps = Object.keys(prop).filter(key => typeof prop[key] !== 'function');
+      }
+
+      if (typeof prop !== 'object') {
+        return new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Must be of shape {[index:string]:function} `
+        );
+      } else if (invalidProps.length > 0) {
+        return new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. These ` +
+            `props are not of type function \`${invalidProps.join(', ')}\` `
+        );
+      }
+    },
+    markdownit: PropTypes.instanceOf(MarkdownIt),
     plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
+    style: PropTypes.any,
   };
 
   /**
 	 * Default Props
 	 */
   static defaultProps = {
-    renderer: new AstRenderer(defaultRenderFunctions),
+    renderer: null,
+    rules: null,
     plugins: [],
+    style: {},
+    markdownit: MarkdownIt(),
   };
 
   copy = '';
+  renderer = null;
+  markdownParser = null;
 
   /**
    * Only when the copy changes will the markdown render again.
@@ -67,21 +100,42 @@ export default class Markdown extends Component {
    *
    */
   componentWillMount() {
-    if (this.props.plugins && this.props.plugins.length > 0 && !this.md) {
-      let md = MarkdownIt();
+    const { renderer, rules, style, plugins, markdownit } = this.props;
 
-      this.props.plugins.forEach(plugin => {
+    if (renderer && rules) {
+      console.warn(
+        'react-native-markdown-renderer you are using renderer and rules at the same time. This is not possible, props.rules are ignored'
+      );
+    }
+
+    if (renderer) {
+      this.renderer = renderer;
+    } else {
+      this.renderer = new AstRenderer(
+        {
+          ...renderRules,
+          ...(rules || {}),
+        },
+        {
+          ...styles,
+          ...style,
+        }
+      );
+    }
+
+    if (plugins && plugins.length > 0) {
+      let md = markdownit;
+
+      plugins.forEach(plugin => {
         md = md.use.apply(md, plugin.toArray());
       });
 
-      this.md = md;
+      this.markdownParser = md;
     }
   }
 
   getCopyFromChildren(children = this.props.children) {
-    return children instanceof Array
-      ? children.join('')
-      : children;
+    return children instanceof Array ? children.join('') : children;
   }
 
   /**
@@ -92,6 +146,6 @@ export default class Markdown extends Component {
     const copy = (this.copy = this.getCopyFromChildren());
     const { renderer } = this.props;
 
-    return parser(copy, renderer, this.md);
+    return parser(copy, renderer, this.markdownParser);
   }
 }
