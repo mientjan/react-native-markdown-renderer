@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Markdown, { AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin } from 'react-native-markdown-renderer';
+import Markdown, {
+	AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin,
+	getUniqueID
+} from 'react-native-markdown-renderer';
 
 const markdownText = `
  # Syntax Support
@@ -176,13 +179,13 @@ const renderer = new AstRenderer({
   ...defaultRenderFunctions,
   h1: (node, children, parents) => {
     return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
+      <Text key={getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
     );
   },
   // added custom block element defined by plugin
   block: (node, children, parents) => {
     return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
+      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
     );
   },
 });

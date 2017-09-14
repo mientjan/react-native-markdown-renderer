@@ -44,6 +44,11 @@ export default class Markdown extends Component {
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
+
+      if (!prop) {
+        return;
+      }
+
       if (typeof prop === 'object') {
         invalidProps = Object.keys(prop).filter(key => typeof prop[key] !== 'function');
       }
@@ -82,11 +87,11 @@ export default class Markdown extends Component {
   markdownParser = null;
 
   /**
-   * Only when the copy changes will the markdown render again.
-   * @param nextProps
-   * @param nextState
-   * @return {boolean}
-   */
+	 * Only when the copy changes will the markdown render again.
+	 * @param nextProps
+	 * @param nextState
+	 * @return {boolean}
+	 */
   shouldComponentUpdate(nextProps, nextState) {
     const copy = this.getCopyFromChildren(nextProps.children);
 
@@ -99,8 +104,8 @@ export default class Markdown extends Component {
   }
 
   /**
-   *
-   */
+	 *
+	 */
   componentWillMount() {
     const { renderer, rules, style, plugins, markdownit } = this.props;
 
@@ -125,15 +130,14 @@ export default class Markdown extends Component {
       );
     }
 
+    let md = markdownit;
     if (plugins && plugins.length > 0) {
-      let md = markdownit;
-
       plugins.forEach(plugin => {
         md = md.use.apply(md, plugin.toArray());
       });
-
-      this.markdownParser = md;
     }
+
+    this.markdownParser = md;
   }
 
   getCopyFromChildren(children = this.props.children) {
@@ -141,13 +145,12 @@ export default class Markdown extends Component {
   }
 
   /**
-   *
-   * @return {View}
-   */
+	 *
+	 * @return {View}
+	 */
   render() {
     const copy = (this.copy = this.getCopyFromChildren());
-    const { renderer } = this.props;
 
-    return parser(copy, renderer, this.markdownParser);
+    return parser(copy, this.renderer, this.markdownParser);
   }
 }
