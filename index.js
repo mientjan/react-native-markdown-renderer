@@ -22,8 +22,8 @@ import { styles } from './lib/styles';
  */
 export {
   getUniqueID,
-	openUrl,
-	hasParents,
+  openUrl,
+  hasParents,
   renderRules,
   AstRenderer,
   parser,
@@ -72,7 +72,9 @@ export default class Markdown extends Component {
     rules: null,
     plugins: [],
     style: {},
-    markdownit: MarkdownIt(),
+    markdownit: MarkdownIt({
+      typographer: true,
+    }),
   };
 
   copy = '';
