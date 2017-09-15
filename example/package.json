@@ -1,12 +1,7 @@
 {
   "name": "example",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
-  "devDependencies": {
-    "jest-expo": "~18.0.0",
-    "react-native-scripts": "0.0.50",
-    "react-test-renderer": "16.0.0-alpha.12"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -20,8 +15,13 @@
   },
   "dependencies": {
     "expo": "^18.0.3",
-    "react": "16.0.0-alpha.12",
-    "react-native": "^0.45.1",
-    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git#feature/stylesheet-support"
+    "react": "^15.6.1",
+    "react-native": "^0.48.3",
+    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git"
+  },
+  "devDependencies": {
+    "jest-expo": "~18.0.0",
+    "react-native-scripts": "0.0.50",
+    "react-test-renderer": "16.0.0-alpha.12"
   }
 }
