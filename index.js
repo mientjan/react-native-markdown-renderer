@@ -40,7 +40,7 @@ export default class Markdown extends Component {
 	 */
   static propTypes = {
     children: PropTypes.node.isRequired,
-    renderer: PropTypes.instanceOf(AstRenderer),
+    renderer: PropTypes.oneOf([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
@@ -111,12 +111,28 @@ export default class Markdown extends Component {
 
     if (renderer && rules) {
       console.warn(
-        'react-native-markdown-renderer you are using renderer and rules at the same time. This is not possible, props.rules are ignored'
+        'react-native-markdown-renderer you are using renderer and rules at the same time. This is not possible, props.rules is ignored'
+      );
+    }
+
+    if (renderer && style) {
+      console.warn(
+        'react-native-markdown-renderer you are using renderer and style at the same time. This is not possible, props.style is ignored'
       );
     }
 
     if (renderer) {
-      this.renderer = renderer;
+      if (typeof renderer === 'function') {
+        this.renderer = {
+          render: renderer,
+        };
+      } else if (renderer instanceof AstRenderer) {
+        this.renderer = renderer;
+      } else {
+        throw new Error(
+          'Provided renderer is not compatible with function or AstRenderer. please change'
+        );
+      }
     } else {
       this.renderer = new AstRenderer(
         {
@@ -150,7 +166,6 @@ export default class Markdown extends Component {
 	 */
   render() {
     const copy = (this.copy = this.getCopyFromChildren());
-
-    return parser(copy, this.renderer, this.markdownParser);
+    return parser(copy, this.renderer.render, this.markdownParser);
   }
 }
