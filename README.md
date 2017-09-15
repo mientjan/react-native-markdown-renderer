@@ -1,5 +1,7 @@
 # React Native Markdown Renderer [![npm version](https://badge.fury.io/js/react-native-markdown-renderer.svg)](https://badge.fury.io/js/react-native-markdown-renderer) [![Known Vulnerabilities](https://snyk.io/test/github/mientjan/react-native-markdown-renderer/badge.svg)](https://snyk.io/test/github/mientjan/react-native-markdown-renderer)
 
+#### readme is for v1.3.4, will update readme as soon as possible.
+
 Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
