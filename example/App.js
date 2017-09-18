@@ -200,7 +200,7 @@ export default class App extends React.Component {
         <ScrollView>
           <Text>Markdown</Text>
           <Text>--------</Text>
-          <Markdown plugins={[]} renderer={renderer} children={markdownText} />
+          <Markdown plugins={[]} renderer={renderer.render} children={markdownText} />
         </ScrollView>
       </View>
     );

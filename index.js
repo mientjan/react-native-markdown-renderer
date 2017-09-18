@@ -32,7 +32,7 @@ export {
   MarkdownIt,
   PluginContainer,
   blockPlugin,
-	styles
+  styles,
 };
 
 export default class Markdown extends Component {
@@ -41,7 +41,7 @@ export default class Markdown extends Component {
 	 */
   static propTypes = {
     children: PropTypes.node.isRequired,
-    renderer: PropTypes.oneOf([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
+    renderer: PropTypes.oneOfType([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
