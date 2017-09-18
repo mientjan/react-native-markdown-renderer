@@ -1,8 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView, Picker } from 'react-native';
 import Markdown, {
-	AstRenderer, styles, renderRules,
-	getUniqueID
+  AstRenderer,
+  styles,
+  renderRules,
+  getUniqueID,
 } from 'react-native-markdown-renderer';
 
 const markdownText = `
@@ -175,32 +177,57 @@ This is a text. Click [here](https://google.com) to open a link. Let's add some 
 /**
  * i'm overriding the default h1 render function.
  */
-const renderer = new AstRenderer({
-  ...renderRules,
-  h1: (node, children, parents) => {
-    return (
-      <Text key={getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
-    );
+const renderer = new AstRenderer(
+  {
+    ...renderRules,
+    h1: (node, children, parents) => {
+      return <Text key={getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>;
+    },
+    // added custom block element defined by plugin
+    block: (node, children, parents) => {
+      return <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>;
+    },
   },
-  // added custom block element defined by plugin
-  block: (node, children, parents) => {
-    return (
-      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
-    );
-  },
-}, styles);
+  styles
+);
 
-export default class App extends React.Component {
+export default class App extends Component {
+  state = {
+    view: 0,
+  };
+
+  list = [{ description: 'custom renderer' }, { description: 'custom style sheet' }];
+
+  getView(value) {
+
+  	console.warn(value);
+    switch (value) {
+      case 0: {
+        return <Markdown plugins={[]} renderer={renderer.render} children={markdownText} />;
+      }
+      default: {
+        return (
+	        <Markdown># Text</Markdown>
+        );
+      }
+    }
+  }
+
   render() {
-      
+
+
 
     return (
-      <View style={styles.container}>
+      <View style={styleSheet.container}>
+        <Picker
+          selectedValue={this.state.view}
+          onValueChange={(itemValue, itemIndex) => this.setState({ view: itemIndex })}
+        >
+          {this.list.map((val, index) => <Picker.Item label={val.description} value={index} />)}
+        </Picker>
 
         <ScrollView>
-          <Text>Markdown</Text>
-          <Text>--------</Text>
-          <Markdown plugins={[]} renderer={renderer.render} children={markdownText} />
+          {this.getView(this.state.view)}
         </ScrollView>
       </View>
     );
@@ -210,7 +237,6 @@ export default class App extends React.Component {
 const styleSheet = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffcc00',
-    paddingTop: 20,
+    marginTop: 20,
   },
 });

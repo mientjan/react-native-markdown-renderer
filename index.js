@@ -35,6 +35,9 @@ export {
   styles,
 };
 
+/**
+ * react-native-markdown-renderer
+ */
 export default class Markdown extends Component {
   /**
 	 * Definition of the prop types
@@ -77,7 +80,7 @@ export default class Markdown extends Component {
     renderer: null,
     rules: null,
     plugins: [],
-    style: {},
+    style: null,
     markdownit: MarkdownIt({
       typographer: true,
     }),
@@ -104,11 +107,8 @@ export default class Markdown extends Component {
     return false;
   }
 
-  /**
-	 *
-	 */
-  componentWillMount() {
-    const { renderer, rules, style, plugins, markdownit } = this.props;
+  updateSettings(props = this.props) {
+    const { renderer, rules, style, plugins, markdownit } = props;
 
     if (renderer && rules) {
       console.warn(
@@ -122,39 +122,68 @@ export default class Markdown extends Component {
       );
     }
 
+    // these checks are here to prevent extra overhead.
     if (renderer) {
       if (typeof renderer === 'function') {
-        this.renderer = {
-          render: renderer,
-        };
+        if (!this.renderer || this.renderer.render !== renderer) {
+          this.renderer = {
+            render: renderer,
+          };
+        }
       } else if (renderer instanceof AstRenderer) {
-        this.renderer = renderer;
+        if (this.renderer !== renderer) {
+          this.renderer = renderer;
+        }
       } else {
         throw new Error(
           'Provided renderer is not compatible with function or AstRenderer. please change'
         );
       }
     } else {
-      this.renderer = new AstRenderer(
-        {
-          ...renderRules,
-          ...(rules || {}),
-        },
-        {
-          ...styles,
-          ...style,
-        }
-      );
+      if (
+        !this.renderer ||
+        this.props.renderer ||
+        this.props.rules !== rules ||
+        this.props.style !== style
+      ) {
+        this.renderer = new AstRenderer(
+          {
+            ...renderRules,
+            ...(rules || {}),
+          },
+          {
+            ...styles,
+            ...style,
+          }
+        );
+      }
     }
 
-    let md = markdownit;
-    if (plugins && plugins.length > 0) {
-      plugins.forEach(plugin => {
-        md = md.use.apply(md, plugin.toArray());
-      });
-    }
+    if (
+      !this.markdownParser ||
+      this.props.markdownit !== markdownit ||
+      plugins !== this.props.plugins
+    ) {
+      let md = markdownit;
+      if (plugins && plugins.length > 0) {
+        plugins.forEach(plugin => {
+          md = md.use.apply(md, plugin.toArray());
+        });
+      }
 
-    this.markdownParser = md;
+      this.markdownParser = md;
+    }
+  }
+
+  /**
+	 *
+	 */
+  componentWillMount() {
+    this.updateSettings(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateSettings(nextProps);
   }
 
   getCopyFromChildren(children = this.props.children) {
