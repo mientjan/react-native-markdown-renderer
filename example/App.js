@@ -49,7 +49,7 @@ export default class App extends Component {
 
   getView(value) {
     switch (value) {
-      case 6: {
+      case 0: {
         return <Markdown children={copyAll} />;
       }
       case 1: {
@@ -64,7 +64,7 @@ export default class App extends Component {
       case 4: {
         return <Markdown rules={rules} style={customMarkdownStyle} children={copyAll} />;
       }
-      case 0: {
+      case 6: {
         return <Markdown rules={pluginRules} plugins={[new PluginContainer(markdownItCheckbox, {divWrap: true})]} style={customMarkdownStyle} children={copyAllCheckboxPlugin} />;
       }
       default: {
