@@ -203,7 +203,7 @@ export default class App extends Component {
   	console.warn(value);
     switch (value) {
       case 0: {
-        return <Markdown plugins={[]} renderer={renderer.render} children={markdownText} />;
+        return <Markdown renderer={renderer.render} children={markdownText} />;
       }
       default: {
         return (
@@ -223,7 +223,7 @@ export default class App extends Component {
           selectedValue={this.state.view}
           onValueChange={(itemValue, itemIndex) => this.setState({ view: itemIndex })}
         >
-          {this.list.map((val, index) => <Picker.Item label={val.description} value={index} />)}
+          {this.list.map((val, index) => <Picker.Item key={val.description} label={val.description} value={index} />)}
         </Picker>
 
         <ScrollView>
