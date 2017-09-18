@@ -37,8 +37,9 @@ To give a summary of the supported syntax react-native-markdown-renderer support
 | ---- | ---- | ------- |
 | v | 16.0.0-alpha.12 | 0.45.1 |
 | v | 16.0.0-alpha.6 | 0.44.0 |
-| v | ^15.6.1 | ^0.46.4 |
-| v | ^15.6.1 | ^0.48.3 |
+| x | 15.x | ^0.46.4 |
+
+``` // react 15 seems to break with expo.```
 
 ### Todo
  - ~~add styleSheet support~~

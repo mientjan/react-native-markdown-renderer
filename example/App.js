@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Markdown, {
-	AstRenderer, style, defaultRenderFunctions, PluginContainer, blockPlugin,
+	AstRenderer, styles, renderRules,
 	getUniqueID
 } from 'react-native-markdown-renderer';
 
@@ -176,7 +176,7 @@ This is a text. Click [here](https://google.com) to open a link. Let's add some 
  * i'm overriding the default h1 render function.
  */
 const renderer = new AstRenderer({
-  ...defaultRenderFunctions,
+  ...renderRules,
   h1: (node, children, parents) => {
     return (
       <Text key={getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
@@ -188,23 +188,26 @@ const renderer = new AstRenderer({
       <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
     );
   },
-});
+}, styles);
 
 export default class App extends React.Component {
   render() {
+      
+
     return (
       <View style={styles.container}>
+
         <ScrollView>
           <Text>Markdown</Text>
           <Text>--------</Text>
-          <Markdown plugins={[]} children={markdownText} />
+          <Markdown plugins={[]} renderer={renderer} children={markdownText} />
         </ScrollView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styleSheet = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffcc00',

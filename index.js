@@ -32,6 +32,7 @@ export {
   MarkdownIt,
   PluginContainer,
   blockPlugin,
+	styles
 };
 
 export default class Markdown extends Component {
