@@ -104,6 +104,16 @@ export default class Markdown extends Component {
       return true;
     }
 
+    if (
+      nextProps.renderer !== this.props.renderer ||
+      nextProps.style !== this.props.style ||
+      nextProps.plugins !== this.props.plugins ||
+      nextProps.rules !== this.props.rules ||
+      nextProps.markdownit !== this.props.markdownit
+    ) {
+      return true;
+    }
+
     return false;
   }
 
