@@ -3,7 +3,6 @@
 Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
-
 ### Quick links
  - [Documentation](https://github.com/mientjan/react-native-markdown-renderer/wiki/)
  - [Examples](https://github.com/mientjan/react-native-markdown-renderer/wiki/Examples)
