@@ -4,10 +4,10 @@ Is a 100% compatible CommonMark renderer, a react-native markdown renderer done 
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
 ### Future releases
-##### v2.1.0
+**v2.1.0**
  - We are going to switch to a type based rule system instead of a html tags. Rules are currently 
  based off html tags "a,h1,h2,h3,h4,ul,li etc." this will change to "anchor, heading1, bullet_list, bullet_list_item" 
- This makes it a lot easier to add extra syntax features through plugins. 
+ This makes it a lot easier to add extra syntax features through plugins.
  
 
 ### Quick links
