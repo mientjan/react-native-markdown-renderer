@@ -9,7 +9,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
  - [Examples](https://github.com/mientjan/react-native-markdown-renderer/wiki/Examples)
  - [Example App](https://github.com/mientjan/react-native-markdown-renderer/wiki/ExampleApp)
  
-  
+
 ### Syntax Support
 
 To give a summary of the supported syntax react-native-markdown-renderer supports.
@@ -17,7 +17,7 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Tables
  - Heading 1 > 6
  - Horizontal Rules
- - Typographic replacements
+ - Typographic Replacements
  - Emphasis ( **bold**, *italic*, ~~strikethrough~~ )
  - Blockquotes
  - Lists
@@ -29,7 +29,28 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Syntax highlighting
  - Links
  - Images
- - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
+ - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). 
+ Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and 
+ subsequent extra language support.
+ 
+### Plugins, Extending Markdown (common mark A+) language support
+This renderer, supports the ability extend the current CommonMark A+ spec. 
+
+For example:
+
+ - checkboxes: [ ] Not Checked [x] Checked https://www.npmjs.com/package/markdown-it-checkbox
+ - Video Embeds: ```@[youtube](dQw4w9WgXcQ)``` https://www.npmjs.com/package/markdown-it-video
+ 
+And a lot more, the list of community created plugins to extends the language are endless. But be 
+**carefull** add a plugin is easy, creating a rule for it is not. Currently the astRenderer and rules 
+are based off html tags. This makes it especially hard when adding stuff like checkbox or Video Embeds 
+that are grouped under input, label and a tag.
+
+**Version 2.1.0** will switch this around and move the rules from tags to type. So a ```* list``` was a "li" 
+in the rules becomes a "bullet_list_item".
+
+Checkbox was a "input" with no wrapper and will now move to "checkbox". This change will help to make support 
+for plugins a lot easier   
 
 
 ### Tested on:
