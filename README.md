@@ -7,6 +7,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
 ### Quick links
  - [Documentation](https://github.com/mientjan/react-native-markdown-renderer/wiki/)
  - [Examples](https://github.com/mientjan/react-native-markdown-renderer/wiki/Examples)
+ - [Example App](https://github.com/mientjan/react-native-markdown-renderer/wiki/ExampleApp)
  
   
 ### Syntax Support
