@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "markdown-it-checkbox": "^1.1.0",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.45.1",
-    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git"
+    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git#release/2.1.0"
   },
   "devDependencies": {
     "jest-expo": "~18.0.0",
