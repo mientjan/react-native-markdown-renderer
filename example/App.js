@@ -173,38 +173,38 @@ This is a text. Click [here](https://google.com) to open a link. Let's add some 
  * i'm overriding the default h1 render function.
  */
 const renderer = new AstRenderer({
-  ...defaultRenderFunctions,
-  h1: (node, children, parents) => {
-    return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
-    );
-  },
-  // added custom block element defined by plugin
-  block: (node, children, parents) => {
-    return (
-      <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
-    );
-  },
+	...defaultRenderFunctions,
+	h1: (node, children, parents) => {
+		return (
+            <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>
+		);
+	},
+	// added custom block element defined by plugin
+	block: (node, children, parents) => {
+		return (
+            <Text key={AstRenderer.getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>
+		);
+	},
 });
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Text>Markdown</Text>
-          <Text>--------</Text>
-          <Markdown plugins={[]} children={markdownText} />
-        </ScrollView>
-      </View>
-    );
-  }
+	render() {
+		return (
+            <View style={styles.container}>
+                <ScrollView>
+                    <Text>Markdown</Text>
+                    <Text>--------</Text>
+                    <Markdown plugins={[]} children={markdownText} />
+                </ScrollView>
+            </View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffcc00',
-    paddingTop: 20,
-  },
+	container: {
+		flex: 1,
+		backgroundColor: '#ffcc00',
+		paddingTop: 20,
+	},
 });
