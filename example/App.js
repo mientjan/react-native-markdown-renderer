@@ -8,6 +8,7 @@ import Markdown, {
 } from 'react-native-markdown-renderer';
 import markdownItCheckbox from 'markdown-it-checkbox';
 import copyAll from './src/copyAll';
+import code from './src/code';
 import customMarkdownStyle from './src/customMarkdownStyle';
 import copyAllCheckboxPlugin from "./src/copyAllCheckboxPlugin";
 import pluginRules from "./src/pluginRules";
@@ -50,7 +51,7 @@ export default class App extends Component {
   getView(value) {
     switch (value) {
       case 0: {
-        return <Markdown children={copyAll} />;
+        return <Markdown children={code} />;
       }
       case 1: {
         return <Markdown renderer={renderer.render} children={copyAll} />;
