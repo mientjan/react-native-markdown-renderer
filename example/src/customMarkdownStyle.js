@@ -33,6 +33,11 @@ const customMarkdownStyle = StyleSheet.create({
 		borderColor: '#000000',
 		borderBottomWidth: 1,
 	},
+
+	strong: {
+		fontSize: 50,
+		fontFamily: 'Courier',
+	}
 });
 
 export default customMarkdownStyle;
