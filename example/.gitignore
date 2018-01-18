@@ -2,3 +2,4 @@ node_modules/
 .expo/
 npm-debug.*
 /package-lock.json
+/react-native-markdown-renderer
