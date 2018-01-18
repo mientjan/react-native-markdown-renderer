@@ -1,4 +1,5 @@
 import getUniqueID from './getUniqueID';
+import getTokenTypeByToken from './getTokenTypeByToken';
 
 /**
  *
@@ -7,17 +8,9 @@ import getUniqueID from './getUniqueID';
  * @return {{type: string, content, tokenIndex: *, index: number, attributes: {}, children: *}}
  */
 function createNode(token, tokenIndex) {
-  let type = 'root';
-
-  if (token) {
-    if (!token.type) {
-      type = token.tag;
-    } else {
-      type = token.type;
-    }
-  }
-
+  const type = getTokenTypeByToken(token);
   const content = token.content;
+
   let attributes = {};
 
   if (token.attrs) {
@@ -25,7 +18,9 @@ function createNode(token, tokenIndex) {
       const [name, value] = curr;
       return { ...prev, [name]: value };
     }, {});
+
   }
+
 
   return {
     type,

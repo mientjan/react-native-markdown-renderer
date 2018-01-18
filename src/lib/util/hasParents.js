@@ -6,4 +6,5 @@
  */
 export default function hasParents(parents, type) {
   return parents.findIndex(el => el.type === type) > -1;
+
 }

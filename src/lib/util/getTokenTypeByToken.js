@@ -24,13 +24,16 @@ const regSelectHofH1 = /\w/g;
  * @param token
  * @return {String}
  */
-function getTokenTypeByToken(token) {
-  let cleanedType = "root";
-
-  const result = !(cleanedType === "root");
+export default function getTokenTypeByToken(token) {
+  let cleanedType = "unknown";
 
   if (token.type) {
     cleanedType = token.type.replace(regSelectOpenClose, "");
+  }
+
+  if(cleanedType === 'unknown')
+  {
+    console.log(token);
   }
 
   switch (cleanedType) {
@@ -42,3 +45,5 @@ function getTokenTypeByToken(token) {
 
   return cleanedType;
 }
+
+

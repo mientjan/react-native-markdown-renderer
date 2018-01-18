@@ -11,13 +11,10 @@ const renderRules = {
   unknown: (node, children, parent, styles) => {
     return (
       <View key={node.key}>
-        <Text>unknown {node.type}</Text> {children}
+        <Text>{node.type}</Text>
       </View>
     );
   },
-
-  // `root` is a special case.
-  root: children => <View key={getUniqueID()}>{children}</View>,
 
   textgroup: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
@@ -114,40 +111,61 @@ const renderRules = {
       {children}
     </View>
   ),
-  code: (node, children, parent, styles) => {
-    switch (node.sourceType) {
-      case "code_inline": {
-        return (
-          <Text key={node.key} style={styles.codeInline}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-      case "code_block": {
-        return (
-          <Text key={node.key} style={styles.codeBlock}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-      case "fence": {
-        return (
-          <Text key={node.key} style={styles.codeBlock}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-    }
-
+  code_inline: (node, children, parent, styles) => {
     return (
-      <View key={node.key} style={styles.codeInline}>
-        {children}
-      </View>
+      <Text key={node.key} style={styles.codeInline}>
+        {node.content}
+      </Text>
     );
   },
+  code_block: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.codeBlock}>
+        {node.content}
+      </Text>
+    );
+  },
+  fence: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.codeBlock}>
+        {node.content}
+      </Text>
+    );
+  },
+  // code: (node, children, parent, styles) => {
+  //   switch (node.sourceType) {
+  //     case "code_inline": {
+  //       return (
+  //         <Text key={node.key} style={styles.codeInline}>
+  //           {node.content}
+  //         </Text>
+  //       );
+  //       break;
+  //     }
+  //     case "code_block": {
+  //       return (
+  //         <Text key={node.key} style={styles.codeBlock}>
+  //           {node.content}
+  //         </Text>
+  //       );
+  //       break;
+  //     }
+  //     case "fence": {
+  //       return (
+  //         <Text key={node.key} style={styles.codeBlock}>
+  //           {node.content}
+  //         </Text>
+  //       );
+  //       break;
+  //     }
+  //   }
+  //
+  //   return (
+  //     <View key={node.key} style={styles.codeInline}>
+  //       {children}
+  //     </View>
+  //   );
+  // },
   pre: (node, children, parent, styles) => (
     <View key={node.key} style={styles.pre}>
       {children}
