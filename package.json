@@ -1,10 +1,9 @@
 {
   "name": "react-native-markdown-renderer",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Markdown renderer for react-native, with CommonMark spec support + adds syntax extensions & sugar (URL autolinking, typographer).",
   "main": "src/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mientjan/react-native-markdown-renderer.git"
