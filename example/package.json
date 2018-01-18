@@ -14,15 +14,17 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^18.0.3",
+    "expo": "^24.0.2",
     "markdown-it-checkbox": "^1.1.0",
-    "react": "16.0.0-alpha.12",
-    "react-native": "^0.45.1",
-    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git#release/2.1.0"
+    "react": "^16.2.0",
+    "react-native": "^0.50.4"
   },
   "devDependencies": {
     "jest-expo": "~18.0.0",
     "react-native-scripts": "0.0.50",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-test-renderer": "16.0.0-alpha.12",
+    "markdown-it": "^8.4.0",
+    "prop-types": "^15.5.10",
+    "react-native-fit-image": "^1.5.2"
   }
 }
