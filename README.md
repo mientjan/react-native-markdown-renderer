@@ -33,11 +33,12 @@ To give a summary of the supported syntax react-native-markdown-renderer support
 
 ### Tested on:
 
-| [] | react | react-native |
-| ---- | ---- | ------- |
-| v | 16.0.0-alpha.12 | 0.45.1 |
-| v | 16.0.0-alpha.6 | 0.44.0 |
-| x | 15.x | ^0.46.4 |
+| [] | react | react-native | version |
+| -- | ----- | ------------ | ------- |
+| v  | 16.2  | 0.50.4       | 3.0.0   |
+| v  | 16.0.0-alpha.12 | 0.45.1 | 2.0.5 |
+| v  | 16.0.0-alpha.6 | 0.44.0 | 2.0.5 |
+| x  | 15.x  | ^0.46.4      | 2.0.5 |
 
 ``` // react 15 seems to break with expo.```
 
