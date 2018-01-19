@@ -188,7 +188,7 @@ const renderRules = {
   },
   // li
   list_item: (node, children, parent, styles) => {
-    if (hasParents(parent, "ul")) {
+    if (hasParents(parent, "bullet_list")) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
           <Text style={styles.listUnorderedItemIcon}>{"\u00B7"}</Text>
@@ -197,7 +197,7 @@ const renderRules = {
       );
     }
 
-    if (hasParents(parent, "ol")) {
+    if (hasParents(parent, "ordered_list")) {
       return (
         <View key={node.key} style={styles.listOrderedItem}>
           <Text style={styles.listOrderedItemIcon}>{node.index + 1}</Text>
@@ -255,7 +255,7 @@ const renderRules = {
     <Text key={node.key}>{"\n"}</Text>
   ),
   image: (node, children, parent, styles) => {
-    return <FitImage key={node.key} source={{ uri: node.attributes.src }} />;
+    return <FitImage key={node.key} style={{margin: 1}} source={{ uri: node.attributes.src }} />;
   }
 };
 

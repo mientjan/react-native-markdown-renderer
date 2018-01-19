@@ -1,9 +1,6 @@
 import React from "react";
 import { View } from "react-native";
 import tokensToAST from "./util/tokensToAST";
-import removeInlineTokens from "./util/removeInlineTokens";
-import groupTextTokens from "./util/groupTextTokens";
-import getTokenTypeByToken from "./util/getTokenTypeByToken";
 import { stringToTokens } from "./util/stringToTokens";
 import { cleanupTokens } from "./util/cleanupTokens";
 

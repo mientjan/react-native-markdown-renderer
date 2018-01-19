@@ -1,5 +1,10 @@
 const markdownText = `
- # Syntax __Support__
+## Images
+
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+
+# Syntax __Support__
 
 __Advertisement :)__
 
