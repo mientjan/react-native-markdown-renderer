@@ -9,13 +9,7 @@ const textTypes = [
   'a',
   's',
   'em',
-  'heading1',
-  'heading2',
-  'heading3',
-  'heading4',
-  'heading5',
-  'heading6',
-  'softbreak',
+  'br',
 ];
 
 /**
@@ -23,6 +17,6 @@ const textTypes = [
  * @param node
  * @return {boolean}
  */
-export default function getIsTextType(type) {
+export default function getIsInlineTextType(type) {
   return textTypes.indexOf(type) > -1;
 }

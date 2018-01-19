@@ -132,40 +132,6 @@ const renderRules = {
       </Text>
     );
   },
-  // code: (node, children, parent, styles) => {
-  //   switch (node.sourceType) {
-  //     case "code_inline": {
-  //       return (
-  //         <Text key={node.key} style={styles.codeInline}>
-  //           {node.content}
-  //         </Text>
-  //       );
-  //       break;
-  //     }
-  //     case "code_block": {
-  //       return (
-  //         <Text key={node.key} style={styles.codeBlock}>
-  //           {node.content}
-  //         </Text>
-  //       );
-  //       break;
-  //     }
-  //     case "fence": {
-  //       return (
-  //         <Text key={node.key} style={styles.codeBlock}>
-  //           {node.content}
-  //         </Text>
-  //       );
-  //       break;
-  //     }
-  //   }
-  //
-  //   return (
-  //     <View key={node.key} style={styles.codeInline}>
-  //       {children}
-  //     </View>
-  //   );
-  // },
   pre: (node, children, parent, styles) => (
     <View key={node.key} style={styles.pre}>
       {children}
