@@ -30,7 +30,6 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Images
  - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
 
-
 ### Tested on:
 
 | [] | react | react-native | version |
@@ -40,13 +39,10 @@ To give a summary of the supported syntax react-native-markdown-renderer support
 | v  | 16.0.0-alpha.6 | 0.44.0 | 2.0.5 |
 | x  | 15.x  | ^0.46.4      | 2.0.5 |
 
-``` // react 15 seems to break with expo.```
-
 ### Todo
  - ~~add styleSheet support~~
  - ~~add plugin support~~
  - ~~add support for seperate rules~~
- - add styleSheet inheritance support
 
 ### How to:
 

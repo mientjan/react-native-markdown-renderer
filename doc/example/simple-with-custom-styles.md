@@ -1,5 +1,7 @@
 # Simple Implementation with custom styles
 
+docs for v3.0.0
+
 So to describe what i customized 
  - Heading1 has a **fontSize** of 32, **backgroundColor** black and a **color** white. 
  - all headers have a **border** at the bottom, of width 1 with a black color.
