@@ -12,15 +12,15 @@ import {View, PureComponent, Text} from 'react-native';
 import Markdown, {getUniqueID} from 'react-native-markdown-renderer';
 
 const rules = {
-    h1: (node, children, parent, styles) =>
+    heading1: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
         [{children}]
       </Text>,
-    h2: (node, children, parent, styles) =>
+    heading2: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
         [{children}]
       </Text>,
-    h3: (node, children, parent, styles) =>
+    heading3: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
         [{children}]
       </Text>,
