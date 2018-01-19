@@ -1,26 +1,43 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, Picker } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View, ScrollView, Picker } from "react-native";
 import Markdown, {
-	AstRenderer,
-	styles,
-	renderRules,
-	getUniqueID, PluginContainer,
-} from 'react-native-markdown-renderer';
-import markdownItCheckbox from 'markdown-it-checkbox';
-import copyAll from './src/copyAll';
-import code from './src/code';
-import customMarkdownStyle from './src/customMarkdownStyle';
+  AstRenderer,
+  styles,
+  renderRules,
+  getUniqueID,
+  PluginContainer
+} from "./react-native-markdown-renderer";
+
+import markdownItCheckbox from "markdown-it-checkbox";
+import copyAll from "./src/copyAll";
+import customMarkdownStyle from "./src/customMarkdownStyle";
 import copyAllCheckboxPlugin from "./src/copyAllCheckboxPlugin";
 import pluginRules from "./src/pluginRules";
 
 const rules = {
-  h1: (node, children, parents) => {
-    return <Text key={getUniqueID()} style={{ backgroundColor: 'red' }}>{children}</Text>;
+  header1: (node, children, parents, style) => {
+    return (
+      <Text key={getUniqueID()} style={{ backgroundColor: "red" }}>
+        {children}
+      </Text>
+    );
   },
   // added custom block element defined by plugin
-  block: (node, children, parents) => {
-    return <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>{children}</Text>;
+  block: (node, children, parents, style) => {
+    return (
+      <Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
+        {children}
+      </Text>
+    );
   },
+
+  checkbox: (node, children, parents, style) => {
+    return (
+      <Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
+        {children}
+      </Text>
+    );
+  }
 };
 
 /**
@@ -29,29 +46,29 @@ const rules = {
 const renderer = new AstRenderer(
   {
     ...renderRules,
-    ...rules,
+    ...rules
   },
   styles
 );
 
 export default class App extends Component {
   state = {
-    view: 0,
+    view: 5
   };
 
   list = [
-    { description: 'default' },
-    { description: 'custom renderer' },
-    { description: 'custom style sheet' },
-    { description: 'custom rules' },
-    { description: 'custom rules & styles' },
-    { description: 'plugins (checkbox)' },
+    { description: "default" },
+    { description: "custom renderer" },
+    { description: "custom style sheet" },
+    { description: "custom rules" },
+    { description: "custom rules & styles" },
+    { description: "plugins (checkbox)" }
   ];
 
   getView(value) {
     switch (value) {
       case 0: {
-        return <Markdown children={code} />;
+        return <Markdown children={copyAll} />;
       }
       case 1: {
         return <Markdown renderer={renderer.render} children={copyAll} />;
@@ -63,10 +80,25 @@ export default class App extends Component {
         return <Markdown rules={rules} children={copyAll} />;
       }
       case 4: {
-        return <Markdown rules={rules} style={customMarkdownStyle} children={copyAll} />;
+        return (
+          <Markdown
+            rules={rules}
+            style={customMarkdownStyle}
+            children={copyAll}
+          />
+        );
       }
-      case 6: {
-        return <Markdown rules={pluginRules} plugins={[new PluginContainer(markdownItCheckbox, {divWrap: true})]} style={customMarkdownStyle} children={copyAllCheckboxPlugin} />;
+      case 5: {
+        return (
+          <Markdown
+            rules={pluginRules}
+            plugins={[
+              new PluginContainer(markdownItCheckbox, { divWrap: true })
+            ]}
+            style={customMarkdownStyle}
+            children={copyAllCheckboxPlugin}
+          />
+        );
       }
       default: {
         return <Markdown># Text</Markdown>;
@@ -79,16 +111,20 @@ export default class App extends Component {
       <View style={styleSheet.container}>
         <Picker
           selectedValue={this.state.view}
-          onValueChange={(itemValue, itemIndex) => this.setState({ view: itemIndex })}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({ view: itemIndex })
+          }
         >
-          {this.list.map((val, index) =>
-            <Picker.Item key={val.description} label={val.description} value={index} />
-          )}
+          {this.list.map((val, index) => (
+            <Picker.Item
+              key={val.description}
+              label={val.description}
+              value={index}
+            />
+          ))}
         </Picker>
 
-        <ScrollView>
-          {this.getView(this.state.view)}
-        </ScrollView>
+        <ScrollView>{this.getView(this.state.view)}</ScrollView>
       </View>
     );
   }
@@ -97,6 +133,6 @@ export default class App extends Component {
 const styleSheet = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-  },
+    marginTop: 20
+  }
 });

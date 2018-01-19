@@ -1,29 +1,23 @@
-import React, { Component, PropTypes } from 'react';
-import { Text, View } from 'react-native';
+import React, { Component, PropTypes } from "react";
+import { Text, View } from "react-native";
 
-import FitImage from 'react-native-fit-image';
-import getUniqueID from './util/getUniqueID';
-import openUrl from './util/openUrl';
-import hasParents from './util/hasParents';
+import FitImage from "react-native-fit-image";
+import getUniqueID from "./util/getUniqueID";
+import openUrl from "./util/openUrl";
+import hasParents from "./util/hasParents";
 
 const renderRules = {
   // when unknown elements are introduced, so it wont break
   unknown: (node, children, parent, styles) => {
     return (
       <View key={node.key}>
-        <Text>unknown {node.type}</Text> {children}
+        <Text>{node.type}</Text>
       </View>
     );
   },
 
-  // `root` is a special case.
-  root: children =>
-    <View key={getUniqueID()}>
-      {children}
-    </View>,
-
   textgroup: (node, children, parent, styles) => {
-    return <Text key={node.key}>{children}</Text>;
+    return <Text key={node.key} style={styles.text}>{children}</Text>;
   },
   inline: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
@@ -31,17 +25,13 @@ const renderRules = {
 
   text: (node, children, parent, styles) => {
     return (
-      <Text key={node.key} style={styles.text}>
+      <Text key={node.key}>
         {node.content}
       </Text>
     );
   },
   span: (node, children, parent, styles) => {
-    return (
-      <Text key={node.key}>
-        {children}
-      </Text>
-    );
+    return <Text key={node.key}>{children}</Text>;
   },
 
   strong: (node, children, parent, styles) => {
@@ -59,9 +49,14 @@ const renderRules = {
       </Text>
     );
   },
-  a: (node, children, parent, styles) => {
+  // a
+  link: (node, children, parent, styles) => {
     return (
-      <Text key={node.key} style={styles.a} onPress={() => openUrl(node.attributes.href)}>
+      <Text
+        key={node.key}
+        style={styles.a}
+        onPress={() => openUrl(node.attributes.href)}
+      >
         {children}
       </Text>
     );
@@ -74,115 +69,105 @@ const renderRules = {
     );
   },
 
-  h1: (node, children, parent, styles) =>
+  heading1: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading1]}>
       {children}
-    </Text>,
-  h2: (node, children, parent, styles) =>
+    </Text>
+  ),
+  heading2: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading2]}>
       {children}
-    </Text>,
-  h3: (node, children, parent, styles) =>
+    </Text>
+  ),
+  heading3: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading3]}>
       {children}
-    </Text>,
-  h4: (node, children, parent, styles) =>
+    </Text>
+  ),
+  heading4: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading4]}>
       {children}
-    </Text>,
-  h5: (node, children, parent, styles) =>
+    </Text>
+  ),
+  heading5: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading5]}>
       {children}
-    </Text>,
-  h6: (node, children, parent, styles) =>
+    </Text>
+  ),
+  heading6: (node, children, parent, styles) => (
     <Text key={node.key} style={[styles.heading, styles.heading6]}>
       {children}
-    </Text>,
+    </Text>
+  ),
 
-  p: (node, children, parent, styles) =>
+  paragraph: (node, children, parent, styles) => (
     <View key={node.key} style={styles.paragraph}>
       {children}
-    </View>,
+    </View>
+  ),
 
-  blockquote: (node, children, parent, styles) =>
+  blockquote: (node, children, parent, styles) => (
     <View key={node.key} style={styles.blockquote}>
       {children}
-    </View>,
-  code: (node, children, parent, styles) => {
-    switch (node.sourceType) {
-      case 'code_inline': {
-        return (
-          <Text key={node.key} style={styles.codeInline}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-      case 'code_block': {
-        return (
-          <Text key={node.key} style={styles.codeBlock}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-      case 'fence': {
-        return (
-          <Text key={node.key} style={styles.codeBlock}>
-            {node.content}
-          </Text>
-        );
-        break;
-      }
-    }
-
+    </View>
+  ),
+  code_inline: (node, children, parent, styles) => {
     return (
-      <View key={node.key} style={styles.codeInline}>
-        {children}
-      </View>
+      <Text key={node.key} style={styles.codeInline}>
+        {node.content}
+      </Text>
     );
   },
-  pre: (node, children, parent, styles) =>
+  code_block: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.codeBlock}>
+        {node.content}
+      </Text>
+    );
+  },
+  fence: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.codeBlock}>
+        {node.content}
+      </Text>
+    );
+  },
+  pre: (node, children, parent, styles) => (
     <View key={node.key} style={styles.pre}>
       {children}
-    </View>,
-  ul: (node, children, parent, styles) => {
+    </View>
+  ),
+  // ul
+  bullet_list: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={[styles.list, styles.listUnordered]}>
         {children}
       </View>
     );
   },
-  ol: (node, children, parent, styles) => {
+  ordered_list: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={[styles.list, styles.listOrdered]}>
         {children}
       </View>
     );
   },
-  li: (node, children, parent, styles) => {
-    if (hasParents(parent, 'ul')) {
+  // li
+  list_item: (node, children, parent, styles) => {
+    if (hasParents(parent, "bullet_list")) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
-          <Text style={styles.listUnorderedItemIcon}>
-            {'\u00B7'}
-          </Text>
-          <View style={[styles.listItem]}>
-            {children}
-          </View>
+          <Text style={styles.listUnorderedItemIcon}>{"\u00B7"}</Text>
+          <View style={[styles.listItem]}>{children}</View>
         </View>
       );
     }
 
-    if (hasParents(parent, 'ol')) {
+    if (hasParents(parent, "ordered_list")) {
       return (
         <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>
-            {node.index + 1}
-          </Text>
-          <View style={[styles.listItem]}>
-            {children}
-          </View>
+          <Text style={styles.listOrderedItemIcon}>{node.index + 1}</Text>
+          <View style={[styles.listItem]}>{children}</View>
         </View>
       );
     }
@@ -193,18 +178,19 @@ const renderRules = {
       </View>
     );
   },
-  table: (node, children, parent, styles) =>
+  table: (node, children, parent, styles) => (
     <View key={node.key} style={[styles.table]}>
       {children}
-    </View>,
-  thead: (node, children, parent, styles) =>
+    </View>
+  ),
+  thead: (node, children, parent, styles) => (
     <View key={node.key} style={[styles.tableHeader]}>
       {children}
-    </View>,
-  tbody: (node, children, parent, styles) =>
-    <View key={node.key}>
-      {children}
-    </View>,
+    </View>
+  ),
+  tbody: (node, children, parent, styles) => (
+    <View key={node.key}>{children}</View>
+  ),
   th: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={[styles.tableHeaderCell]}>
@@ -229,13 +215,14 @@ const renderRules = {
   hr: (node, children, parent, styles) => {
     return <View key={node.key} style={[styles.hr]} />;
   },
-  br: (node, children, parent, styles) =>
-    <Text key={node.key}>
-      {'\n'}
-    </Text>,
-  img: (node, children, parent, styles) => {
-    return <FitImage key={node.key} source={{ uri: node.attributes.src }} />;
-  },
+
+  // br
+  softbreak: (node, children, parent, styles) => (
+    <Text key={node.key}>{"\n"}</Text>
+  ),
+  image: (node, children, parent, styles) => {
+    return <FitImage key={node.key} style={{margin: 1}} source={{ uri: node.attributes.src }} />;
+  }
 };
 
 export default renderRules;

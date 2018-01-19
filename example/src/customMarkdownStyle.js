@@ -17,10 +17,10 @@ const customMarkdownStyle = StyleSheet.create({
 	},
 	heading: {},
 	heading1: {
-		fontSize: 32,
+
 		backgroundColor: "#FFCC00"
 	},
-	text: {},
+	text: {fontSize: 20,},
 	strikethrough: {
 		textDecorationLine: 'line-through',
 		color: '#FF0000'

@@ -186,8 +186,8 @@ export default class Markdown extends Component {
   }
 
   /**
-	 *
-	 */
+   *
+   */
   componentWillMount() {
     this.updateSettings(this.props);
   }

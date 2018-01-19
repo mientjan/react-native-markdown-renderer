@@ -1,28 +1,30 @@
 {
   "name": "example",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
-  "devDependencies": {
-    "react-native-scripts": "1.5.0",
-    "jest-expo": "^21.0.2",
-    "react-test-renderer": "16.0.0-alpha.12"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "node ../bin/copy-to-run.js && react-native-scripts start",
     "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "android": "node ../bin/copy-to-run.js && react-native-scripts android",
+    "ios": "node ../bin/copy-to-run.js && react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "startdev": "node ../bin/watch.js"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^21.0.0",
+    "expo": "^24.0.2",
     "markdown-it-checkbox": "^1.1.0",
-    "react": "16.0.0-alpha.12",
-    "react-native": "^0.48.4",
-    "react-native-markdown-renderer": "git+https://github.com/mientjan/react-native-markdown-renderer.git#develop"
+    "react": "^16.2.0",
+    "react-native": "^0.50.4"
+  },
+  "devDependencies": {
+    "jest-expo": "~18.0.0",
+    "markdown-it": "^8.4.0",
+    "react-native-fit-image": "^1.5.4",
+    "react-native-scripts": "0.0.50",
+    "react-test-renderer": "16.0.0-alpha.12"
   }
 }
