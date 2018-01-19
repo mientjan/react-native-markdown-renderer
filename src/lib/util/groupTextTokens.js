@@ -16,14 +16,16 @@ class Stack {
 export default function groupTextTokens(tokens) {
   const result = [];
 
+  console.log(tokens);
+
   let hasGroup = false;
   tokens.forEach(token => {
-    if (getIsTextType(token.tag || token.type) && !hasGroup) {
+    if (getIsTextType(token.type) && !hasGroup) {
       hasGroup = true;
       result.push(new Token('textgroup', 1));
     }
 
-    if (!getIsTextType(token.tag || token.type) && hasGroup) {
+    if (!getIsTextType(token.type) && hasGroup) {
       hasGroup = false;
       result.push(new Token('textgroup', -1));
     }

@@ -17,7 +17,7 @@ const renderRules = {
   },
 
   textgroup: (node, children, parent, styles) => {
-    return <Text key={node.key}>{children}</Text>;
+    return <Text key={node.key} style={styles.text}>{children}</Text>;
   },
   inline: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
@@ -25,7 +25,7 @@ const renderRules = {
 
   text: (node, children, parent, styles) => {
     return (
-      <Text key={node.key} style={styles.text}>
+      <Text key={node.key}>
         {node.content}
       </Text>
     );

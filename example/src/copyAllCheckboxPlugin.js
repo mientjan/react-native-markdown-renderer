@@ -1,5 +1,5 @@
 const markdownText = `
- # Syntax Support
+ # Syntax __Support__
 
 __Advertisement :)__
 

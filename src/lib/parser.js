@@ -4,19 +4,8 @@ import tokensToAST from "./util/tokensToAST";
 import removeInlineTokens from "./util/removeInlineTokens";
 import groupTextTokens from "./util/groupTextTokens";
 import getTokenTypeByToken from "./util/getTokenTypeByToken";
-
-export function stringToTokens(source, markdownIt) {
-  let result = [];
-  try {
-    result = markdownIt.parse(source, {});
-  } catch (err) {
-    console.warn(err);
-  }
-
-  result.forEach(token => (token.type = getTokenTypeByToken(token)));
-
-  return result;
-}
+import { stringToTokens } from "./util/stringToTokens";
+import { cleanupTokens } from "./util/cleanupTokens";
 
 /**
  *
@@ -26,10 +15,7 @@ export function stringToTokens(source, markdownIt) {
  * @return {View}
  */
 export function parser(source, renderer, markdownIt) {
-  const tokens = groupTextTokens(
-    removeInlineTokens(stringToTokens(source, markdownIt))
+  return renderer(
+    tokensToAST(cleanupTokens(stringToTokens(source, markdownIt)))
   );
-  const asttree = tokensToAST(tokens);
-
-  return renderer(asttree);
 }
