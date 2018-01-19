@@ -31,11 +31,6 @@ export default function getTokenTypeByToken(token) {
     cleanedType = token.type.replace(regSelectOpenClose, "");
   }
 
-  if(cleanedType === 'unknown')
-  {
-    console.log(token);
-  }
-
   switch (cleanedType) {
     case "heading": {
       cleanedType = `${cleanedType}${token.tag.substr(1)}`;

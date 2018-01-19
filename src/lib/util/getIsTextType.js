@@ -9,14 +9,15 @@ const textTypes = [
   'a',
   's',
   'em',
-  'heading1',
-  'heading2',
-  'heading3',
-  'heading4',
-  'heading5',
-  'heading6',
   'softbreak',
 ];
+
+// 'heading1',
+// 'heading2',
+// 'heading3',
+// 'heading4',
+// 'heading5',
+// 'heading6',
 
 /**
  *
