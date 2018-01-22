@@ -6,7 +6,5 @@ export function stringToTokens(source, markdownIt) {
 		console.warn(err);
 	}
 
-	console.log('result', result);
-
 	return result;
 }
