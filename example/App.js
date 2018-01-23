@@ -15,13 +15,6 @@ import copyAllCheckboxPlugin from "./src/copyAllCheckboxPlugin";
 import pluginRules from "./src/pluginRules";
 
 const rules = {
-  header1: (node, children, parents, style) => {
-    return (
-      <Text key={getUniqueID()} style={{ backgroundColor: "red" }}>
-        {children}
-      </Text>
-    );
-  },
   // added custom block element defined by plugin
   block: (node, children, parents, style) => {
     return (
