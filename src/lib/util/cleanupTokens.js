@@ -5,6 +5,5 @@ import removeInlineTokens from "./removeInlineTokens";
 export function cleanupTokens(tokens) {
   tokens = removeInlineTokens(tokens);
   tokens.forEach(token => (token.type = getTokenTypeByToken(token)));
-  tokens = groupTextTokens(tokens);
   return tokens;
 }

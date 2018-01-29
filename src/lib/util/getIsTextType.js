@@ -6,18 +6,11 @@ const textTypes = [
   'text',
   'span',
   'strong',
-  'a',
+  'link',
   's',
   'em',
   'softbreak',
 ];
-
-// 'heading1',
-// 'heading2',
-// 'heading3',
-// 'heading4',
-// 'heading5',
-// 'heading6',
 
 /**
  *

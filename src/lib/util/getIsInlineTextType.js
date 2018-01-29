@@ -6,7 +6,7 @@ const textTypes = [
   'text',
   'span',
   'strong',
-  'a',
+  'link',
   's',
   'em',
   'br',

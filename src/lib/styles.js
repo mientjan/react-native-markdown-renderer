@@ -133,11 +133,16 @@ export const styles = StyleSheet.create({
   strikethrough: {
     textDecorationLine: "line-through"
   },
-  a: {
-    textDecorationLine: "underline"
+  link: {
+    textDecorationLine: "underline",
+      color: 'red'
   },
   u: {
     borderColor: "#000000",
     borderBottomWidth: 1
+  },
+  image: {
+    flex: 1,
+
   }
 });

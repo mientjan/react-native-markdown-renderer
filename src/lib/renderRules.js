@@ -2,11 +2,9 @@ import React, { Component, PropTypes } from "react";
 import { Text, View } from "react-native";
 
 import FitImage from "react-native-fit-image";
-import getUniqueID from "./util/getUniqueID";
 import openUrl from "./util/openUrl";
 import hasParents from "./util/hasParents";
 import applyStyle from "./util/applyStyle";
-import ImageComponent from "./ImageComponent";
 
 const renderRules = {
   // when unknown elements are introduced, so it wont break
@@ -53,10 +51,11 @@ const renderRules = {
   },
   // a
   link: (node, children, parent, styles) => {
+    console.log(node);
     return (
       <Text
         key={node.key}
-        style={styles.a}
+        style={styles.link}
         onPress={() => openUrl(node.attributes.href)}
       >
         {children}
@@ -80,12 +79,7 @@ const renderRules = {
   },
 
   heading2: (node, children, parent, styles) => {
-
     children = applyStyle(children, [styles.heading, styles.heading2], "Text");
-
-    console.log(children);
-
-
     return (
       <View key={node.key} style={styles.headingContainer}>
         {children}
@@ -235,10 +229,11 @@ const renderRules = {
   ),
   image: (node, children, parent, styles) => {
     return (
-      <ImageComponent
+      <FitImage
+        indicator={true}
         key={node.key}
         style={styles.image}
-        uri={node.attributes.src}
+        source={{ uri: node.attributes.src }}
       />
     );
   }
