@@ -135,7 +135,6 @@ export const styles = StyleSheet.create({
   },
   link: {
     textDecorationLine: "underline",
-      color: 'red'
   },
   u: {
     borderColor: "#000000",

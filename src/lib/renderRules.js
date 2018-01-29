@@ -51,7 +51,6 @@ const renderRules = {
   },
   // a
   link: (node, children, parent, styles) => {
-    console.log(node);
     return (
       <Text
         key={node.key}

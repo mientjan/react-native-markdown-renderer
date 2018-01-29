@@ -1,11 +1,8 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView, Picker } from "react-native";
+import React, {Component} from "react";
+import {Picker, ScrollView, StyleSheet, Text, View} from "react-native";
 import Markdown, {
-  AstRenderer,
-  styles,
-  renderRules,
-  getUniqueID,
-  PluginContainer
+	AstRenderer, getUniqueID, PluginContainer, renderRules,
+	styles
 } from "./react-native-markdown-renderer";
 
 import markdownItCheckbox from "markdown-it-checkbox";
@@ -55,7 +52,7 @@ export default class App extends Component {
     { description: "custom style sheet" },
     { description: "custom rules" },
     { description: "custom rules & styles" },
-    { description: "plugins (checkbox)" }
+    { description: "plugins (checkbox)" },
   ];
 
   getView(value) {
@@ -93,6 +90,7 @@ export default class App extends Component {
           />
         );
       }
+
       default: {
         return <Markdown># Text</Markdown>;
       }
