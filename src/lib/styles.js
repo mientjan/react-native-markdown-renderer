@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
+import PlatformEnum from "./enum/PlatformEnum";
 
 /**
  *
@@ -65,19 +66,28 @@ export const styles = StyleSheet.create({
   },
   list: {},
   listItem: {
+  	flex: 1,
     flexWrap: "wrap"
     // backgroundColor: 'green',
   },
   listUnordered: {},
 
   listUnorderedItem: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "flex-start"
   },
 
   listUnorderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
-    lineHeight: 40
+    ...Platform.select({
+      [PlatformEnum.IOS]: {
+        lineHeight: 36
+      },
+      [PlatformEnum.ANDROID]: {
+        lineHeight: 30
+      }
+    })
   },
   listUnorderedItemText: {
     fontSize: 20,
@@ -91,7 +101,14 @@ export const styles = StyleSheet.create({
   listOrderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
-    lineHeight: 40
+    ...Platform.select({
+      [PlatformEnum.IOS]: {
+        lineHeight: 36
+      },
+      [PlatformEnum.ANDROID]: {
+        lineHeight: 30
+      }
+    })
   },
   listOrderedItemText: {
     fontWeight: "bold",
@@ -134,14 +151,13 @@ export const styles = StyleSheet.create({
     textDecorationLine: "line-through"
   },
   link: {
-    textDecorationLine: "underline",
+    textDecorationLine: "underline"
   },
   u: {
     borderColor: "#000000",
     borderBottomWidth: 1
   },
   image: {
-    flex: 1,
-
+    flex: 1
   }
 });
