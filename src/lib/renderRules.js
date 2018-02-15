@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from "react";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 
 import FitImage from "react-native-fit-image";
 import openUrl from "./util/openUrl";
 import hasParents from "./util/hasParents";
 import applyStyle from "./util/applyStyle";
+import PlatformEnum from "./enum/PlatformEnum";
 
 const renderRules = {
   // when unknown elements are introduced, so it wont break
@@ -163,7 +164,14 @@ const renderRules = {
     if (hasParents(parent, "bullet_list")) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
-          <Text style={styles.listUnorderedItemIcon}>{"\u00B7"}</Text>
+          <Text
+            style={styles.listUnorderedItemIcon}
+          >
+            {Platform.select({
+                [PlatformEnum.ANDROID]: "\u2022",
+                [PlatformEnum.IOS]: "\u00B7"
+            })}
+          </Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
