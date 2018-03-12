@@ -9,7 +9,7 @@ import groupTextTokens from "./util/groupTextTokens";
  *
  * @param {string} source
  * @param {function} [renderer]
- * @param {AstRenderer} [markdownIt]
+ * @param {any} [markdownIt]
  * @return {View}
  */
 export function parser(source, renderer, markdownIt) {

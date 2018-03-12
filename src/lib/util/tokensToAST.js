@@ -25,7 +25,7 @@ function createNode(token, tokenIndex) {
   return {
     type,
     sourceType: token.type,
-    key: getUniqueID(),
+    key: `rnmr_${tokenIndex}`,
     content,
     tokenIndex,
     index: 0,
@@ -44,9 +44,11 @@ export default function tokensToAST(tokens) {
   let stack = [];
   let children = [];
 
+
   if (!tokens || tokens.length === 0) {
     return [];
   }
+  console.log(tokens);
 
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
