@@ -1,3 +1,7 @@
+// Type definitions for react-native-markdown-renderer
+// Project: https://www.github.com/mientjan/react-native-markdown-renderer
+// Definitions by: Mient-jan Stelling <https://www.github.com/mientjan>
+
 /// <reference types="react" />
 /// <reference types="react-native" />
 /// <reference types="markdownIt" />
