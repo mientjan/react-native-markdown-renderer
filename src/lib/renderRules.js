@@ -112,6 +112,10 @@ const renderRules = {
     </View>
   ),
 
+  hardbreak: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.hardbreak} />
+  ),
+
   blockquote: (node, children, parent, styles) => (
     <View key={node.key} style={styles.blockquote}>
       {children}
