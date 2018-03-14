@@ -1,62 +1,97 @@
 /// <reference types="react" />
 /// <reference types="react-native" />
+/// <reference types="markdownIt" />
 
 import React, { Component } from "react";
-import { View } from "react-native";
+import {View, StyleSheet, RegisteredStyle} from "react-native";
+import * as MarkdownIt from "markdown-it";
 
 declare class Markdown extends Component<object, object> {}
 
-declare function getUniqueID(): string;
-declare function openUrl(url: string): void;
+export declare function getUniqueID(): string;
+export declare function openUrl(url: string): void;
 
-declare function hasParents(parents: Array<any>, type: string): boolean;
+export declare function hasParents(parents: Array<any>, type: string): boolean;
 
-declare function renderFunction(
-  node: any,
-  children: Array<Component>,
-  parent: Component,
-  styles: any
-): Component;
-
-declare interface renderRules {
-  [name: string]: renderFunction;
+interface IRenderFunction {
+  (
+    node: any,
+    children: Array<Component>,
+    parent: Component,
+    styles: any
+  ): Component;
 }
 
-declare class AstRenderer {
+interface renderRules {
+  [name: string]: IRenderFunction;
+}
+
+interface IMarkdownParser {
+  parse: (value: string, options: any) => Array<MarkdownIt.Token>;
+}
+
+interface IHashMap<T> {
+  [index: string]: T
+}
+
+interface IASTNode {
+	type:string;
+	sourceType: string; // original source token name
+	key: string;
+	content: string;
+	tokenIndex: number;
+	index: number;
+	attributes: IHashMap<string|number|any>;
+	children: Array<IASTNode>,
+}
+
+export declare class AstRenderer {
   constructor(renderRules: renderRules, style: any);
-  getRenderFunction(type: string): renderFunction;
-  renderNode(node: any, parentNodes: Array<any>): Component;
+  getRenderFunction(type: string): IRenderFunction;
+  renderNode(node: any, parentNodes: ReadonlyArray<any>): Component;
   render(nodes: Array<any>): View;
 }
 
-declare interface markdownToken {}
-
-declare function parser(
+export declare function parser(
   source: string,
   renderer: (any) => View,
-  parser: { parse: (value: string, options: any) => Array<markdownToken> }
+  parser: IMarkdownParser
 ): any;
 
-declare function stringToTokens(): any;
-declare function tokensToAST(): any;
-declare function MarkdownIt(): any;
-declare function PluginContainer(): any;
-declare function blockPlugin(): any;
-declare function styles(): any;
+export declare function stringToTokens(
+  source: string,
+  markdownIt: IMarkdownParser
+): Array<MarkdownIt.Token>;
 
-export {
-  getUniqueID,
-  openUrl,
-  hasParents,
-  renderRules,
-  AstRenderer,
-  parser,
-  stringToTokens,
-  tokensToAST,
-  MarkdownIt,
-  PluginContainer,
-  blockPlugin,
-  styles
-};
+export declare function tokensToAST(tokens: ReadonlyArray<MarkdownIt.Token>): Array<IASTNode>;
+
+interface PluginContainerResult<A> {
+	[index: number]: any;
+	0: A;
+}
+
+export declare class PluginContainer<A> {
+	constructor<A>(plugin: A, ...options:Array<any>);
+	toArray(): [A, any];
+}
+
+export declare function blockPlugin(md: any, name: string, options: object): any;
+
+export declare var styles: any;
+
+// export {
+//   getUniqueID,
+//   openUrl,
+//   hasParents,
+//   renderRules,
+//   AstRenderer,
+//   parser,
+//   stringToTokens,
+//   tokensToAST,
+//   MarkdownIt,
+//   PluginContainer,
+//   blockPlugin,
+//   styles
+// };
 
 export default Markdown;
