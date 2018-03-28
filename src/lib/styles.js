@@ -122,6 +122,10 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start"
   },
+  hardbreak: {
+    width: '100%',
+    height: 1
+  },
   strong: {
     fontWeight: "bold"
   },
