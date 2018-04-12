@@ -1,30 +1,24 @@
 {
   "name": "example",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "private": true,
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "node ../bin/copy-to-run.js && react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "node ../bin/copy-to-run.js && react-native-scripts android",
-    "ios": "node ../bin/copy-to-run.js && react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "dev": "node ../bin/watch.js"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "react-native run-ios",
+    "dev": "node ../bin/watch",
+    "test": "jest"
   },
   "dependencies": {
-    "expo": "^24.0.2",
-    "markdown-it-checkbox": "^1.1.0",
-    "react": "^16.2.0",
-    "react-native": "^0.50.4"
+    "react": "16.3.1",
+    "react-native": "0.55.2"
   },
   "devDependencies": {
-    "jest-expo": "~18.0.0",
-    "markdown-it": "^8.4.0",
-    "react-native-fit-image": "^1.5.4",
-    "react-native-scripts": "0.0.50",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
