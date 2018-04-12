@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import {Platform, Picker, ScrollView, StyleSheet, Text, View} from "react-native";
+import {Platform, Picker, ScrollView, StyleSheet, Text, View, Alert} from "react-native";
 
 import Markdown, {
   AstRenderer,
@@ -24,6 +24,36 @@ const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
 });
+
+const rules = {
+	// added custom block element defined by plugin
+	block: (node, children, parents, style) => {
+		return (
+			<Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
+				{children}
+			</Text>
+		);
+	},
+
+	checkbox: (node, children, parents, style) => {
+		return (
+			<Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
+				{children}
+			</Text>
+		);
+	}
+};
+
+/**
+ * i'm overriding the default h1 render function.
+ */
+const renderer = new AstRenderer(
+	{
+		...renderRules,
+		...rules
+	},
+	styles
+);
 
 export default class App extends Component {
   state = {
@@ -74,6 +104,8 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.view);
+
     return (
       <View style={styleSheet.container}>
         <Picker
