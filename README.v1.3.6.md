@@ -3,16 +3,8 @@
 Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
-### Quick links
- - [Documentation](https://github.com/mientjan/react-native-markdown-renderer/wiki/)
- - [Examples](https://github.com/mientjan/react-native-markdown-renderer/wiki/Examples)
- - [Example App](https://github.com/mientjan/react-native-markdown-renderer/wiki/ExampleApp)
- 
-  
-### Syntax Support
-
 To give a summary of the supported syntax react-native-markdown-renderer supports.
- 
+
  - Tables
  - Heading 1 > 6
  - Horizontal Rules
@@ -28,21 +20,21 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Syntax highlighting
  - Links
  - Images
- - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
+ - Plugins for extra syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
 
-### Tested on:
 
-| [] | react | react-native | version |
-| -- | ----- | ------------ | ------- |
-| v  | 16.2  | 0.50.4       | 3.0.0   |
-| v  | 16.0.0-alpha.12 | 0.45.1 | 2.0.5 |
-| v  | 16.0.0-alpha.6 | 0.44.0 | 2.0.5 |
-| x  | 15.x  | ^0.46.4      | 2.0.5 |
+### tested on:
 
-### Todo
- - ~~add styleSheet support~~
- - ~~add plugin support~~
- - ~~add support for seperate rules~~
+| [] | react | react-native |
+| ---- | ---- | ------- |
+| v | 16.0.0-alpha.12 | 0.45.1 |
+| v | 16.0.0-alpha.6 | 0.44.0 |
+| v | ^15.6.1 | ^0.46.4 |
+
+### todo
+ - add styleSheet support
+ - add styleSheet inheritance support
+ - ~~adding plugin support~~
 
 ### How to:
 
@@ -55,9 +47,91 @@ npm install -S react-native-markdown-renderer
 yarn add react-native-markdown-renderer
 ```
 
-See [WIKI](https://github.com/mientjan/react-native-markdown-renderer/wiki/) for examples and documentation
+### Example:
+##### Simple example
+```js
+
+import react from 'react';
+import {View, PureComponent} from 'react-native';
+import Markdown from 'react-native-markdown-renderer';
+
+const copy = `# h1 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+export default class Page extends PureComponent {
+
+  static propTypes = {};
+  static defaultProps = {};
+
+  render() {
+
+    return (
+    	<Markdown>{copy}</Markdown>
+    );
+  }
+}
+```
+
+##### If you want to use your own native elements and styling, and want to add extra plugins:
+```js
+
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown, { AstRenderer, defaultRenderFunctions, PluginContainer, blockPlugin} from 'react-native-markdown-renderer';
+
+const copy = `# h1 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+
+[block]
+I'm in a block
+[/block]
+`;
+
+/**
+ * i'm overriding the default h1 render function.
+ */
+const renderer = new AstRenderer({
+  ...defaultRenderFunctions,
+  h1: (node, children, parents) => {
+    return <Text style={{backgroundColor: 'red'}}>{children}</Text>;
+  },
+  // added custom block element defined by plugin
+  block: (node, children, parents) => {
+  	return <Text style={{backgroundColor: 'green'}}>{children}</Text>;
+  }
+});
+
+export default class Page extends PureComponent {
+
+  static propTypes = {};
+  static defaultProps = {};
+
+  render() {
+
+  	const plugins = [
+  	  new PluginContainer(blockPlugin, 'block', {})
+  	];
+
+    return (
+    	<Markdown renderer={renderer} plugins={plugins}>{copy}</Markdown>
+    );
+  }
+}
+```
 
 ---
+
 
 # Syntax Support
 

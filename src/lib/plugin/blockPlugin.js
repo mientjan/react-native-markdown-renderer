@@ -14,11 +14,6 @@ export default function blockPlugin(md, name, options) {
   }
 
   function renderDefault(tokens, idx, _options, env, self) {
-    // add a class to the opening tag
-    if (tokens[idx].nesting === 1) {
-      tokens[idx].attrPush(['class', name]);
-    }
-
     return self.renderToken(tokens, idx, _options, env, self);
   }
 
