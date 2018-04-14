@@ -56,14 +56,13 @@ export function stringToTokens(
 
 export function tokensToAST(tokens: ReadonlyArray<Token>): ASTNode[];
 
-interface PluginContainerResult<A> {
-  [index: number]: any;
+interface PluginContainerResult<A> extends Array<any> {
   0: A;
 }
 
 export class PluginContainer<A> {
   constructor(plugin: A, ...options: any[]);
-  toArray(): [A, any];
+  toArray(): PluginContainerResult<A>;
 }
 
 export function blockPlugin(md: any, name: string, options: object): any;
