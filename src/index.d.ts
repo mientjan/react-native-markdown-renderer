@@ -1,17 +1,7 @@
 // tslint:disable:max-classes-per-file
 import { MarkdownIt, Token } from 'markdown-it';
-import { Component } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-
-export interface MarkdownProps {
-  rules?: RenderRules;
-  style?: StyleSheet.NamedStyles<any>;
-  renderer?: AstRenderer;
-  markdownit?: MarkdownIt;
-  plugins?: Array<PluginContainer<any>>;
-}
-
-class Markdown extends Component<MarkdownProps, {}>{}
 
 export function getUniqueID(): string;
 export function openUrl(url: string): void;
@@ -20,10 +10,10 @@ export function hasParents(parents: any[], type: string): boolean;
 
 export type RenderFunction = (
   node: any,
-  children: Component[],
-  parent: Component,
+  children: ReactNode[],
+  parent: ReactNode,
   styles: any,
-) => Component;
+) => ReactNode;
 
 export interface RenderRules {
   [name: string]: RenderFunction;
@@ -49,7 +39,7 @@ export interface ASTNode {
 export class AstRenderer {
   constructor(renderRules: RenderRules, style?: any);
   getRenderFunction(type: string): RenderFunction;
-  renderNode(node: any, parentNodes: ReadonlyArray<any>): Component;
+  renderNode(node: any, parentNodes: ReadonlyArray<any>): ReactNode;
   render(nodes: ReadonlyArray<any>): View;
 }
 
@@ -79,5 +69,17 @@ export class PluginContainer<A> {
 export function blockPlugin(md: any, name: string, options: object): any;
 
 export const styles: any;
+
+export interface MarkdownProps {
+  rules?: RenderRules;
+  style?: StyleSheet.NamedStyles<any>;
+  renderer?: AstRenderer;
+  markdownit?: MarkdownIt;
+  plugins?: Array<PluginContainer<any>>;
+}
+
+type MarkdownStatic = React.ComponentType<MarkdownProps>;
+export const Markdown: MarkdownStatic;
+export type Markdown = MarkdownStatic;
 
 export default Markdown;
