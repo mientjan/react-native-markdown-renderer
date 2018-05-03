@@ -1,5 +1,12 @@
 const markdownText = `
 
+
+## Images 
+
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg)
+
+
 + Selected third parties include:
   - Service providers assigned to carrying out your service contract when placing a booking on the company. Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at
   - Service providers assigned to carrying out your service contract when placing a booking on the company. Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at Ac tristique libero volutpat at
@@ -11,11 +18,6 @@ const markdownText = `
     + Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit
 + Very easy!
-
-## ![loading](https://www.hippomundo.com/images/loading.gif) Images 
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
 # Syntax __Support__
 

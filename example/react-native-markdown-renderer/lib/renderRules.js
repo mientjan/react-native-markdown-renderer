@@ -60,13 +60,9 @@ const renderRules = {
   },
   // a with a non text element nested inside
   blocklink: (node, children, parent, styles) => {
-
-    console.log(children);
     return (
       <TouchableWithoutFeedback key={node.key} onPress={() => openUrl(node.attributes.href)} style={styles.blocklink}>
-        <View>
-          <Text>Test</Text>
-        </View>
+        <View style={styles.image}>{children}</View>
       </TouchableWithoutFeedback>
     );
   },

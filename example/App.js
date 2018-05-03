@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import {Platform, Picker, ScrollView, StyleSheet, Text, View, Alert} from "react-native";
+import { Platform, Picker, ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
 
 import Markdown, {
   AstRenderer,
@@ -26,38 +26,38 @@ const instructions = Platform.select({
 });
 
 const rules = {
-	// added custom block element defined by plugin
-	block: (node, children, parents, style) => {
-		return (
-			<Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
-				{children}
-			</Text>
-		);
-	},
+  // added custom block element defined by plugin
+  block: (node, children, parents, style) => {
+    return (
+      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>
+        {children}
+      </Text>
+    );
+  },
 
-	checkbox: (node, children, parents, style) => {
-		return (
-			<Text key={getUniqueID()} style={{ backgroundColor: "green" }}>
-				{children}
-			</Text>
-		);
-	}
+  checkbox: (node, children, parents, style) => {
+    return (
+      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>
+        {children}
+      </Text>
+    );
+  },
 };
 
 /**
  * i'm overriding the default h1 render function.
  */
 const renderer = new AstRenderer(
-	{
-		...renderRules,
-		...rules
-	},
-	styles
+  {
+    ...renderRules,
+    ...rules,
+  },
+  styles
 );
 
 export default class App extends Component {
   state = {
-    view: 5,
+    view: 0,
   };
 
   list = [
@@ -103,19 +103,20 @@ export default class App extends Component {
     }
   }
 
+  handleChangeValue = (itemValue, itemIndex) => {
+    this.setState({ view: itemIndex });
+  };
+
   render() {
-    console.log(this.state.view);
+    let currentView = this.state.view;
 
     return (
       <View style={styleSheet.container}>
-        <Picker
-          selectedValue={this.state.view}
-          onValueChange={(itemValue, itemIndex) => this.setState({ view: itemIndex })}
-        >
+        <Text>{currentView}</Text>
+        <Picker selectedValue={currentView} onValueChange={this.handleChangeValue}>
           {this.list.map((val, index) => <Picker.Item key={val.description} label={val.description} value={index} />)}
         </Picker>
-
-        <ScrollView>{this.getView(this.state.view)}</ScrollView>
+        <ScrollView>{this.getView(currentView)}</ScrollView>
       </View>
     );
   }
