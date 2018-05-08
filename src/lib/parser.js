@@ -1,9 +1,9 @@
-import React from "react";
-import { View } from "react-native";
-import tokensToAST from "./util/tokensToAST";
-import { stringToTokens } from "./util/stringToTokens";
-import { cleanupTokens } from "./util/cleanupTokens";
-import groupTextTokens from "./util/groupTextTokens";
+import React from 'react';
+import { View } from 'react-native';
+import tokensToAST from './util/tokensToAST';
+import { stringToTokens } from './util/stringToTokens';
+import { cleanupTokens } from './util/cleanupTokens';
+import groupTextTokens from './util/groupTextTokens';
 
 /**
  *
@@ -13,7 +13,14 @@ import groupTextTokens from "./util/groupTextTokens";
  * @return {View}
  */
 export function parser(source, renderer, markdownIt) {
-  return renderer(
-    tokensToAST(groupTextTokens(cleanupTokens(stringToTokens(source, markdownIt))))
-  );
+
+  let tokens = stringToTokens(source, markdownIt);
+  tokens = cleanupTokens(tokens);
+
+  // console.log(JSON.stringify(tokens));
+  tokens = groupTextTokens(tokens);
+
+  const astTree = tokensToAST(tokens);
+
+  return renderer(astTree);
 }
