@@ -3,7 +3,7 @@ import getTokenTypeByToken from './getTokenTypeByToken';
 
 /**
  *
- * @param {{type: string, tag:string, content: string, children: *, attrs: Array}} token
+ * @param {{type: string, tag:string, content: string, children: *, attrs: Array, meta}} token
  * @param {number} tokenIndex
  * @return {{type: string, content, tokenIndex: *, index: number, attributes: {}, children: *}}
  */
@@ -25,6 +25,7 @@ function createNode(token, tokenIndex) {
   return {
     type,
     sourceType: token.type,
+    meta: token.meta,
     key: getUniqueID(),
     content,
     tokenIndex,
