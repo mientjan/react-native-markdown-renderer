@@ -21,7 +21,6 @@ export function parser(source, renderer, markdownIt) {
   tokens = groupTextTokens(tokens);
 
   const astTree = tokensToAST(tokens);
-  console.log(astTree);
 
   return renderer(astTree);
 }

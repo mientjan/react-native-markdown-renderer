@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, Picker, ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
+import { Platform, Picker, ScrollView, StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import Markdown, {
   AstRenderer,
@@ -15,10 +15,14 @@ import Markdown, {
 } from './react-native-markdown-renderer';
 //
 import markdownItCheckbox from 'markdown-it-checkbox';
+import { TabViewAnimated, SceneMap, TabBar } from 'react-native-tab-view';
+
 import copyAll from './src/copyAll';
 import customMarkdownStyle from './src/customMarkdownStyle';
 import copyAllCheckboxPlugin from './src/copyAllCheckboxPlugin';
 import pluginRules from './src/pluginRules';
+import all from './src/copy/all';
+import linkedimg from './src/copy/linkedimg';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -55,19 +59,24 @@ const renderer = new AstRenderer(
   styles
 );
 
+const routes = {
+    all: () => <ScrollView><Markdown children={all} /></ScrollView>,
+    linkedimg: () => <ScrollView><Markdown children={linkedimg} /></ScrollView>,
+};
+
+const initialLayout = {
+  height: 0,
+  width: Dimensions.get('window').width,
+};
+
 export default class App extends Component {
   state = {
-    view: 0,
+    index: 0,
+    routes: [
+        { key: 'all', title: 'All Markdown' },
+        { key: 'linkedimg', title: 'Linked Images' },
+        ],
   };
-
-  list = [
-    { description: 'default' },
-    { description: 'custom renderer' },
-    { description: 'custom style sheet' },
-    { description: 'custom rules' },
-    { description: 'custom rules & styles' },
-    { description: 'plugins (checkbox)' },
-  ];
 
   getView(value) {
     switch (value) {
@@ -107,7 +116,23 @@ export default class App extends Component {
     this.setState({ view: itemIndex });
   };
 
+  handleIndexChange = index => this.setState({ index });
+  renderHeader = props => <TabBar {...props} />;
+  renderScene = SceneMap(routes);
+
   render() {
+    return (
+      <TabViewAnimated
+        navigationState={this.state}
+        renderScene={this.renderScene}
+        renderHeader={this.renderHeader}
+        onIndexChange={this.handleIndexChange}
+        initialLayout={initialLayout}
+      />
+    );
+  }
+
+  render3() {
     let currentView = this.state.view;
 
     return (
