@@ -9,7 +9,7 @@ const textTypes = [
   'link',
   's',
   'em',
-  'br',
+  'softbreak',
 ];
 
 /**

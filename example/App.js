@@ -60,8 +60,16 @@ const renderer = new AstRenderer(
 );
 
 const routes = {
-    all: () => <ScrollView><Markdown children={all} /></ScrollView>,
-    linkedimg: () => <ScrollView><Markdown children={linkedimg} /></ScrollView>,
+  all: () => (
+    <ScrollView>
+      <Markdown children={all} />
+    </ScrollView>
+  ),
+  linkedimg: () => (
+    <ScrollView>
+      <Markdown children={linkedimg} />
+    </ScrollView>
+  ),
 };
 
 const initialLayout = {
@@ -72,10 +80,7 @@ const initialLayout = {
 export default class App extends Component {
   state = {
     index: 0,
-    routes: [
-        { key: 'all', title: 'All Markdown' },
-        { key: 'linkedimg', title: 'Linked Images' },
-        ],
+    routes: [{ key: 'all', title: 'All Markdown' }, { key: 'linkedimg', title: 'Linked Images' }],
   };
 
   getView(value) {
