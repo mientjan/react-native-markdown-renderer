@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { parser, stringToTokens } from './lib/parser';
+import applyStyle from './lib/util/applyStyle';
 import getUniqueID from './lib/util/getUniqueID';
 import hasParents from './lib/util/hasParents';
 import openUrl from './lib/util/openUrl';
@@ -21,6 +22,7 @@ import { styles } from './lib/styles';
  *
  */
 export {
+  applyStyle,
   getUniqueID,
   openUrl,
   hasParents,
