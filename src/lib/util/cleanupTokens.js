@@ -1,8 +1,8 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
-import removeInlineTokens from './removeInlineTokens';
+import flattenTokens from './flattenTokens';
 
 export function cleanupTokens(tokens) {
-  tokens = removeInlineTokens(tokens);
+  tokens = flattenTokens(tokens);
   tokens.forEach(token => {
     token.type = getTokenTypeByToken(token);
 
