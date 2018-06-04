@@ -96,6 +96,7 @@ const routes = {
 
                     if (token.content === name) {
                       const newToken = new Token(name, '', token.nesting);
+
                       newToken.content = token.content;
                       block.children = md.utils.arrayReplaceAt(block.children, j, [newToken]);
                     }

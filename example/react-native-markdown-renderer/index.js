@@ -51,7 +51,6 @@ export default class Markdown extends Component {
       let invalidProps = [];
       const prop = props[propName];
 
-
       if (!prop) {
         return;
       }

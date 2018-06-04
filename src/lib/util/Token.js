@@ -3,5 +3,7 @@ export default class Token {
     this.type = type;
     this.nesting = nesting;
     this.children = children;
+    this.block = false;
+
   }
 }

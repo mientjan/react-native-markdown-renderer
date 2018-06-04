@@ -15,7 +15,7 @@ export function cleanupTokens(tokens) {
     if (token.type === 'link' && token.nesting === 1) {
       stack.push(token);
     } else if (stack.length > 0 && token.type === 'link' && token.nesting === -1) {
-      if (stack.some(stackToken => !getIsTextType(stackToken.type))) {
+      if (stack.some(stackToken => stackToken.block)) {
         stack[0].type = 'blocklink';
         token.type = 'blocklink';
       }
