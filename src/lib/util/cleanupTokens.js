@@ -11,8 +11,6 @@ export function cleanupTokens(tokens) {
     }
   });
 
-  console.log(tokens);
-
   /**
    * changing a link token to a blocklink to fix issue where link tokens with
    * nested non text tokens breaks component

@@ -14,8 +14,6 @@ import groupTextTokens from './util/groupTextTokens';
  */
 export function parser(source, renderer, markdownIt) {
   let tokens = stringToTokens(source, markdownIt);
-  console.log(tokens);
-  console.log('----');
   tokens = cleanupTokens(tokens);
   tokens = groupTextTokens(tokens);
 

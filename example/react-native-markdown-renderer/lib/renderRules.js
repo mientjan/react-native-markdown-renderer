@@ -36,7 +36,6 @@ const renderRules = {
   },
 
   strong: (node, children, parent, styles) => {
-    console.log('strong', children);
     return (
       <Text key={node.key} style={styles.strong}>
         {children}
