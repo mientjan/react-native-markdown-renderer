@@ -1,22 +1,10 @@
-/**
- *
- * @type {[string,string,string,string,string,string,string]}
- */
-const textTypes = [
-  'text',
-  'span',
-  'strong',
-  'link',
-  's',
-  'em',
-  'softbreak',
-];
+import InlineTextTypes from "../data/InlineTextTypes"
 
 /**
  *
  * @param node
  * @return {boolean}
  */
-export default function getIsInlineTextType(type) {
-  return textTypes.indexOf(type) > -1;
+export default function getIsInlineTextType(type, ) {
+  return InlineTextTypes.indexOf(type) > -1;
 }

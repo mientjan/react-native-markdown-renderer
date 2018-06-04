@@ -62,7 +62,54 @@ const renderer = new AstRenderer(
 const routes = {
   all: () => (
     <ScrollView>
-      <Markdown children={all} />
+      <Markdown
+        children={all}
+        style={StyleSheet.create({
+          foo: {
+            color: 'red',
+          },
+        })}
+        rules={{
+          foo: (node, children, parent, styles) => (
+            <Text key={node.key} style={styles.foo}>
+              {node.content}
+            </Text>
+          ),
+        }}
+        plugins={[
+          new PluginContainer(
+            (md, name, options) => {
+              const parse = state => {
+                const Token = state.Token;
+
+                for (let i = 0; i < state.tokens.length; i++) {
+                  const block = state.tokens[i];
+                  if (block.type !== 'inline') {
+                    continue;
+                  }
+
+                  for (let j = 0; j < block.children.length; j++) {
+                    const token = block.children[j];
+                    if (token.type !== 'text') {
+                      continue;
+                    }
+
+                    if (token.content === name) {
+                      const newToken = new Token(name, '', token.nesting);
+                      newToken.content = token.content;
+                      block.children = md.utils.arrayReplaceAt(block.children, j, [newToken]);
+                    }
+                  }
+                }
+              };
+
+              md.core.ruler.after('inline', name, parse);
+            },
+            'foo',
+            {}
+          ),
+        ]}
+      />
     </ScrollView>
   ),
   linkedimg: () => (
