@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { parser, stringToTokens } from './lib/parser';
+import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
 import getUniqueID from './lib/util/getUniqueID';
 import hasParents from './lib/util/hasParents';
@@ -17,7 +17,7 @@ import MarkdownIt from 'markdown-it';
 import PluginContainer from './lib/plugin/PluginContainer';
 import blockPlugin from './lib/plugin/blockPlugin';
 import { styles } from './lib/styles';
-
+import { stringToTokens } from './lib/util/stringToTokens';
 /**
  *
  */

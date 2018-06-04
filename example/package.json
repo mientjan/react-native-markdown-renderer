@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "linkify-it": "^2.0.3",
     "markdown-it-checkbox": "^1.1.0",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
