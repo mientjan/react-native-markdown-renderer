@@ -1,8 +1,8 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
-import flattenTokens from './flattenTokens';
+import flattenInlineTokens from './flattenInlineTokens';
 
 export function cleanupTokens(tokens) {
-  tokens = flattenTokens(tokens);
+  tokens = flattenInlineTokens(tokens);
   tokens.forEach(token => {
     token.type = getTokenTypeByToken(token);
 
@@ -10,6 +10,8 @@ export function cleanupTokens(tokens) {
       token.block = true;
     }
   });
+
+  console.log(tokens);
 
   /**
    * changing a link token to a blocklink to fix issue where link tokens with

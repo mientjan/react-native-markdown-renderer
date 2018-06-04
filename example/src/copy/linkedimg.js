@@ -1,6 +1,6 @@
 
 const copy = `
-
+![Minion](https://octodex.github.com/images/minion.png)
 [![Minion](https://octodex.github.com/images/minion.png)](https://google.com)
 [![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.png)](https://google.com)
 
