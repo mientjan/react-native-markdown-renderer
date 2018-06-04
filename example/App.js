@@ -128,7 +128,7 @@ const initialLayout = {
 export default class App extends Component {
   state = {
     index: 0,
-    routes: [{ key: 'linkedimg', title: 'Linked Images' }],
+    routes: [{ key: 'all', title: 'All' }, { key: 'linkedimg', title: 'Linked Images' }],
   };
 
   handleChangeValue = (itemValue, itemIndex) => {
