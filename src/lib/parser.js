@@ -16,8 +16,6 @@ export function parser(source, renderer, markdownIt) {
 
   let tokens = stringToTokens(source, markdownIt);
   tokens = cleanupTokens(tokens);
-
-  // console.log(JSON.stringify(tokens));
   tokens = groupTextTokens(tokens);
 
   const astTree = tokensToAST(tokens);

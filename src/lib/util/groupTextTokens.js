@@ -12,9 +12,7 @@ export default function groupTextTokens(tokens) {
       result.push(new Token('textgroup', 1));
       result.push(token);
     } else if (!token.block && hasGroup) {
-      hasGroup = false;
       result.push(token);
-      result.push(new Token('textgroup', -1));
     } else if (token.block && hasGroup) {
       hasGroup = false;
       result.push(new Token('textgroup', -1));

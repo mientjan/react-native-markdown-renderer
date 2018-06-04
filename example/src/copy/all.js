@@ -4,6 +4,8 @@ foo
  
 # code inline
 
+**Foo  Bar**
+
 Hello \`code inline\` code_inline
 
 __Advertisement :)__

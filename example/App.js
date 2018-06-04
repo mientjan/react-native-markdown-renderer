@@ -128,42 +128,8 @@ const initialLayout = {
 export default class App extends Component {
   state = {
     index: 0,
-    routes: [{ key: 'all', title: 'All Markdown' }, { key: 'linkedimg', title: 'Linked Images' }],
+    routes: [{ key: 'linkedimg', title: 'Linked Images' }],
   };
-
-  getView(value) {
-    switch (value) {
-      case 0: {
-        return <Markdown children={copyAll} />;
-      }
-      case 1: {
-        return <Markdown renderer={renderer.render} children={copyAll} />;
-      }
-      case 2: {
-        return <Markdown style={customMarkdownStyle} children={copyAll} />;
-      }
-      case 3: {
-        return <Markdown rules={rules} children={copyAll} />;
-      }
-      case 4: {
-        return <Markdown rules={rules} style={customMarkdownStyle} children={copyAll} />;
-      }
-      case 5: {
-        return (
-          <Markdown
-            rules={pluginRules}
-            plugins={[new PluginContainer(markdownItCheckbox, { divWrap: true })]}
-            style={customMarkdownStyle}
-            children={copyAllCheckboxPlugin}
-          />
-        );
-      }
-
-      default: {
-        return <Markdown># Text</Markdown>;
-      }
-    }
-  }
 
   handleChangeValue = (itemValue, itemIndex) => {
     this.setState({ view: itemIndex });
