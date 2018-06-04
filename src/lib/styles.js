@@ -5,6 +5,7 @@ import PlatformEnum from './data/PlatformEnum';
  *
  */
 export const styles = StyleSheet.create({
+  root: {},
   view: {},
   codeBlock: {
     borderWidth: 1,
