@@ -1,6 +1,5 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
 import removeInlineTokens from './removeInlineTokens';
-import getIsTextType from './getIsTextType';
 
 export function cleanupTokens(tokens) {
   tokens = removeInlineTokens(tokens);
