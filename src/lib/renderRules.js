@@ -29,8 +29,6 @@ const renderRules = {
   },
 
   text: (node, children, parent, styles) => {
-    console.log('text', node.content);
-    console.log('parent', parent);
     return <Text key={node.key}>{node.content}</Text>;
   },
   span: (node, children, parent, styles) => {
