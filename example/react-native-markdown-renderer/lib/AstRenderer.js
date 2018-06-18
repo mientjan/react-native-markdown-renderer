@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import getUniqueID from "./util/getUniqueID";
 
 export function rootRenderRule(children, styles) {
-  return <View key={getUniqueID()} styles={styles.root}>{children}</View>;
+  return <View key={getUniqueID()} style={styles.root}>{children}</View>;
 }
 
 /**
