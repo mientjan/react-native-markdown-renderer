@@ -6,7 +6,8 @@ export function cleanupTokens(tokens) {
   tokens.forEach(token => {
     token.type = getTokenTypeByToken(token);
 
-    if (token.type === 'image') {
+    // set image and hardbreak to block elements
+    if (token.type === 'image' || token.type === 'hardbreak') {
       token.block = true;
     }
   });
