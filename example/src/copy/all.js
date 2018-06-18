@@ -1,7 +1,9 @@
 const copy = `
 # Syntax Support
 foo
- 
+
+a  \nb
+
 # code inline
 
 **Foo  Bar**
