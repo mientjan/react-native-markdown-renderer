@@ -26,6 +26,7 @@ function createNode(token, tokenIndex) {
     sourceInfo: token.info,
     sourceMeta: token.meta,
     block: token.block,
+    markup: token.markup,
     key: getUniqueID(),
     content,
     tokenIndex,
