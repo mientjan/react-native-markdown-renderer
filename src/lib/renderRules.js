@@ -7,6 +7,10 @@ import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
 
 const renderRules = {
+  root: (node, children, parent, styles) =>  (
+    <View key={node.key} style={styles.root}>{ children }</View>
+  ),
+
   // when unknown elements are introduced, so it wont break
   unknown: (node, children, parent, styles) => {
     return (
