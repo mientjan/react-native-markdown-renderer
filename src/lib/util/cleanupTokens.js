@@ -1,5 +1,6 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
 import flattenInlineTokens from './flattenInlineTokens';
+import renderInlineAsText from './renderInlineAsText';
 
 export function cleanupTokens(tokens) {
   tokens = flattenInlineTokens(tokens);
@@ -9,6 +10,11 @@ export function cleanupTokens(tokens) {
     // set image and hardbreak to block elements
     if (token.type === 'image' || token.type === 'hardbreak') {
       token.block = true;
+    }
+
+    // Set img alt text
+    if (token.type === 'image') {
+      token.attrs[token.attrIndex('alt')][1] = renderInlineAsText(token.children);
     }
   });
 
