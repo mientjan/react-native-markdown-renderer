@@ -230,7 +230,20 @@ const renderRules = {
   // br
   softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
   image: (node, children, parent, styles) => {
-    return <FitImage indicator={true} key={node.key} style={styles.image} source={{ uri: node.attributes.src }} />;
+    const { src, alt } = node.attributes;
+    const imageProps = {
+      indicator: true,
+      key: node.key,
+      style: styles.image,
+      source: {
+        uri: src
+      }
+    };
+    if(alt) {
+      imageProps.accessible = true;
+      imageProps.accessibilityLabel = alt;
+    }
+    return <FitImage {...imageProps} />;
   },
 };
 
