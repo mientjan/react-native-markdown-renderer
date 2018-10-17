@@ -29,7 +29,7 @@ const renderRules = {
   },
 
   text: (node, children, parent, styles) => {
-    return <Text key={node.key}>{node.content}</Text>;
+    return <Text key={node.key} style={styles.text}>{node.content}</Text>;
   },
   span: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
