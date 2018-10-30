@@ -16,6 +16,7 @@ import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
 import PluginContainer from './lib/plugin/PluginContainer';
 import blockPlugin from './lib/plugin/blockPlugin';
+import mergeStyleSheets from './lib/util/mergeStyleSheets'
 import { styles } from './lib/styles';
 import { stringToTokens } from './lib/util/stringToTokens';
 /**
@@ -66,7 +67,7 @@ export default class Markdown extends Component {
       } else if (invalidProps.length > 0) {
         return new Error(
           `Invalid prop \`${propName}\` supplied to \`${componentName}\`. These ` +
-            `props are not of type function \`${invalidProps.join(', ')}\` `
+          `props are not of type function \`${invalidProps.join(', ')}\` `
         );
       }
     },
@@ -160,10 +161,7 @@ export default class Markdown extends Component {
             ...renderRules,
             ...(rules || {}),
           },
-          {
-            ...styles,
-            ...style,
-          }
+          mergeStyleSheets(styles, style)
         );
       }
     }
