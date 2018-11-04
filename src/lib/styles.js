@@ -79,8 +79,8 @@ export const styles = StyleSheet.create({
   },
 
   listUnorderedItemIcon: {
-    marginLeft: 10,
     marginRight: 10,
+    marginTop: 5,
     ...Platform.select({
       [PlatformEnum.IOS]: {
         lineHeight: 36,
@@ -100,8 +100,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   listOrderedItemIcon: {
-    marginLeft: 10,
     marginRight: 10,
+    marginTop: 5,
     ...Platform.select({
       [PlatformEnum.IOS]: {
         lineHeight: 36,

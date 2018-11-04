@@ -170,7 +170,7 @@ const renderRules = {
     if (hasParents(parent, 'bullet_list')) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
-          <Text style={styles.listUnorderedItemIcon}>{'\u00B7'}</Text>
+          <Text style={styles.listUnorderedItemIcon}>{'\u2022'}</Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
