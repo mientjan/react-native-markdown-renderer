@@ -13,7 +13,7 @@ export default function applyStyle(children, styles, type) {
   }
 
   return children.map(child => {
-    if (child.type.displayName === type) {
+    if (child.type.displayName === type || child.type.render.name === type) {
       return <Text key={child.key} {...child.props} style={[].concat(child.props.style, styles)} />;
     }
 
