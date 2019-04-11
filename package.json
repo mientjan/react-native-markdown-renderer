@@ -28,7 +28,9 @@
     "@types/react-native": ">=0.50.0",
     "markdown-it": "^8.4.0",
     "prop-types": "^15.5.10",
-    "react-native-fit-image": "^1.5.2"
+    "react-native-custom-tabs": "^0.1.7",
+    "react-native-fit-image": "^1.5.2",
+    "react-native-safari-view": "^2.1.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
