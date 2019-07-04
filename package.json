@@ -1,13 +1,13 @@
 {
-  "name": "react-native-markdown-renderer",
-  "version": "3.2.8",
+  "name": "react-native-markdown-renderer-nvthai",
+  "version": "3.2.9",
   "description": "Markdown renderer for react-native, with CommonMark spec support + adds syntax extensions & sugar (URL autolinking, typographer).",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mientjan/react-native-markdown-renderer.git"
+    "url": "git+https://github.com/nvthai/react-native-markdown-renderer.git"
   },
   "keywords": [
     "react",
@@ -20,9 +20,9 @@
   "author": "Mient-jan Stelling",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mientjan/react-native-markdown-renderer/issues"
+    "url": "https://github.com/nvthai/react-native-markdown-renderer/issues"
   },
-  "homepage": "https://github.com/mientjan/react-native-markdown-renderer#readme",
+  "homepage": "https://github.com/nvthai/react-native-markdown-renderer#readme",
   "dependencies": {
     "@types/markdown-it": "^0.0.4",
     "markdown-it": "^8.4.0",
