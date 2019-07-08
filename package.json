@@ -1,6 +1,6 @@
 {
-  "name": "react-native-markdown-renderer-nvthai",
-  "version": "3.2.9",
+  "name": "@nvthai/react-native-markdown-renderer",
+  "version": "3.2.10",
   "description": "Markdown renderer for react-native, with CommonMark spec support + adds syntax extensions & sugar (URL autolinking, typographer).",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -37,5 +37,9 @@
   "devDependencies": {
     "chokidar": "^2.0.0",
     "fs-extra": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
