@@ -25,14 +25,14 @@
   "homepage": "https://github.com/mientjan/react-native-markdown-renderer#readme",
   "dependencies": {
     "@types/markdown-it": "^0.0.4",
-    "@types/react-native": ">=0.50.0",
     "markdown-it": "^8.4.0",
     "prop-types": "^15.5.10",
     "react-native-fit-image": "^1.5.2"
   },
   "peerDependencies": {
     "react": "^16.2.0",
-    "react-native": "^0.50.4"
+    "react-native": "^0.50.4",
+    "@types/react-native": ">=0.50.0"
   },
   "devDependencies": {
     "chokidar": "^2.0.0",
