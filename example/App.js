@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, Picker, ScrollView, StyleSheet, Text, View, Alert } from 'react-native';
+import { Platform, Picker, ScrollView, StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import Markdown, {
   AstRenderer,
@@ -15,116 +15,138 @@ import Markdown, {
 } from './react-native-markdown-renderer';
 //
 import markdownItCheckbox from 'markdown-it-checkbox';
+import { TabViewAnimated, SceneMap, TabBar } from 'react-native-tab-view';
+
 import copyAll from './src/copyAll';
 import customMarkdownStyle from './src/customMarkdownStyle';
 import copyAllCheckboxPlugin from './src/copyAllCheckboxPlugin';
 import pluginRules from './src/pluginRules';
+import all from './src/copy/all';
+import linkedimg from './src/copy/linkedimg';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
+import MarkdownIt from 'markdown-it';
+
+const md = MarkdownIt({
+	typographer: true,
+	linkify: true,
 });
 
-const rules = {
-  // added custom block element defined by plugin
-  block: (node, children, parents, style) => {
-    return (
-      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>
-        {children}
-      </Text>
-    );
-  },
+md.linkify.tlds('.py', false);  // disables .py as top level domain
+        // Reload with full tlds list
+md.linkify.tlds('onion', true)            // Add unofficial `.onion` domain
+md.linkify.add('git:', 'http:')           // Add `git:` protocol as "alias"
+md.linkify.add('ftp:', null)              // Disable `ftp:` ptotocol
+md.linkify.set({ fuzzyIP: true });        // Enable IPs in fuzzy links (without schema)
 
-  checkbox: (node, children, parents, style) => {
-    return (
-      <Text key={getUniqueID()} style={{ backgroundColor: 'green' }}>
-        {children}
-      </Text>
-    );
-  },
+md.linkify.add('@', {
+	validate: function (text, pos, self) {
+		var tail = text.slice(pos);
+
+		if (!self.re.twitter) {
+			self.re.twitter =  new RegExp(
+				'^([a-zA-Z0-9_]){1,15}(?!_)(?=$|' + self.re.src_ZPCc + ')'
+			);
+		}
+		if (self.re.twitter.test(tail)) {
+			// Linkifier allows punctuation chars before prefix,
+			// but we additionally disable `@` ("@@mention" is invalid)
+			if (pos >= 2 && tail[pos - 2] === '@') {
+				return false;
+			}
+			return tail.match(self.re.twitter)[0].length;
+		}
+		return 0;
+	},
+	normalize: function (match) {
+		match.url = 'https://twitter.com/' + match.url.replace(/^@/, '');
+	}
+});
+
+const routes = {
+  all: () => (
+    <ScrollView>
+      <Markdown
+        children={all}
+        style={StyleSheet.create({
+          foo: {
+            color: 'red',
+          },
+        })}
+        rules={{
+          foo: (node, children, parent, styles) => (
+            <Text key={node.key} style={styles.foo}>
+              {node.content}
+            </Text>
+          ),
+        }}
+        plugins={[
+          new PluginContainer(
+            (md, name, options) => {
+              const parse = state => {
+                const Token = state.Token;
+
+                for (let i = 0; i < state.tokens.length; i++) {
+                  const block = state.tokens[i];
+                  if (block.type !== 'inline') {
+                    continue;
+                  }
+
+                  for (let j = 0; j < block.children.length; j++) {
+                    const token = block.children[j];
+                    if (token.type !== 'text') {
+                      continue;
+                    }
+
+                    if (token.content === name) {
+                      const newToken = new Token(name, '', token.nesting);
+
+                      newToken.content = token.content;
+                      block.children = md.utils.arrayReplaceAt(block.children, j, [newToken]);
+                    }
+                  }
+                }
+              };
+
+              md.core.ruler.after('inline', name, parse);
+            },
+            'foo',
+            {}
+          ),
+        ]}
+      />
+    </ScrollView>
+  ),
+  linkedimg: () => (
+    <ScrollView>
+      <Markdown markdownit={md} children={linkedimg} />
+    </ScrollView>
+  ),
 };
 
-/**
- * i'm overriding the default h1 render function.
- */
-const renderer = new AstRenderer(
-  {
-    ...renderRules,
-    ...rules,
-  },
-  styles
-);
+const initialLayout = {
+  height: 0,
+  width: Dimensions.get('window').width,
+};
 
 export default class App extends Component {
   state = {
-    view: 0,
+    index: 0,
+    routes: [{ key: 'all', title: 'All' }, { key: 'linkedimg', title: 'Linked Images' }],
   };
 
-  list = [
-    { description: 'default' },
-    { description: 'custom renderer' },
-    { description: 'custom style sheet' },
-    { description: 'custom rules' },
-    { description: 'custom rules & styles' },
-    { description: 'plugins (checkbox)' },
-  ];
-
-  getView(value) {
-    switch (value) {
-      case 0: {
-        return <Markdown children={copyAll} />;
-      }
-      case 1: {
-        return <Markdown renderer={renderer.render} children={copyAll} />;
-      }
-      case 2: {
-        return <Markdown style={customMarkdownStyle} children={copyAll} />;
-      }
-      case 3: {
-        return <Markdown rules={rules} children={copyAll} />;
-      }
-      case 4: {
-        return <Markdown rules={rules} style={customMarkdownStyle} children={copyAll} />;
-      }
-      case 5: {
-        return (
-          <Markdown
-            rules={pluginRules}
-            plugins={[new PluginContainer(markdownItCheckbox, { divWrap: true })]}
-            style={customMarkdownStyle}
-            children={copyAllCheckboxPlugin}
-          />
-        );
-      }
-
-      default: {
-        return <Markdown># Text</Markdown>;
-      }
-    }
-  }
-
-  handleChangeValue = (itemValue, itemIndex) => {
-    this.setState({ view: itemIndex });
-  };
+  handleIndexChange = index => this.setState({ index });
+  renderHeader = props => <TabBar {...props} />;
+  renderScene = SceneMap(routes);
 
   render() {
-    let currentView = this.state.view;
-
     return (
-      <View style={styleSheet.container}>
-        <Text>{currentView}</Text>
-        <Picker selectedValue={currentView} onValueChange={this.handleChangeValue}>
-          {this.list.map((val, index) => <Picker.Item key={val.description} label={val.description} value={index} />)}
-        </Picker>
-        <ScrollView>{this.getView(currentView)}</ScrollView>
-      </View>
+      <TabViewAnimated
+        navigationState={this.state}
+        renderScene={this.renderScene}
+        renderHeader={this.renderHeader}
+        onIndexChange={this.handleIndexChange}
+        initialLayout={initialLayout}
+      />
     );
   }
 }
-
-const styleSheet = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
-  },
-});

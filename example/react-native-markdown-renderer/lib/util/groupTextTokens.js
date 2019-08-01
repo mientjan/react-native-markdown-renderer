@@ -1,21 +1,19 @@
-import getIsTextType from './getIsTextType';
+// import getIsTextType from './getIsTextType';
 import Token from './Token';
-import getIsInlineTextType from './getIsInlineTextType';
+// import getIsInlineTextType from './getIsInlineTextType';
 
 export default function groupTextTokens(tokens) {
   const result = [];
 
   let hasGroup = false;
   tokens.forEach((token, index) => {
-    if (getIsTextType(token.type) && !hasGroup) {
+    if (!token.block && !hasGroup) {
       hasGroup = true;
       result.push(new Token('textgroup', 1));
       result.push(token);
-    } else if (getIsTextType(token.type) && !getIsInlineTextType(token.type) && hasGroup) {
-      hasGroup = false;
+    } else if (!token.block && hasGroup) {
       result.push(token);
-      result.push(new Token('textgroup', -1));
-    } else if (!getIsTextType(token.type) && hasGroup) {
+    } else if (token.block && hasGroup) {
       hasGroup = false;
       result.push(new Token('textgroup', -1));
       result.push(token);

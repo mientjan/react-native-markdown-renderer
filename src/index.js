@@ -5,7 +5,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { parser, stringToTokens } from './lib/parser';
+import parser from './lib/parser';
+import applyStyle from './lib/util/applyStyle';
 import getUniqueID from './lib/util/getUniqueID';
 import hasParents from './lib/util/hasParents';
 import openUrl from './lib/util/openUrl';
@@ -16,11 +17,12 @@ import MarkdownIt from 'markdown-it';
 import PluginContainer from './lib/plugin/PluginContainer';
 import blockPlugin from './lib/plugin/blockPlugin';
 import { styles } from './lib/styles';
-
+import { stringToTokens } from './lib/util/stringToTokens';
 /**
  *
  */
 export {
+  applyStyle,
   getUniqueID,
   openUrl,
   hasParents,
@@ -48,7 +50,6 @@ export default class Markdown extends Component {
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
-
 
       if (!prop) {
         return;

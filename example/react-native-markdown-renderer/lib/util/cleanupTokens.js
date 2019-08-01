@@ -1,10 +1,16 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
-import removeInlineTokens from './removeInlineTokens';
-import getIsTextType from './getIsTextType';
+import flattenInlineTokens from './flattenInlineTokens';
 
 export function cleanupTokens(tokens) {
-  tokens = removeInlineTokens(tokens);
-  tokens.forEach(token => (token.type = getTokenTypeByToken(token)));
+  tokens = flattenInlineTokens(tokens);
+  tokens.forEach(token => {
+    token.type = getTokenTypeByToken(token);
+
+    // set image and hardbreak to block elements
+    if (token.type === 'image' || token.type === 'hardbreak') {
+      token.block = true;
+    }
+  });
 
   /**
    * changing a link token to a blocklink to fix issue where link tokens with
@@ -15,9 +21,11 @@ export function cleanupTokens(tokens) {
     if (token.type === 'link' && token.nesting === 1) {
       stack.push(token);
     } else if (stack.length > 0 && token.type === 'link' && token.nesting === -1) {
-      if (stack.findIndex(stackToken => !getIsTextType(stackToken)) > -1) {
+      if (stack.some(stackToken => stackToken.block)) {
         stack[0].type = 'blocklink';
+        stack[0].block = true;
         token.type = 'blocklink';
+        token.block = true;
       }
 
       stack.push(token);

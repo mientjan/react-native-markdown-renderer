@@ -3,7 +3,7 @@ import getTokenTypeByToken from './getTokenTypeByToken';
 
 /**
  *
- * @param {{type: string, tag:string, content: string, children: *, attrs: Array}} token
+ * @param {{type: string, tag:string, content: string, children: *, attrs: Array, meta, info, block: boolean}} token
  * @param {number} tokenIndex
  * @return {{type: string, content, tokenIndex: *, index: number, attributes: {}, children: *}}
  */
@@ -18,13 +18,15 @@ function createNode(token, tokenIndex) {
       const [name, value] = curr;
       return { ...prev, [name]: value };
     }, {});
-
   }
-
 
   return {
     type,
     sourceType: token.type,
+    sourceInfo: token.info,
+    sourceMeta: token.meta,
+    block: token.block,
+    markup: token.markup,
     key: getUniqueID(),
     content,
     tokenIndex,
@@ -33,7 +35,6 @@ function createNode(token, tokenIndex) {
     children: tokensToAST(token.children),
   };
 }
-
 
 /**
  *
