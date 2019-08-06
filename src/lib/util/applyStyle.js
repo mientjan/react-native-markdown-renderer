@@ -13,7 +13,7 @@ export default function applyStyle(children, styles, type) {
   }
 
   return children.map(child => {
-    if (child.type.render.name === type) {
+    if (child.key.toLowerCase().indexOf('_' + type.toLowerCase()) > 0) {
       return <Text key={child.key} {...child.props} style={[].concat(child.props.style, styles)} />;
     }
 
