@@ -183,7 +183,7 @@ export default class Markdown extends Component {
   /**
    *
    */
-  componentWillMount() {
+  componentDidMount() {
     this.updateSettings(this.props);
   }
 
@@ -191,9 +191,11 @@ export default class Markdown extends Component {
    *
    * @param nextProps
    */
+  /*
   componentWillReceiveProps(nextProps) {
     this.updateSettings(nextProps);
   }
+  */
 
   /**
    *
