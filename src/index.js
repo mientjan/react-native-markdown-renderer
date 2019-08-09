@@ -47,6 +47,7 @@ export default class Markdown extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     renderer: PropTypes.oneOfType([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
+    onLinkPress: PropTypes.func,
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
@@ -163,7 +164,8 @@ export default class Markdown extends Component {
           {
             ...styles,
             ...style,
-          }
+          },
+          props.onLinkPress
         );
       }
     }
