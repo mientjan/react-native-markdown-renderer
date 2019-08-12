@@ -21,9 +21,18 @@ export default class Page extends PureComponent {
   static propTypes = {};
   static defaultProps = {};
 
+  onLinkPress = (url) => {
+    if (url) {
+      // some custom logic
+    }
+    // return true to open with `Linking.openURL
+    // return false to handle it yourself
+    return true
+  }
+
   render() {
     return (
-    	<Markdown>{copy}</Markdown>
+    	<Markdown onLinkPress={this.onLinkdPress}>{copy}</Markdown>
     );
   }
 }
