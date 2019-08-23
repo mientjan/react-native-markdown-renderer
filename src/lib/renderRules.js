@@ -179,7 +179,10 @@ const renderRules = {
     if (hasParents(parent, 'ordered_list')) {
       return (
         <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>{node.index + 1}{node.markup}</Text>
+          <Text style={styles.listOrderedItemIcon}>
+            {node.index + 1}
+            {node.markup}
+          </Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
@@ -193,6 +196,11 @@ const renderRules = {
   },
   table: (node, children, parent, styles) => (
     <View key={node.key} style={[styles.table]}>
+      {children}
+    </View>
+  ),
+  tcolumn: (node, children, parent, styles) => (
+    <View key={node.key} style={[styles.tableColumn]}>
       {children}
     </View>
   ),

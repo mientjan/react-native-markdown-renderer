@@ -134,6 +134,10 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000000',
     borderRadius: 3,
+    flexDirection: 'row',
+  },
+  tableColumn: {
+    flexDirection: 'column',
   },
   tableHeader: {},
   tableHeaderCell: {
@@ -162,7 +166,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#000000',
     borderBottomWidth: 1,
-
   },
   u: {
     borderColor: '#000000',
