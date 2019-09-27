@@ -65,7 +65,8 @@ export default class AstRenderer {
    * @return {*}
    */
   render = nodes => {
-    const children = nodes.map(value => this.renderNode(value, []));
+    const root = [{ children: nodes }];
+    const children = nodes.map(value => this.renderNode(value, root));
     return rootRenderRule(children, this._style);
   };
 }
