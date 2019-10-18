@@ -12,7 +12,10 @@ function transformTable(node) {
     .filter(n => n.type === 'tr')
     .forEach(row =>
       row.children.forEach((cell, idx) => {
-        return columns[idx].children.push({ ...cell, index: columns[idx].children.length });
+        return columns[idx].children.push({
+          ...cell,
+          index: columns[idx].children.length,
+        });
       })
     );
   return { ...node, children: columns };

@@ -53,7 +53,11 @@ const renderRules = {
   // a
   link: (node, children, parent, styles) => {
     return (
-      <Text key={node.key} style={styles.link} onPress={() => openUrl(node.attributes.href)}>
+      <Text
+        key={node.key}
+        style={styles.link}
+        onPress={() => openUrl(node.attributes.href)}
+      >
         {children}
       </Text>
     );
@@ -61,7 +65,11 @@ const renderRules = {
   // a with a non text element nested inside
   blocklink: (node, children, parent, styles) => {
     return (
-      <TouchableWithoutFeedback key={node.key} onPress={() => openUrl(node.attributes.href)} style={styles.blocklink}>
+      <TouchableWithoutFeedback
+        key={node.key}
+        onPress={() => openUrl(node.attributes.href)}
+        style={styles.blocklink}
+      >
         <View style={styles.image}>{children}</View>
       </TouchableWithoutFeedback>
     );
@@ -117,7 +125,9 @@ const renderRules = {
     </View>
   ),
 
-  hardbreak: (node, children, parent, styles) => <View key={node.key} style={styles.hardbreak} />,
+  hardbreak: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.hardbreak} />
+  ),
 
   blockquote: (node, children, parent, styles) => (
     <View key={node.key} style={styles.blockquote}>
@@ -209,7 +219,9 @@ const renderRules = {
       {children}
     </View>
   ),
-  tbody: (node, children, parent, styles) => <View key={node.key}>{children}</View>,
+  tbody: (node, children, parent, styles) => (
+    <View key={node.key}>{children}</View>
+  ),
   th: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={[styles.tableHeaderCell]}>
@@ -236,9 +248,18 @@ const renderRules = {
   },
 
   // br
-  softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
+  softbreak: (node, children, parent, styles) => (
+    <Text key={node.key}>{'\n'}</Text>
+  ),
   image: (node, children, parent, styles) => {
-    return <FitImage indicator={true} key={node.key} style={styles.image} source={{ uri: node.attributes.src }} />;
+    return (
+      <FitImage
+        indicator={true}
+        key={node.key}
+        style={styles.image}
+        source={{ uri: node.attributes.src }}
+      />
+    );
   },
 };
 
