@@ -1,5 +1,20 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
+import React from 'react';
+
+const recursivePropUpdate = (children, getProps) => {
+  if (React.isValidElement(children)) {
+    return React.cloneElement(
+      children,
+      getProps(children),
+      recursivePropUpdate(children.props.children, getProps)
+    );
+  }
+  if (Array.isArray(children)) {
+    return React.Children.map(children, child =>
+      recursivePropUpdate(child, getProps)
+    );
+  }
+  return children;
+};
 
 /**
  *
@@ -8,15 +23,12 @@ import { Text } from 'react-native';
  * @param {string} type
  */
 export default function applyStyle(children, styles, type) {
-  if (!(styles instanceof Array)) {
-    styles = [styles];
-  }
-
   return children.map(child => {
-    if (child.type.displayName === type) {
-      return <Text key={child.key} {...child.props} style={[].concat(child.props.style, styles)} />;
-    }
-
-    return child;
+    if (child.type.displayName !== type) return child;
+    return recursivePropUpdate(child, element => {
+      return {
+        style: [element.props.style, styles],
+      };
+    });
   });
 }
