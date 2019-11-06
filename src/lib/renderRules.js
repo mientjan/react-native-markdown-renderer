@@ -7,6 +7,10 @@ import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
 
 const renderRules = {
+  root: (node, children, parent, styles) =>  (
+    <View key={node.key} style={styles.root}>{ children }</View>
+  ),
+
   // when unknown elements are introduced, so it wont break
   unknown: (node, children, parent, styles) => {
     return (
@@ -29,7 +33,7 @@ const renderRules = {
   },
 
   text: (node, children, parent, styles) => {
-    return <Text key={node.key}>{node.content}</Text>;
+    return <Text key={node.key} style={styles.text}>{node.content}</Text>;
   },
   span: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
@@ -177,9 +181,17 @@ const renderRules = {
     }
 
     if (hasParents(parent, 'ordered_list')) {
+      const orderedListIndex = parent.findIndex(el => el.type === 'ordered_list');
+      const orderedList = parent[orderedListIndex];
+      let listItemNumber;
+      if (orderedList.attributes && orderedList.attributes.start) {
+        listItemNumber = orderedList.attributes.start + node.index;
+      } else {
+        listItemNumber = node.index + 1;
+      }
       return (
         <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>{node.index + 1}{node.markup}</Text>
+          <Text style={styles.listOrderedItemIcon}>{listItemNumber}{node.markup}</Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
@@ -230,7 +242,20 @@ const renderRules = {
   // br
   softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
   image: (node, children, parent, styles) => {
-    return <FitImage indicator={true} key={node.key} style={styles.image} source={{ uri: node.attributes.src }} />;
+    const { src, alt } = node.attributes;
+    const imageProps = {
+      indicator: true,
+      key: node.key,
+      style: styles.image,
+      source: {
+        uri: src
+      }
+    };
+    if(alt) {
+      imageProps.accessible = true;
+      imageProps.accessibilityLabel = alt;
+    }
+    return <FitImage {...imageProps} />;
   },
 };
 
