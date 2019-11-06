@@ -7,7 +7,7 @@
 ```jsx
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
-import Markdown, {getUniqueID} from 'react-native-markdown-renderer';
+import Markdown, {getUniqueID} from 'react-native-markdown-display';
 
 const rules = {
     heading1: (node, children, parent, styles) =>

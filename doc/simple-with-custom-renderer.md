@@ -6,7 +6,7 @@
 ```jsx
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
-import Markdown, { AstRenderer } from 'react-native-markdown-renderer';
+import Markdown, { AstRenderer } from 'react-native-markdown-display';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

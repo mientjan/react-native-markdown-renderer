@@ -20,8 +20,31 @@ npm install -S react-native-markdown-display
 yarn add react-native-markdown-display
 ```
 
-# Syntax Support
+### Get Started
 
+```js
+import react from 'react';
+import { PureComponent } from 'react-native';
+import Markdown from 'react-native-markdown-display';
+
+const copy = `# h1 Heading 8-)
+
+** this is some bold text! **
+
+This is normal text
+`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown>{copy}</Markdown>
+    );
+  }
+}
+```
+
+
+# Syntax Support
 
 <details><summary>Headings</summary>
 <p>

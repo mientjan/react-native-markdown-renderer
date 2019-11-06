@@ -3,7 +3,7 @@
 ```js
 import react from 'react';
 import {PureComponent} from 'react-native';
-import Markdown from 'react-native-markdown-renderer';
+import Markdown from 'react-native-markdown-display';
 
 const copy = `# h1 Heading 8-)
 
