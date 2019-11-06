@@ -1,4 +1,4 @@
-# React Native Markdown Renderer [![npm version](https://badge.fury.io/js/react-native-markdown-display.svg)](https://badge.fury.io/js/react-native-markdown-display) [![Known Vulnerabilities](https://snyk.io/test/github/iamacup/react-native-markdown-display/badge.svg)](https://snyk.io/test/github/iamacup/react-native-markdown-display)
+# React Native Markdown Display [![npm version](https://badge.fury.io/js/react-native-markdown-display.svg)](https://badge.fury.io/js/react-native-markdown-display) [![Known Vulnerabilities](https://snyk.io/test/github/iamacup/react-native-markdown-display/badge.svg)](https://snyk.io/test/github/iamacup/react-native-markdown-display)
 
 This is a form of [react-native-markdown-renderer](https://github.com/mientjan/react-native-markdown-renderer) which is not currently maintained.
 
@@ -40,10 +40,13 @@ npm install -S react-native-markdown-display
 #### yarn
 ```npm
 yarn add react-native-markdown-display
-``
+```
 
 # Syntax Support
 
+
+<details><summary>Headings</summary>
+<p>
 
 # h1 Heading 8-)
 ## h2 Heading
@@ -52,12 +55,21 @@ yarn add react-native-markdown-display
 ##### h5 Heading
 ###### h6 Heading
 
+</p>
+</details>
 
-### Horizontal Rules
+<details><summary>Horizontal Rules</summary>
+<p>
 
 ___
 
 ---
+
+</p>
+</details>
+
+
+
 
 
 ### Typographic replacements
