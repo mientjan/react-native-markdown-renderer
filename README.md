@@ -67,12 +67,14 @@ And some additional, more advanced options:
 <details><summary>Headings</summary>
 <p>
 
+```
   # h1 Heading 8-)
   ## h2 Heading
   ### h3 Heading
   #### h4 Heading
   ##### h5 Heading
   ###### h6 Heading
+```
 
 </p>
 </details>
@@ -81,9 +83,14 @@ And some additional, more advanced options:
 <details><summary>Horizontal Rules</summary>
 <p>
 
+  Some text above
   ___
 
+  Some text in the middle
+
   ---
+
+  Some text below
 
 </p>
 </details>
@@ -108,14 +115,6 @@ And some additional, more advanced options:
 
 <details><summary>Emphasis</summary>
 <p>
-
-  Enable typographer option to see result.
-
-  (c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-  test.. test... test..... test?..... test!....
-
-  !!!!!! ???? ,,  -- ---
 
   **This is bold text**
 
