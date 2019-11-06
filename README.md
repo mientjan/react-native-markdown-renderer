@@ -7,6 +7,13 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
 
+# Before 4.1.0 (stable first release)
+
+- [x] Merge the pull requests
+- [x] Update the docs
+- [ ] Close all the formatting issues i opened
+- [ ] Add ability to 'ignore' specific types of markdown
+
 ### Install
 
 #### Yarn
