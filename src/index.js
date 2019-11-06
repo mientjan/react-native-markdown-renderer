@@ -41,6 +41,11 @@ export {
  * react-native-markdown-renderer
  */
 export default class Markdown extends Component {
+
+  constructor(props){
+    super(props)
+    this.updateSettings(this.props);
+  }
   /**
    * Definition of the prop types
    */
@@ -182,16 +187,9 @@ export default class Markdown extends Component {
 
   /**
    *
-   */
-  componentWillMount() {
-    this.updateSettings(this.props);
-  }
-
-  /**
-   *
    * @param nextProps
    */
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     this.updateSettings(nextProps);
   }
 
