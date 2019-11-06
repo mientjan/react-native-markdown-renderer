@@ -82,6 +82,11 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     ...Platform.select({
+      [PlatformEnum.ANDROID]: {
+        marginTop: 5
+      }
+    }),
+    ...Platform.select({
       [PlatformEnum.IOS]: {
         lineHeight: 36,
       },
@@ -102,6 +107,11 @@ export const styles = StyleSheet.create({
   listOrderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
+    ...Platform.select({
+      [PlatformEnum.ANDROID]: {
+        marginTop: 4
+      }
+    }),
     ...Platform.select({
       [PlatformEnum.IOS]: {
         lineHeight: 36,
