@@ -24,18 +24,18 @@
   },
   "homepage": "https://github.com/iamacup/react-native-markdown-display/",
   "dependencies": {
-    "@types/markdown-it": "^0.0.4",
     "markdown-it": "^10.0.0",
-    "prop-types": "^15.5.10",
-    "react-native-fit-image": "^1.5.2"
+    "prop-types": "^15.7.2",
+    "react-native-fit-image": "^1.5.4"
   },
   "peerDependencies": {
     "react": "^16.2.0",
     "react-native": ">=0.50.4",
-    "@types/react-native": ">=0.50.0"
+    "@types/react-native": ">=0.50.0",
+    "@types/markdown-it": "^0.0.9"
   },
   "devDependencies": {
-    "chokidar": "^2.0.0",
-    "fs-extra": "^5.0.0"
+    "chokidar": "^3.3.0",
+    "fs-extra": "^8.1.0"
   }
 }
