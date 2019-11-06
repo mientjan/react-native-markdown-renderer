@@ -9,28 +9,6 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
 
-### Syntax Support Overview
-
-To give a summary of the supported syntax react-native-markdown-display supports.
- 
- - Tables
- - Heading 1 > 6
- - Horizontal Rules
- - Typographic replacements
- - Emphasis ( **bold**, *italic*, ~~strikethrough~~ )
- - Blockquotes
- - Lists
-    - Ordered
-    57. Unordered
-    2. foo
-    3. bar
- - Code Blocks
- - Syntax highlighting
- - Links
- - Images
- - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
-
-
 ### Install
 
 #### npm
@@ -231,6 +209,14 @@ yarn add react-native-markdown-display
   With a reference later in the document defining the URL location:
 
   [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+
+</p>
+</details>
+
+<details><summary>Plugins and Extensions</summary>
+<p>
+
+  Plugins for **extra** syntax support - [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin) for the markdown-it library that this library is built on.
 
 </p>
 </details>
