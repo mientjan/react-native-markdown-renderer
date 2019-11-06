@@ -48,13 +48,13 @@ const getCopyFromChildren = children => {
 const getRenderer = (renderer, rules, style) => {
   if (renderer && rules) {
     console.warn(
-      'react-native-markdown-renderer you are using renderer and rules at the same time. This is not possible, props.rules is ignored'
+      'react-native-markdown-display you are using renderer and rules at the same time. This is not possible, props.rules is ignored'
     );
   }
 
   if (renderer && style) {
     console.warn(
-      'react-native-markdown-renderer you are using renderer and style at the same time. This is not possible, props.style is ignored'
+      'react-native-markdown-display you are using renderer and style at the same time. This is not possible, props.style is ignored'
     );
   }
 
@@ -92,7 +92,7 @@ const getMarkdownParser = (markdownit, plugins) => {
 };
 
 /**
- * react-native-markdown-renderer
+ * react-native-markdown-display
  */
 const Markdown = ({
   children,

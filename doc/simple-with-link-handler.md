@@ -1,6 +1,6 @@
 # Basic Implementation with override for handling links
 
-```js
+```jsx
 import react from 'react';
 import {PureComponent} from 'react-native';
 import Markdown from 'react-native-markdown-display';
@@ -23,7 +23,7 @@ export default class Page extends PureComponent {
     if (url) {
       // some custom logic
     }
-    
+
     // return true to open with `Linking.openURL
     // return false to handle it yourself
     return true

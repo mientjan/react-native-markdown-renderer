@@ -1,6 +1,6 @@
 # Basic Implementation
 
-```js
+```jsx
 import react from 'react';
 import {PureComponent} from 'react-native';
 import Markdown from 'react-native-markdown-display';

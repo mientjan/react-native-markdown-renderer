@@ -20,7 +20,7 @@ yarn add react-native-markdown-display
 
 ### Get Started
 
-```js
+```jsx
 import react from 'react';
 import { PureComponent } from 'react-native';
 import Markdown from 'react-native-markdown-display';
@@ -40,6 +40,84 @@ export default class Page extends PureComponent {
   }
 }
 ```
+
+### Props and Functions
+
+
+
+# Handling Links
+
+Links, by default, will be handled with the `import { Linking } from 'react-native';` import and `Linking.openURL(url);` call.
+
+It is possible to overwrite this behavior in one of two ways:
+
+<details><summary>onLinkPress Callback</summary>
+<p>
+
+```jsx
+import react from 'react';
+import { PureComponent } from 'react-native';
+import Markdown from 'react-native-markdown-display';
+
+const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
+
+export default class Page extends PureComponent {
+  onLinkPress = (url) => {
+    if (url) {
+      // some custom logic
+    }
+    
+    // return true to open with `Linking.openURL
+    // return false to handle it yourself
+    return true
+  }
+
+  render() {
+    return (
+      <Markdown onLinkPress={this.onLinkPress}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+<details><summary>Using a Custom Rule</summary>
+<p>
+
+You will need to overwrite one or both of `link` and `blocklink`, the original defenitions can be [found here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
+
+Something like this with `yourCustomHandlerFunctionOrLogicHere`:
+
+```jsx
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown, {getUniqueID} from 'react-native-markdown-display';
+
+const rules = {
+  link: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.link} onPress={() => yourCustomHandlerFunctionOrLogicHere(node.attributes.href) }>
+        {children}
+      </Text>
+    );
+  },
+};
+
+const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown rules={rules}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
 
 
 # Syntax Support

@@ -12,7 +12,7 @@ import Markdown, {
   PluginContainer,
   renderRules,
   styles,
-} from './react-native-markdown-renderer';
+} from './react-native-markdown-display';
 //
 import markdownItCheckbox from 'markdown-it-checkbox';
 import { TabViewAnimated, SceneMap, TabBar } from 'react-native-tab-view';

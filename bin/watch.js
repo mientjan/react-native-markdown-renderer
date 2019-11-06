@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const location = path.join(__dirname, '../src');
-const destination = path.join(location, '../example/react-native-markdown-renderer');
+const destination = path.join(location, '../example/react-native-markdown-display');
 
 const watcher = chokidar.watch(location + '/**/*');
 watcher.on('change', dir => {

@@ -4,7 +4,7 @@ const path = require("path");
 const location = path.join(__dirname, "../src");
 const destination = path.join(
   location,
-  "../example/react-native-markdown-renderer"
+  "../example/react-native-markdown-display"
 );
 
 fs.remove(destination, err => {

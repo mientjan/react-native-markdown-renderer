@@ -22,7 +22,7 @@ const rules = {
       <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
         [{children}]
       </Text>,
-});
+};
 
 const copy = `
 # h1 Heading 8-)
