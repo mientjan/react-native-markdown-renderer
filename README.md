@@ -1,17 +1,17 @@
-# React Native Markdown Renderer [![npm version](https://badge.fury.io/js/react-native-markdown-renderer.svg)](https://badge.fury.io/js/react-native-markdown-renderer) [![Known Vulnerabilities](https://snyk.io/test/github/mientjan/react-native-markdown-renderer/badge.svg)](https://snyk.io/test/github/mientjan/react-native-markdown-renderer)
+# React Native Markdown Renderer [![npm version](https://badge.fury.io/js/react-native-markdown-display.svg)](https://badge.fury.io/js/react-native-markdown-display) [![Known Vulnerabilities](https://snyk.io/test/github/iamacup/react-native-markdown-display/badge.svg)](https://snyk.io/test/github/iamacup/react-native-markdown-display)
 
-Is a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
+This is a form of [react-native-markdown-renderer](https://github.com/mientjan/react-native-markdown-renderer) which is not currently maintained.
+
+It a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
 a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
 
-### Quick links
- - [Documentation](https://github.com/mientjan/react-native-markdown-renderer/wiki/)
- - [Examples](https://github.com/mientjan/react-native-markdown-renderer/wiki/Examples)
- - [Example App](https://github.com/mientjan/react-native-markdown-renderer/wiki/ExampleApp)
- 
-  
-### Syntax Support
+### Compatibility with react-native-markdown-renderer
 
-To give a summary of the supported syntax react-native-markdown-renderer supports.
+This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
+
+### Syntax Support Overview
+
+To give a summary of the supported syntax react-native-markdown-display supports.
  
  - Tables
  - Heading 1 > 6
@@ -30,47 +30,20 @@ To give a summary of the supported syntax react-native-markdown-renderer support
  - Images
  - Plugins for **extra** syntax support, [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin). Because this markdown-renderer uses markdown-it as its base it also supports all its plugins and subsequent extra language support.
 
-### Tested on:
 
-| [] | react | react-native | version |
-| -- | ----- | ------------ | ------- |
-| v  | 16.2  | 0.50.4       | 3.0.0   |
-| v  | 16.0.0-alpha.12 | 0.45.1 | 2.0.5 |
-| v  | 16.0.0-alpha.6 | 0.44.0 | 2.0.5 |
-| x  | 15.x  | ^0.46.4      | 2.0.5 |
-
-### Todo
- - ~~add styleSheet support~~
- - ~~add plugin support~~
- - ~~add support for seperate rules~~
-
-### How to:
+### Install
 
 #### npm
 ```npm
-npm install -S react-native-markdown-renderer
+npm install -S react-native-markdown-display
 ```
 #### yarn
 ```npm
-yarn add react-native-markdown-renderer
-```
-
-See [WIKI](https://github.com/mientjan/react-native-markdown-renderer/wiki/) for examples and documentation
-
----
+yarn add react-native-markdown-display
+``
 
 # Syntax Support
 
-__Advertisement :)__
-
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-  resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-  i18n with plurals support and easy syntax.
-
-You will like those projects!
-
----
 
 # h1 Heading 8-)
 ## h2 Heading
@@ -215,3 +188,9 @@ Like links, Images also have a footnote style syntax
 With a reference later in the document defining the URL location:
 
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+
+
+### Other Resources
+
+ - [Documentation / Examples](https://github.com/iamacup/react-native-markdown-display/tree/master/doc)
+ - [Example App](https://github.com/iamacup/react-native-markdown-display/tree/master/example)
