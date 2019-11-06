@@ -9,13 +9,14 @@ This is intended to be a drop-in replacement for react-native-markdown-renderer,
 
 ### Install
 
-#### npm
-```npm
-npm install -S react-native-markdown-display
-```
-#### yarn
+#### Yarn
 ```npm
 yarn add react-native-markdown-display
+```
+
+#### NPM
+```npm
+npm install -S react-native-markdown-display
 ```
 
 ### Get Started
@@ -48,9 +49,9 @@ The `<Markdown>` object takes the following common props:
 | Property | Required | Description                                                      
 | --- | --- | ---
 | `children` | `true` | The markdown string to render
-| `rules` | `false` | Rules that specify how to render each markdown item, see rules section below for full list
-| `style` | `false` | An object to override the styling for the various rules, see style section below for full list
-| `onLinkPress` | `false` | A handler to change click behaviour, see handling links section below for more info
+| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
+| `style` | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
+| `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
 
 And some additional, more advanced options:
 
