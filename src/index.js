@@ -45,7 +45,7 @@ const getCopyFromChildren = children => {
   return children instanceof Array ? children.join('') : children;
 };
 
-const getRenderer = (renderer, rules, style) => {
+const getRenderer = (renderer, rules, style, onLinkPress) => {
   if (renderer && rules) {
     console.warn(
       'react-native-markdown-display you are using renderer and rules at the same time. This is not possible, props.rules is ignored'
@@ -75,7 +75,7 @@ const getRenderer = (renderer, rules, style) => {
         ...styles,
         ...style,
       },
-      props.onLinkPress
+      onLinkPress
     );
   }
 };
@@ -103,8 +103,9 @@ const Markdown = ({
   markdownit = MarkdownIt({
     typographer: true,
   }),
+  onLinkPress = () => {},
 }) => {
-  const momoizedRenderer = useMemo(() => getRenderer(renderer, rules, style), [renderer, rules, style]);
+  const momoizedRenderer = useMemo(() => getRenderer(renderer, rules, style, onLinkPress), [renderer, rules, style]);
   const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [markdownit, plugins]);
 
   const copy = (this.copy = getCopyFromChildren(children));

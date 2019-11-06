@@ -5,7 +5,7 @@ import FitImage from 'react-native-fit-image';
 import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
-import PlatformEnum from "./enum/PlatformEnum";
+import PlatformEnum from "./data/PlatformEnum";
 
 const renderRules = {
   root: (node, children, parent, styles) =>  (
