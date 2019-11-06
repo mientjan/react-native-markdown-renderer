@@ -11,9 +11,10 @@ export default class AstRenderer {
    * @param {Object.<string, function>} renderRules
    * @param {any} style
    */
-  constructor(renderRules, style) {
+  constructor(renderRules, style, onLinkPress) {
     this._renderRules = renderRules;
     this._style = style;
+    this._onLinkPress = onLinkPress;
   }
 
   /**
@@ -51,6 +52,10 @@ export default class AstRenderer {
     const children = node.children.map(value => {
       return this.renderNode(value, parents);
     });
+
+    if (node.type === "link" || node.type === "blocklink") {
+      return renderFunction(node, children, parentNodes, this._style, this._onLinkPress);
+    }
 
     return renderFunction(node, children, parentNodes, this._style);
   };
