@@ -7,7 +7,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
 
-# Before 4.1.0 (stable first release)
+# Before 4.1.0 (first 'major' release of this fork)
 
 - [x] Merge the pull requests
 - [x] Update the docs
