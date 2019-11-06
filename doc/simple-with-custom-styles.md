@@ -1,16 +1,12 @@
 # Simple Implementation with custom styles
 
-docs for v3.0.0
-
-So to describe what i customized 
  - Heading1 has a **fontSize** of 32, **backgroundColor** black and a **color** white. 
  - all headers have a **border** at the bottom, of width 1 with a black color.
- 
 
 ```jsx
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
-import Markdown, { AstRenderer } from 'react-native-markdown-renderer';
+import Markdown from 'react-native-markdown-renderer';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

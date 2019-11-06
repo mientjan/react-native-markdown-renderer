@@ -1,13 +1,9 @@
 # Simple Implementation with custom Rules
 
-docs for v3.0.0
-
-So to describe what i customized 
  - header1 will always look like ```[ h1 Heading 8-)]```
  - header2 will always look like ```[ h2 Heading 8-)]```
  - header3 will always look like ```[ h3 Heading 8-)]```
  
-
 ```jsx
 import react from 'react';
 import {View, PureComponent, Text} from 'react-native';
