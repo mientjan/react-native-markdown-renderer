@@ -62,85 +62,6 @@ And some additional, more advanced options:
 | `plugins` | `false` | An array of plugins to be applied to the markdownit instance
 
 
-# Rules
-
-# Style
-
-# Handling Links
-
-Links, by default, will be handled with the `import { Linking } from 'react-native';` import and `Linking.openURL(url);` call.
-
-It is possible to overwrite this behaviour in one of two ways:
-
-<details><summary>onLinkPress Callback</summary>
-<p>
-
-```jsx
-import react from 'react';
-import { PureComponent } from 'react-native';
-import Markdown from 'react-native-markdown-display';
-
-const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
-
-export default class Page extends PureComponent {
-  onLinkPress = (url) => {
-    if (url) {
-      // some custom logic
-    }
-    
-    // return true to open with `Linking.openURL
-    // return false to handle it yourself
-    return true
-  }
-
-  render() {
-    return (
-      <Markdown onLinkPress={this.onLinkPress}>{copy}</Markdown>
-    );
-  }
-}
-```
-
-</p>
-</details>
-
-<details><summary>Using a Custom Rule</summary>
-<p>
-
-You will need to overwrite one or both of `link` and `blocklink`, the original defenitions can be [found here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
-
-Something like this with `yourCustomHandlerFunctionOrLogicHere`:
-
-```jsx
-import react from 'react';
-import {View, PureComponent, Text} from 'react-native';
-import Markdown, {getUniqueID} from 'react-native-markdown-display';
-
-const rules = {
-  link: (node, children, parent, styles) => {
-    return (
-      <Text key={node.key} style={styles.link} onPress={() => yourCustomHandlerFunctionOrLogicHere(node.attributes.href) }>
-        {children}
-      </Text>
-    );
-  },
-};
-
-const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
-
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown rules={rules}>{copy}</Markdown>
-    );
-  }
-}
-```
-
-</p>
-</details>
-
-
 # Syntax Support
 
 <details><summary>Headings</summary>
@@ -340,6 +261,210 @@ export default class Page extends PureComponent {
 
 </p>
 </details>
+
+
+# Rules
+
+Rules are used to specify how you want certain elements to be displayed. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
+
+The list of rules that can be overwritten is:
+
+```["unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
+
+<details><summary>Example Implementation</summary>
+<p>
+
+```jsx
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown, {getUniqueID} from 'react-native-markdown-display';
+
+const rules = {
+    heading1: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
+        [{children}]
+      </Text>,
+    heading2: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
+        [{children}]
+      </Text>,
+    heading3: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
+        [{children}]
+      </Text>,
+};
+
+const copy = `
+# h1 Heading 8-)
+## h2 Heading 8-)
+### h3 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown rules={rules}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+
+# Style
+
+Styles are used to override how certain rules are styled. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js)
+
+The list of styles that can be overwritten is:
+
+```["root", "view", "codeBlock", "codeInline", "del", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "inlineCode", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listUnorderedItemText", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "listOrderedItemText", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "strikethrough", "link", "blocklink", "u", "image"]```
+
+**NOTE:** There is no merge of the style properties, if you specify a style property, it will completely overwrite existing styles for that property.
+
+<details><summary>Example Implementation</summary>
+<p>
+
+```jsx
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown from 'react-native-markdown-display';
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  heading: {
+    borderBottomWidth: 1,
+    borderColor: '#000000',
+  },
+  heading1: {
+    fontSize: 32,
+    backgroundColor: '#000000',
+    color: '#FFFFFF',
+  },
+  heading2: {
+    fontSize: 24,
+  },
+  heading3: {
+    fontSize: 18,
+  },
+  heading4: {
+    fontSize: 16,
+  },
+  heading5: {
+    fontSize: 13,
+  },
+  heading6: {
+    fontSize: 11,
+  }
+});
+
+const copy = `
+# h1 Heading 8-)
+## h2 Heading 8-)
+### h3 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown style={styles}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+
+# Handling Links
+
+Links, by default, will be handled with the `import { Linking } from 'react-native';` import and `Linking.openURL(url);` call.
+
+It is possible to overwrite this behaviour in one of two ways:
+
+<details><summary>onLinkPress Callback</summary>
+<p>
+
+```jsx
+import react from 'react';
+import { PureComponent } from 'react-native';
+import Markdown from 'react-native-markdown-display';
+
+const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
+
+export default class Page extends PureComponent {
+  onLinkPress = (url) => {
+    if (url) {
+      // some custom logic
+    }
+    
+    // return true to open with `Linking.openURL
+    // return false to handle it yourself
+    return true
+  }
+
+  render() {
+    return (
+      <Markdown onLinkPress={this.onLinkPress}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+<details><summary>Using a Custom Rule</summary>
+<p>
+
+You will need to overwrite one or both of `link` and `blocklink`, the original defenitions can be [found here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
+
+Something like this with `yourCustomHandlerFunctionOrLogicHere`:
+
+```jsx
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown, {getUniqueID} from 'react-native-markdown-display';
+
+const rules = {
+  link: (node, children, parent, styles) => {
+    return (
+      <Text key={node.key} style={styles.link} onPress={() => yourCustomHandlerFunctionOrLogicHere(node.attributes.href) }>
+        {children}
+      </Text>
+    );
+  },
+};
+
+const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown rules={rules}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+
 
 
 ### Other Resources
