@@ -14,6 +14,8 @@ This is intended to be a drop-in replacement for react-native-markdown-renderer,
 - [ ] Close all the formatting issues i opened
 - [ ] Add ability to 'ignore' specific types of markdown
 
+**Target Nov 10th 2019**
+
 ### Install
 
 #### Yarn
