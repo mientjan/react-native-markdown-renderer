@@ -76,6 +76,12 @@ And some additional, more advanced options:
   ###### h6 Heading
 ```
 
+iOS: 
+![alt text](https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-1.png "Logo Title Text 1")
+
+Android: 
+![alt text](https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-1.png "Logo Title Text 1")
+
 </p>
 </details>
 
