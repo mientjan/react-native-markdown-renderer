@@ -212,7 +212,7 @@ And some additional, more advanced options:
 <p>
   
 ```
-  Inline `code`
+  Inline \`code\`
 
   Indented code
 
@@ -224,19 +224,19 @@ And some additional, more advanced options:
 
   Block code "fences"
 
-  ```
+  \`\`\`
   Sample text here...
-  ```
+  \`\`\`
 
   Syntax highlighting
 
-  ``` js
+  \`\`\` js
   var foo = function (bar) {
     return bar++;
   };
 
   console.log(foo(5));
-  ```
+  \`\`\`
 ```
 
 | iOS | Android
