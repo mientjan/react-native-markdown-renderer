@@ -11,7 +11,7 @@ This is intended to be a drop-in replacement for react-native-markdown-renderer,
 
 - [x] Merge the pull requests
 - [x] Update the docs
-- [ ] Close all the formatting issues i opened
+- [ ] Close all the formatting issues that are hanging over from react-native-markdown-renderer
 - [ ] Add ability to 'ignore' specific types of markdown
 
 **Target Nov 10th 2019**
