@@ -76,15 +76,9 @@ And some additional, more advanced options:
   ###### h6 Heading
 ```
 
-| Property | Required
+| iOS | Android
 | --- | ---
 | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-1.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-1.png"/>  
-
-iOS: 
-![alt text](https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-1.png "Logo Title Text 1")
-
-Android: 
-![alt text](https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-1.png "Logo Title Text 1")
 
 </p>
 </details>
@@ -93,6 +87,7 @@ Android:
 <details><summary>Horizontal Rules</summary>
 <p>
 
+```
   Some text above
   ___
 
@@ -101,6 +96,12 @@ Android:
   ---
 
   Some text below
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-2.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-2.png"/>  
+
 
 </p>
 </details>
@@ -109,6 +110,7 @@ Android:
 <details><summary>Typographic Replacements</summary>
 <p>
 
+```
   Enable typographer option to see result.
 
   (c) (C) (r) (R) (tm) (TM) (p) (P) +-
@@ -118,6 +120,11 @@ Android:
   !!!!!! ???? ,,  -- ---
 
   "Smartypants, double quotes" and 'single quotes'
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-3.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-3.png"/>  
 
 </p>
 </details>
@@ -126,6 +133,7 @@ Android:
 <details><summary>Emphasis</summary>
 <p>
 
+```
   **This is bold text**
 
   __This is bold text__
@@ -135,6 +143,11 @@ Android:
   _This is italic text_
 
   ~~Strikethrough~~
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-4.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-4.png"/>  
 
 </p>
 </details>
@@ -143,9 +156,15 @@ Android:
 <details><summary>Blockquotes</summary>
 <p>
 
+```
   > Blockquotes can also be nested...
   >> ...by using additional greater-than signs right next to each other...
   > > > ...or with spaces between arrows.
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-5.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-5.png"/>  
 
 </p>
 </details>
@@ -153,6 +172,8 @@ Android:
 
 <details><summary>Lists</summary>
 <p>
+
+```
   Unordered
 
   + Create a list by starting a line with `+`, `-`, or `*`
@@ -177,6 +198,12 @@ Android:
 
   57. foo
   1. bar
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-6.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-6.png"/>  
+
 </p>
 </details>
 
@@ -184,6 +211,7 @@ Android:
 <details><summary>Code</summary>
 <p>
   
+```
   Inline `code`
 
   Indented code
@@ -209,6 +237,11 @@ Android:
 
   console.log(foo(5));
   ```
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-7.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-7.png"/>  
 
 </p>
 </details>
@@ -217,6 +250,7 @@ Android:
 <details><summary>Tables</summary>
 <p>
 
+```
   | Option | Description |
   | ------ | ----------- |
   | data   | path to data files to supply the data that will be passed into templates. |
@@ -230,6 +264,11 @@ Android:
   | data   | path to data files to supply the data that will be passed into templates. |
   | engine | engine to be used for processing templates. Handlebars is the default. |
   | ext    | extension to be used for dest files. |
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-8.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-8.png"/>  
 
 </p>
 </details>
@@ -237,11 +276,17 @@ Android:
 <details><summary>Links</summary>
 <p>
 
+```
   [link text](http://dev.nodeca.com)
 
   [link with title](http://nodeca.github.io/pica/demo/ "title text!")
 
   Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-9.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-9.png"/>  
 
 </p>
 </details>
@@ -249,6 +294,7 @@ Android:
 <details><summary>Images</summary>
 <p>
 
+```
   ![Minion](https://octodex.github.com/images/minion.png)
   ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
@@ -259,6 +305,11 @@ Android:
   With a reference later in the document defining the URL location:
 
   [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-10.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-10.png"/>  
 
 </p>
 </details>
