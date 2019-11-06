@@ -43,13 +43,33 @@ export default class Page extends PureComponent {
 
 ### Props and Functions
 
+The `<Markdown>` object takes the following common props:
 
+| Property | Required | Description                                                      
+| --- | --- | ---
+| `children` | `true` | The markdown string to render
+| `rules` | `false` | Rules that specify how to render each markdown item, see rules section below for full list
+| `style` | `false` | An object to override the styling for the various rules, see style section below for full list
+| `onLinkPress` | `false` | A handler to change click behaviour, see handling links section below for more info
+
+And some additional, more advanced options:
+
+| Property | Required | Description    
+| --- | --- | ---
+| `renderer` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
+| `markdownit` | `false` | A custom markdownit instance, if you need one
+| `plugins` | `false` | An array of plugins to be applied to the markdownit instance
+
+
+# Rules
+
+# Style
 
 # Handling Links
 
 Links, by default, will be handled with the `import { Linking } from 'react-native';` import and `Linking.openURL(url);` call.
 
-It is possible to overwrite this behavior in one of two ways:
+It is possible to overwrite this behaviour in one of two ways:
 
 <details><summary>onLinkPress Callback</summary>
 <p>
