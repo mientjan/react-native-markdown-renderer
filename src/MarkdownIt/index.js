@@ -1,2 +1,1 @@
-
-export { default } from 'markdown-it'
+export {default} from 'markdown-it';
