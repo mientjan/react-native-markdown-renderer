@@ -54,9 +54,8 @@ export const styles = StyleSheet.create({
     height: 1,
   },
   blockquote: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    margin: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 4,
     backgroundColor: '#CCCCCC',
   },
   inlineCode: {
