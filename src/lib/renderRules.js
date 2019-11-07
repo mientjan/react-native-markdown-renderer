@@ -175,7 +175,7 @@ const renderRules = {
     if (hasParents(parent, 'bullet_list')) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
-          <Text style={styles.listUnorderedItemIcon}>
+          <Text style={[styles.text, styles.listUnorderedItemIcon]}>
             {Platform.select({
               [PlatformEnum.ANDROID]: '\u2022',
               [PlatformEnum.IOS]: '\u00B7',
@@ -199,7 +199,7 @@ const renderRules = {
       }
       return (
         <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>
+          <Text style={[styles.text, styles.listOrderedItemIcon]}>
             {listItemNumber}
             {node.markup}
           </Text>
