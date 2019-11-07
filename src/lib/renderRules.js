@@ -1,15 +1,17 @@
-import React, { Component, PropTypes } from 'react';
-import { Text, TouchableWithoutFeedback, View, Platform } from 'react-native';
+import React from 'react';
+import {Text, TouchableWithoutFeedback, View, Platform} from 'react-native';
 
 import FitImage from 'react-native-fit-image';
 import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
-import PlatformEnum from "./data/PlatformEnum";
+import PlatformEnum from './data/PlatformEnum';
 
 const renderRules = {
-  root: (node, children, parent, styles) =>  (
-    <View key={node.key} style={styles.root}>{ children }</View>
+  root: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.root}>
+      {children}
+    </View>
   ),
   // when unknown elements are introduced, so it wont break
   unknown: (node, children, parent, styles) => {
@@ -29,8 +31,12 @@ const renderRules = {
   inline: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
   },
-  text: (node, children, parent, styles) => {
-    return <Text key={node.key} style={styles.text}>{node.content}</Text>;
+  text: (node, children, parent, styles, styleOverride = {}) => {
+    return (
+      <Text key={node.key} style={{...styles.text, ...styleOverride}}>
+        {node.content}
+      </Text>
+    );
   },
   span: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
@@ -52,7 +58,10 @@ const renderRules = {
   // a
   link: (node, children, parent, styles, onLinkPress) => {
     return (
-      <Text key={node.key} style={styles.link} onPress={() => openUrl(node.attributes.href, onLinkPress)}>
+      <Text
+        key={node.key}
+        style={styles.link}
+        onPress={() => openUrl(node.attributes.href, onLinkPress)}>
         {children}
       </Text>
     );
@@ -63,8 +72,7 @@ const renderRules = {
       <TouchableWithoutFeedback
         key={node.key}
         onPress={() => openUrl(node.attributes.href, onLinkPress)}
-        style={styles.blocklink}
-      >
+        style={styles.blocklink}>
         <View style={styles.image}>{children}</View>
       </TouchableWithoutFeedback>
     );
@@ -76,21 +84,16 @@ const renderRules = {
       </Text>
     );
   },
-  heading1: (node, children, parent, styles) => {
-    return (
-      <View key={node.key} style={styles.headingContainer}>
-        {applyStyle(children, [styles.heading, styles.heading1], 'Text')}
-      </View>
-    );
-  },
-  heading2: (node, children, parent, styles) => {
-    children = applyStyle(children, [styles.heading, styles.heading2], 'Text');
-    return (
-      <View key={node.key} style={styles.headingContainer}>
-        {children}
-      </View>
-    );
-  },
+  heading1: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.headingContainer}>
+      {applyStyle(children, [styles.heading, styles.heading1], 'Text')}
+    </View>
+  ),
+  heading2: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.headingContainer}>
+      {applyStyle(children, [styles.heading, styles.heading2], 'Text')}
+    </View>
+  ),
   heading3: (node, children, parent, styles) => (
     <View key={node.key} style={styles.headingContainer}>
       {applyStyle(children, [styles.heading, styles.heading3], 'Text')}
@@ -118,7 +121,7 @@ const renderRules = {
   ),
   hardbreak: (node, children, parent, styles) => (
     <Text key={node.key} style={styles.hardbreak}>
-      {"\n"}
+      {'\n'}
     </Text>
   ),
   blockquote: (node, children, parent, styles) => (
@@ -172,12 +175,10 @@ const renderRules = {
     if (hasParents(parent, 'bullet_list')) {
       return (
         <View key={node.key} style={styles.listUnorderedItem}>
-          <Text
-            style={styles.listUnorderedItemIcon}
-          >
+          <Text style={styles.listUnorderedItemIcon}>
             {Platform.select({
-                [PlatformEnum.ANDROID]: "\u2022",
-                [PlatformEnum.IOS]: "\u00B7"
+              [PlatformEnum.ANDROID]: '\u2022',
+              [PlatformEnum.IOS]: '\u00B7',
             })}
           </Text>
           <View style={[styles.listItem]}>{children}</View>
@@ -186,7 +187,9 @@ const renderRules = {
     }
 
     if (hasParents(parent, 'ordered_list')) {
-      const orderedListIndex = parent.findIndex(el => el.type === 'ordered_list');
+      const orderedListIndex = parent.findIndex(
+        el => el.type === 'ordered_list',
+      );
       const orderedList = parent[orderedListIndex];
       let listItemNumber;
       if (orderedList.attributes && orderedList.attributes.start) {
@@ -196,7 +199,10 @@ const renderRules = {
       }
       return (
         <View key={node.key} style={styles.listOrderedItem}>
-          <Text style={styles.listOrderedItemIcon}>{listItemNumber}{node.markup}</Text>
+          <Text style={styles.listOrderedItemIcon}>
+            {listItemNumber}
+            {node.markup}
+          </Text>
           <View style={[styles.listItem]}>{children}</View>
         </View>
       );
@@ -218,7 +224,9 @@ const renderRules = {
       {children}
     </View>
   ),
-  tbody: (node, children, parent, styles) => <View key={node.key}>{children}</View>,
+  tbody: (node, children, parent, styles) => (
+    <View key={node.key}>{children}</View>
+  ),
   th: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={[styles.tableHeaderCell]}>
@@ -244,18 +252,20 @@ const renderRules = {
     return <View key={node.key} style={[styles.hr]} />;
   },
   // br
-  softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
+  softbreak: (node, children, parent, styles) => (
+    <Text key={node.key}>{'\n'}</Text>
+  ),
   image: (node, children, parent, styles) => {
-    const { src, alt } = node.attributes;
+    const {src, alt} = node.attributes;
     const imageProps = {
       indicator: true,
       key: node.key,
       style: styles.image,
       source: {
-        uri: src
-      }
+        uri: src,
+      },
     };
-    if(alt) {
+    if (alt) {
       imageProps.accessible = true;
       imageProps.accessibilityLabel = alt;
     }

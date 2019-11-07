@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import PlatformEnum from './data/PlatformEnum';
 
 /**
@@ -82,8 +82,8 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     ...Platform.select({
       [PlatformEnum.ANDROID]: {
-        marginTop: 5
-      }
+        marginTop: 5,
+      },
     }),
     ...Platform.select({
       [PlatformEnum.IOS]: {
@@ -108,8 +108,8 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     ...Platform.select({
       [PlatformEnum.ANDROID]: {
-        marginTop: 4
-      }
+        marginTop: 4,
+      },
     }),
     ...Platform.select({
       [PlatformEnum.IOS]: {
@@ -171,7 +171,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#000000',
     borderBottomWidth: 1,
-
   },
   u: {
     borderColor: '#000000',

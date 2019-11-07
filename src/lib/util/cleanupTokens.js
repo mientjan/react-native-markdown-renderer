@@ -14,7 +14,9 @@ export function cleanupTokens(tokens) {
 
     // Set img alt text
     if (token.type === 'image') {
-      token.attrs[token.attrIndex('alt')][1] = renderInlineAsText(token.children);
+      token.attrs[token.attrIndex('alt')][1] = renderInlineAsText(
+        token.children,
+      );
     }
   });
 
@@ -26,7 +28,11 @@ export function cleanupTokens(tokens) {
   tokens = tokens.reduce((acc, token, index) => {
     if (token.type === 'link' && token.nesting === 1) {
       stack.push(token);
-    } else if (stack.length > 0 && token.type === 'link' && token.nesting === -1) {
+    } else if (
+      stack.length > 0 &&
+      token.type === 'link' &&
+      token.nesting === -1
+    ) {
       if (stack.some(stackToken => stackToken.block)) {
         stack[0].type = 'blocklink';
         stack[0].block = true;

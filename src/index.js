@@ -2,7 +2,7 @@
  * Base Markdown component
  * @author Mient-jan Stelling
  */
-import { useMemo } from 'react';
+import {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
@@ -15,8 +15,8 @@ import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
 import PluginContainer from './lib/plugin/PluginContainer';
 import blockPlugin from './lib/plugin/blockPlugin';
-import { styles } from './lib/styles';
-import { stringToTokens } from './lib/util/stringToTokens';
+import {styles} from './lib/styles';
+import {stringToTokens} from './lib/util/stringToTokens';
 /**
  *
  */
@@ -48,13 +48,13 @@ const getCopyFromChildren = children => {
 const getRenderer = (renderer, rules, style, onLinkPress) => {
   if (renderer && rules) {
     console.warn(
-      'react-native-markdown-display you are using renderer and rules at the same time. This is not possible, props.rules is ignored'
+      'react-native-markdown-display you are using renderer and rules at the same time. This is not possible, props.rules is ignored',
     );
   }
 
   if (renderer && style) {
     console.warn(
-      'react-native-markdown-display you are using renderer and style at the same time. This is not possible, props.style is ignored'
+      'react-native-markdown-display you are using renderer and style at the same time. This is not possible, props.style is ignored',
     );
   }
 
@@ -63,7 +63,9 @@ const getRenderer = (renderer, rules, style, onLinkPress) => {
     if (!(typeof renderer === 'function') || renderer instanceof AstRenderer) {
       return renderer;
     } else {
-      throw new Error('Provided renderer is not compatible with function or AstRenderer. please change');
+      throw new Error(
+        'Provided renderer is not compatible with function or AstRenderer. please change',
+      );
     }
   } else {
     return new AstRenderer(
@@ -75,7 +77,7 @@ const getRenderer = (renderer, rules, style, onLinkPress) => {
         ...styles,
         ...style,
       },
-      onLinkPress
+      onLinkPress,
     );
   }
 };
@@ -105,8 +107,14 @@ const Markdown = ({
   }),
   onLinkPress = () => {},
 }) => {
-  const momoizedRenderer = useMemo(() => getRenderer(renderer, rules, style, onLinkPress), [renderer, rules, style]);
-  const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [markdownit, plugins]);
+  const momoizedRenderer = useMemo(
+    () => getRenderer(renderer, rules, style, onLinkPress),
+    [onLinkPress, renderer, rules, style],
+  );
+  const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [
+    markdownit,
+    plugins,
+  ]);
 
   const copy = (this.copy = getCopyFromChildren(children));
   return parser(copy, momoizedRenderer.render, markdownParser);
@@ -117,7 +125,10 @@ const Markdown = ({
  */
 Markdown.propTypes = {
   children: PropTypes.node.isRequired,
-  renderer: PropTypes.oneOfType([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
+  renderer: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.instanceOf(AstRenderer),
+  ]),
   onLinkPress: PropTypes.func,
   rules: (props, propName, componentName) => {
     let invalidProps = [];
@@ -128,17 +139,19 @@ Markdown.propTypes = {
     }
 
     if (typeof prop === 'object') {
-      invalidProps = Object.keys(prop).filter(key => typeof prop[key] !== 'function');
+      invalidProps = Object.keys(prop).filter(
+        key => typeof prop[key] !== 'function',
+      );
     }
 
     if (typeof prop !== 'object') {
       return new Error(
-        `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Must be of shape {[index:string]:function} `
+        `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Must be of shape {[index:string]:function} `,
       );
     } else if (invalidProps.length > 0) {
       return new Error(
         `Invalid prop \`${propName}\` supplied to \`${componentName}\`. These ` +
-          `props are not of type function \`${invalidProps.join(', ')}\` `
+          `props are not of type function \`${invalidProps.join(', ')}\` `,
       );
     }
   },

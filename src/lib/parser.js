@@ -1,8 +1,6 @@
-import React from 'react';
-import { View } from 'react-native';
 import tokensToAST from './util/tokensToAST';
-import { stringToTokens } from './util/stringToTokens';
-import { cleanupTokens } from './util/cleanupTokens';
+import {stringToTokens} from './util/stringToTokens';
+import {cleanupTokens} from './util/cleanupTokens';
 import groupTextTokens from './util/groupTextTokens';
 
 /**
