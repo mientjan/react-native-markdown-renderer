@@ -84,21 +84,16 @@ const renderRules = {
       </Text>
     );
   },
-  heading1: (node, children, parent, styles) => {
-    return (
-      <View key={node.key} style={styles.headingContainer}>
-        {applyStyle(children, [styles.heading, styles.heading1], 'Text')}
-      </View>
-    );
-  },
-  heading2: (node, children, parent, styles) => {
-    children = applyStyle(children, [styles.heading, styles.heading2], 'Text');
-    return (
-      <View key={node.key} style={styles.headingContainer}>
-        {children}
-      </View>
-    );
-  },
+  heading1: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.headingContainer}>
+      {applyStyle(children, [styles.heading, styles.heading1], 'Text')}
+    </View>
+  ),
+  heading2: (node, children, parent, styles) => (
+    <View key={node.key} style={styles.headingContainer}>
+      {applyStyle(children, [styles.heading, styles.heading2], 'Text')}
+    </View>
+  ),
   heading3: (node, children, parent, styles) => (
     <View key={node.key} style={styles.headingContainer}>
       {applyStyle(children, [styles.heading, styles.heading3], 'Text')}
