@@ -67,10 +67,10 @@ And some additional, less used options:
 | Property | Required | Description    
 | --- | --- | ---
 | `renderer` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
-| `markdownit` | `false` | A custom markdownit instance, if you need one
+| `markdownit` | `false` | A custom markdownit instance with your configuration, default is `MarkdownIt({typographer: true})`
 | `plugins` | `false` | An array of plugins to be applied to the markdownit instance
 | `maxTopLevelChildren` | `false` | Defaults to null, if defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
-| `topLevelMaxExceededItem` | `false` | Defauls to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit
+| `topLevelMaxExceededItem` | `false` | Defauls to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit. Make sure to give it a key!
 
 
 # Syntax Support
@@ -697,6 +697,27 @@ export default class Page extends PureComponent {
 </p>
 </details>
 
+
+# Disabling Specific Types of Markdown
+
+You can dissable any type of markdown you want, which is very useful in a mobile environment, by passing the markdownit property like below. Note that for convenience we also export the `MarkdownIt` instance so you don't have to include it as a project dependency directly just to remove some types of markdown.
+
+This example will stop images and links.
+
+```jsx
+import Markdown from 'react-native-markdown-display';
+import MarkdownIt from 'react-native-markdown-display/src/MarkdownIt';
+
+<Markdown
+  markdownit={
+    MarkdownIt({typographer: true}).disable([ 'link', 'image' ])
+  }
+>
+</Markdown>
+
+```
+
+A full list of things you can turn off is [here](https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.js)
 
 
 
