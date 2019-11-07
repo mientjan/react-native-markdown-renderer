@@ -69,7 +69,6 @@ export const styles = StyleSheet.create({
   listItem: {
     flex: 1,
     flexWrap: 'wrap',
-    // backgroundColor: 'green',
   },
   listUnordered: {},
 

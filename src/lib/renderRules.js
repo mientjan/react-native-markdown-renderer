@@ -11,7 +11,6 @@ const renderRules = {
   root: (node, children, parent, styles) =>  (
     <View key={node.key} style={styles.root}>{ children }</View>
   ),
-
   // when unknown elements are introduced, so it wont break
   unknown: (node, children, parent, styles) => {
     return (
@@ -20,7 +19,6 @@ const renderRules = {
       </View>
     );
   },
-
   textgroup: (node, children, parent, styles) => {
     return (
       <Text key={node.key} style={styles.text}>
@@ -28,18 +26,15 @@ const renderRules = {
       </Text>
     );
   },
-
   inline: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
   },
-
   text: (node, children, parent, styles) => {
     return <Text key={node.key} style={styles.text}>{node.content}</Text>;
   },
   span: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
   },
-
   strong: (node, children, parent, styles) => {
     return (
       <Text key={node.key} style={styles.strong}>
@@ -47,7 +42,6 @@ const renderRules = {
       </Text>
     );
   },
-
   s: (node, children, parent, styles) => {
     return (
       <Text key={node.key} style={styles.strikethrough}>
@@ -82,7 +76,6 @@ const renderRules = {
       </Text>
     );
   },
-
   heading1: (node, children, parent, styles) => {
     return (
       <View key={node.key} style={styles.headingContainer}>
@@ -90,7 +83,6 @@ const renderRules = {
       </View>
     );
   },
-
   heading2: (node, children, parent, styles) => {
     children = applyStyle(children, [styles.heading, styles.heading2], 'Text');
     return (
@@ -119,19 +111,16 @@ const renderRules = {
       {applyStyle(children, [styles.heading, styles.heading6], 'Text')}
     </View>
   ),
-
   paragraph: (node, children, parent, styles) => (
     <View key={node.key} style={styles.paragraph}>
       {children}
     </View>
   ),
-
   hardbreak: (node, children, parent, styles) => (
     <Text key={node.key} style={styles.hardbreak}>
       {"\n"}
     </Text>
   ),
-
   blockquote: (node, children, parent, styles) => (
     <View key={node.key} style={styles.blockquote}>
       {children}
@@ -254,7 +243,6 @@ const renderRules = {
   hr: (node, children, parent, styles) => {
     return <View key={node.key} style={[styles.hr]} />;
   },
-
   // br
   softbreak: (node, children, parent, styles) => <Text key={node.key}>{'\n'}</Text>,
   image: (node, children, parent, styles) => {
