@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
+import React from 'react';
+import {Text} from 'react-native';
 
 /**
  *
@@ -14,7 +14,13 @@ export default function applyStyle(children, styles, type) {
 
   return children.map(child => {
     if (child.key.toLowerCase().indexOf('_' + type.toLowerCase()) > 0) {
-      return <Text key={child.key} {...child.props} style={[].concat(child.props.style, styles)} />;
+      return (
+        <Text
+          key={child.key}
+          {...child.props}
+          style={[].concat(child.props.style, styles)}
+        />
+      );
     }
 
     return child;

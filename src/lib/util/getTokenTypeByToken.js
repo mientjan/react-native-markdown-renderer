@@ -1,5 +1,5 @@
 const regSelectOpenClose = /_open|_close/g;
-const regSelectHofH1 = /\w/g;
+// const regSelectHofH1 = /\w/g;
 
 /**
  *
@@ -25,14 +25,14 @@ const regSelectHofH1 = /\w/g;
  * @return {String}
  */
 export default function getTokenTypeByToken(token) {
-  let cleanedType = "unknown";
+  let cleanedType = 'unknown';
 
   if (token.type) {
-    cleanedType = token.type.replace(regSelectOpenClose, "");
+    cleanedType = token.type.replace(regSelectOpenClose, '');
   }
 
   switch (cleanedType) {
-    case "heading": {
+    case 'heading': {
       cleanedType = `${cleanedType}${token.tag.substr(1)}`;
       break;
     }
@@ -40,5 +40,3 @@ export default function getTokenTypeByToken(token) {
 
   return cleanedType;
 }
-
-

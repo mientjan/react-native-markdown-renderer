@@ -16,7 +16,7 @@ function createNode(token, tokenIndex) {
   if (token.attrs) {
     attributes = token.attrs.reduce((prev, curr) => {
       const [name, value] = curr;
-      return { ...prev, [name]: value };
+      return {...prev, [name]: value};
     }, {});
   }
 
@@ -53,7 +53,13 @@ export default function tokensToAST(tokens) {
     const token = tokens[i];
     const astNode = createNode(token, i);
 
-    if (!(astNode.type === 'text' && astNode.children.length === 0 && astNode.content === '')) {
+    if (
+      !(
+        astNode.type === 'text' &&
+        astNode.children.length === 0 &&
+        astNode.content === ''
+      )
+    ) {
       astNode.index = children.length;
 
       if (token.nesting === 1) {

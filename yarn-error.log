@@ -1,0 +1,77 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/iamacup/Library/Android/sdk/emulator:/Users/iamacup/Library/Android/sdk/tools:/Users/iamacup/Library/Android/sdk/tools/bin:/Users/iamacup/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  12.2.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/iamacup/Desktop/me-stuff/source/react-native-markdown-renderer/package.json: Unexpected token } in JSON at position 1434
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:304:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "react-native-markdown-display",
+    "version": "4.0.3",
+    "description": "Markdown renderer for react-native, with CommonMark spec support + adds syntax extensions & sugar (URL autolinking, typographer), originally created by Mient-jan Stelling as react-native-markdown-renderer",
+    "main": "src/index.js",
+    "types": "src/index.d.ts",
+    "scripts": {
+      "lint": "./node_modules/.bin/eslint --fix --cache ./app"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/iamacup/react-native-markdown-display.git"
+    },
+    "keywords": [
+      "react",
+      "react-native",
+      "native",
+      "markdown",
+      "commonmark",
+      "markdown-it"
+    ],
+    "author": "Mient-jan Stelling and Tom Pickard + others from the community",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/iamacup/react-native-markdown-display/issues"
+    },
+    "homepage": "https://github.com/iamacup/react-native-markdown-display/",
+    "dependencies": {
+      "markdown-it": "^10.0.0",
+      "prop-types": "^15.7.2",
+      "react-native-fit-image": "^1.5.4"
+    },
+    "peerDependencies": {
+      "react": "^16.2.0",
+      "react-native": ">=0.50.4",
+      "@types/react-native": ">=0.50.0",
+      "@types/markdown-it": "^0.0.9"
+    },
+    "devDependencies": {
+      "chokidar": "^3.3.0",
+      "fs-extra": "^8.1.0",
+      "@babel/core": "^7.6.4",
+      "@babel/runtime": "^7.6.3",
+      "@react-native-community/eslint-config": "^0.0.5",
+      "eslint": "^6.6.0",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

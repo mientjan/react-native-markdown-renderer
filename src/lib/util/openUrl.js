@@ -1,4 +1,4 @@
-import { Linking } from 'react-native';
+import {Linking} from 'react-native';
 
 export default function openUrl(url, customCallback) {
   if (customCallback) {
