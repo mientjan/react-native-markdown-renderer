@@ -558,7 +558,7 @@ Styles are used to override how certain rules are styled. The existing implement
 
 The list of styles that can be overwritten is:
 
-```["root", "view", "codeBlock", "codeInline", "del", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "inlineCode", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listUnorderedItemText", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "listOrderedItemText", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "strikethrough", "link", "blocklink", "u", "image"]```
+```["root", "view", "codeBlock", "codeInline", "del", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "inlineCode", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "strikethrough", "link", "blocklink", "u", "image"]```
 
 **NOTE:** There is no merge of the style properties, if you specify a style property, it will completely overwrite existing styles for that property.
 

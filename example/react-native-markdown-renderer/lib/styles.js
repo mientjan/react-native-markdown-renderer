@@ -90,11 +90,6 @@ export const styles = StyleSheet.create({
       },
     }),
   },
-  listUnorderedItemText: {
-    fontSize: 20,
-    lineHeight: 20,
-  },
-
   listOrdered: {},
   listOrderedItem: {
     flexDirection: 'row',
@@ -110,10 +105,6 @@ export const styles = StyleSheet.create({
         lineHeight: 30,
       },
     }),
-  },
-  listOrderedItemText: {
-    fontWeight: 'bold',
-    lineHeight: 20,
   },
   paragraph: {
     marginTop: 10,
