@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { Text, View } from "react-native";
 import getUniqueID from "./util/getUniqueID";
 
+
 /**
  *
  */
@@ -15,6 +16,29 @@ export default class AstRenderer {
     this._renderRules = renderRules;
     this._style = style;
     this._onLinkPress = onLinkPress;
+
+    // this is all the style props that are unique to <Text> components as of 07/Nov/2019
+    this._textStyleProps = [
+      "textShadowOffset",
+      "color",
+      "fontSize",
+      "fontStyle",
+      "fontWeight",
+      "lineHeight",
+      "textAlign",
+      "textDecorationLine",
+      "textShadowColor",
+      "fontFamily",
+      "textShadowRadius",
+      "includeFontPadding",
+      "textAlignVertical",
+      "fontVariant",
+      "letterSpacing",
+      "textDecorationColor",
+      "textDecorationStyle",
+      "textTransform",
+      "writingDirection",
+    ];
   }
 
   /**
@@ -46,7 +70,24 @@ export default class AstRenderer {
     parents.unshift(node);
 
     if (node.type === "text") {
-      return renderFunction(node, [], parentNodes, this._style);
+      // we build up a style object for text types, this effectively grabs the styles from parents and
+      // applies them in order of priority parent (most) to child (least) priority
+      // so that if we overwride the text style, it does not overwrite a header1 style, for instance.
+      const styleObj = {};
+
+      for(let a=0; a<parentNodes.length; a++) {
+        if(this._style[parentNodes[a].type]) {
+          const arr = Object.keys(this._style[parentNodes[a].type]);
+
+          for(let b=0; b<arr.length; b++) {
+            if( this._textStyleProps.includes(arr[b])) {
+              styleObj[arr[b]] = this._style[parentNodes[a].type][arr[b]];
+            }
+          }
+        }
+      }
+
+      return renderFunction(node, [], parentNodes, this._style, styleObj);
     }
 
     const children = node.children.map(value => {

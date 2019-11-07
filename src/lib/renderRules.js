@@ -29,8 +29,8 @@ const renderRules = {
   inline: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
   },
-  text: (node, children, parent, styles) => {
-    return <Text key={node.key} style={styles.text}>{node.content}</Text>;
+  text: (node, children, parent, styles, styleOverride = {}) => {
+    return <Text key={node.key} style={{...styles.text, ...styleOverride}}>{node.content}</Text>;
   },
   span: (node, children, parent, styles) => {
     return <Text key={node.key}>{children}</Text>;
