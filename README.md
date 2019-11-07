@@ -708,11 +708,18 @@ This example will stop images and links.
 import Markdown from 'react-native-markdown-display';
 import MarkdownIt from 'react-native-markdown-display/src/MarkdownIt';
 
+const copy = `
+# This heading will show with formatting
+
+[but this link will just](be displayed as this text)
+`;
+
 <Markdown
   markdownit={
     MarkdownIt({typographer: true}).disable([ 'link', 'image' ])
   }
 >
+  {copy}
 </Markdown>
 
 ```
