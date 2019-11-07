@@ -9,10 +9,18 @@ export default class AstRenderer {
    * @param {Object.<string, function>} renderRules
    * @param {any} style
    */
-  constructor(renderRules, style, onLinkPress) {
+  constructor(
+    renderRules,
+    style,
+    onLinkPress,
+    maxTopLevelChildren,
+    topLevelMaxExceededItem,
+  ) {
     this._renderRules = renderRules;
     this._style = style;
     this._onLinkPress = onLinkPress;
+    this._maxTopLevelChildren = maxTopLevelChildren;
+    this._topLevelMaxExceededItem = topLevelMaxExceededItem;
 
     // this is all the style props that are unique to <Text> components as of 07/Nov/2019
     this._textStyleProps = [
@@ -110,8 +118,17 @@ export default class AstRenderer {
    * @return {*}
    */
   render = nodes => {
-    const children = nodes.map(value => this.renderNode(value, []));
+    let children = nodes.map(value => this.renderNode(value, []));
     const root = {type: 'root', key: getUniqueID()};
+
+    if (
+      this._maxTopLevelChildren &&
+      children.length > this._maxTopLevelChildren
+    ) {
+      children = children.slice(0, this._maxTopLevelChildren);
+      children.push(this._topLevelMaxExceededItem);
+    }
+
     return this.getRenderFunction(root.type)(root, children, null, this._style);
   };
 }

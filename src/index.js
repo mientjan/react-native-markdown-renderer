@@ -2,7 +2,9 @@
  * Base Markdown component
  * @author Mient-jan Stelling
  */
-import {useMemo} from 'react';
+
+import React, {useMemo} from 'react';
+import {Text} from 'react-native';
 import PropTypes from 'prop-types';
 import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
@@ -45,7 +47,14 @@ const getCopyFromChildren = children => {
   return children instanceof Array ? children.join('') : children;
 };
 
-const getRenderer = (renderer, rules, style, onLinkPress) => {
+const getRenderer = (
+  renderer,
+  rules,
+  style,
+  onLinkPress,
+  maxTopLevelChildren,
+  topLevelMaxExceededItem,
+) => {
   if (renderer && rules) {
     console.warn(
       'react-native-markdown-display you are using renderer and rules at the same time. This is not possible, props.rules is ignored',
@@ -78,6 +87,8 @@ const getRenderer = (renderer, rules, style, onLinkPress) => {
         ...style,
       },
       onLinkPress,
+      maxTopLevelChildren,
+      topLevelMaxExceededItem,
     );
   }
 };
@@ -106,10 +117,27 @@ const Markdown = ({
     typographer: true,
   }),
   onLinkPress = () => {},
+  maxTopLevelChildren = null,
+  topLevelMaxExceededItem = <Text>...</Text>,
 }) => {
   const momoizedRenderer = useMemo(
-    () => getRenderer(renderer, rules, style, onLinkPress),
-    [onLinkPress, renderer, rules, style],
+    () =>
+      getRenderer(
+        renderer,
+        rules,
+        style,
+        onLinkPress,
+        maxTopLevelChildren,
+        topLevelMaxExceededItem,
+      ),
+    [
+      maxTopLevelChildren,
+      onLinkPress,
+      renderer,
+      rules,
+      style,
+      topLevelMaxExceededItem,
+    ],
   );
   const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [
     markdownit,

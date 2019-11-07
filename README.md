@@ -62,13 +62,15 @@ The `<Markdown>` object takes the following common props:
 | `style` | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
 | `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
 
-And some additional, more advanced options:
+And some additional, less used options:
 
 | Property | Required | Description    
 | --- | --- | ---
 | `renderer` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
 | `markdownit` | `false` | A custom markdownit instance, if you need one
 | `plugins` | `false` | An array of plugins to be applied to the markdownit instance
+| `maxTopLevelChildren` | `false` | Defaults to null, if defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
+| `topLevelMaxExceededItem` | `false` | Defauls to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit
 
 
 # Syntax Support
