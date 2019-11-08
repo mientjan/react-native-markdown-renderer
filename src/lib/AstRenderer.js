@@ -1,5 +1,5 @@
 import getUniqueID from './util/getUniqueID';
-
+import convertAdditionalStyles from './util/convertAdditionalStyles';
 /**
  *
  */
@@ -81,13 +81,28 @@ export default class AstRenderer {
       const styleObj = {};
 
       for (let a = 0; a < parentNodes.length; a++) {
-        if (this._style[parentNodes[a].type]) {
-          const arr = Object.keys(this._style[parentNodes[a].type]);
+        // grab and additional attributes specified by markdown-it
+        let refStyle = {};
 
-          for (let b = 0; b < arr.length; b++) {
-            if (this._textStyleProps.includes(arr[b])) {
-              styleObj[arr[b]] = this._style[parentNodes[a].type][arr[b]];
-            }
+        if (
+          parentNodes[a].attributes &&
+          parentNodes[a].attributes.style &&
+          typeof parentNodes[a].attributes.style === 'string'
+        ) {
+          refStyle = convertAdditionalStyles(parentNodes[a].attributes.style);
+        }
+
+        // combine in specific styles for the object
+        if (this._style[parentNodes[a].type]) {
+          refStyle = {...refStyle, ...this._style[parentNodes[a].type]};
+        }
+
+        // then work out if any of them are text styles that should be used in the end.
+        const arr = Object.keys(refStyle);
+
+        for (let b = 0; b < arr.length; b++) {
+          if (this._textStyleProps.includes(arr[b])) {
+            styleObj[arr[b]] = refStyle[arr[b]];
           }
         }
       }
