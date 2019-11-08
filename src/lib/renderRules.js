@@ -243,7 +243,7 @@ const renderRules = {
   },
   td: (node, children, parent, styles) => {
     return (
-      <View key={node.key} style={[styles.tableRowCell]}>
+      <View key={node.key} style={styles.tableRowCell}>
         {children}
       </View>
     );
