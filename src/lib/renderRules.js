@@ -137,16 +137,36 @@ const renderRules = {
     );
   },
   code_block: (node, children, parent, styles) => {
+    // we trim new lines off the end of code blocks because the parser sends an extra one.
+    let {content} = node;
+
+    if (
+      typeof node.content === 'string' &&
+      node.content.charAt(node.content.length - 1) === '\n'
+    ) {
+      content = node.content.substring(0, node.content.length - 1);
+    }
+
     return (
       <Text key={node.key} style={styles.codeBlock}>
-        {node.content}
+        {content}
       </Text>
     );
   },
   fence: (node, children, parent, styles) => {
+    // we trim new lines off the end of code blocks because the parser sends an extra one.
+    let {content} = node;
+
+    if (
+      typeof node.content === 'string' &&
+      node.content.charAt(node.content.length - 1) === '\n'
+    ) {
+      content = node.content.substring(0, node.content.length - 1);
+    }
+
     return (
       <Text key={node.key} style={styles.codeBlock}>
-        {node.content}
+        {content}
       </Text>
     );
   },
