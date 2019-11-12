@@ -38,15 +38,6 @@ export {
   styles,
 };
 
-/**
- *
- * @param children
- * @return {string}
- */
-const getCopyFromChildren = children => {
-  return children instanceof Array ? children.join('') : children;
-};
-
 const getRenderer = (
   renderer,
   rules,
@@ -144,8 +135,7 @@ const Markdown = ({
     plugins,
   ]);
 
-  const copy = (this.copy = getCopyFromChildren(children));
-  return parser(copy, momoizedRenderer.render, markdownParser);
+  return parser(children, momoizedRenderer.render, markdownParser);
 };
 
 /**
@@ -158,6 +148,8 @@ Markdown.propTypes = {
     PropTypes.instanceOf(AstRenderer),
   ]),
   onLinkPress: PropTypes.func,
+  maxTopLevelChildren: PropTypes.number,
+  topLevelMaxExceededItem: PropTypes.any,
   rules: (props, propName, componentName) => {
     let invalidProps = [];
     const prop = props[propName];
