@@ -14,13 +14,6 @@ This is intended to be a drop-in replacement for react-native-markdown-renderer,
 - [x] Add ability to 'ignore' specific types of markdown
 - [ ] Close all the formatting issues that are hanging over from react-native-markdown-renderer
 
-# TODO
-
-- [ ] Code highlighting
-- [ ] Rework styles and rules - the way it is all applied works but is annoying to, for instance, change the text color of everything.
-
-**Target Nov 10th 2019**
-
 ### Install
 
 #### Yarn
@@ -731,6 +724,12 @@ const copy = `
 
 A full list of things you can turn off is [here](https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.js)
 
+
+
+### TODO
+
+- [ ] Code highlighting
+- [ ] Rework styles and rules - the way it is all applied works but is annoying to, for instance, change the text color of everything.
 
 
 ### Other Resources
