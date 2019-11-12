@@ -7,7 +7,6 @@ import React, {useMemo} from 'react';
 import {Text} from 'react-native';
 import PropTypes from 'prop-types';
 import parser from './lib/parser';
-import applyStyle from './lib/util/applyStyle';
 import getUniqueID from './lib/util/getUniqueID';
 import hasParents from './lib/util/hasParents';
 import openUrl from './lib/util/openUrl';
@@ -23,7 +22,6 @@ import {stringToTokens} from './lib/util/stringToTokens';
  *
  */
 export {
-  applyStyle,
   getUniqueID,
   openUrl,
   hasParents,

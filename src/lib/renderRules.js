@@ -4,7 +4,6 @@ import {Text, TouchableWithoutFeedback, View, Platform} from 'react-native';
 import FitImage from 'react-native-fit-image';
 import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
-import applyStyle from './util/applyStyle';
 import PlatformEnum from './data/PlatformEnum';
 
 const renderRules = {
@@ -85,33 +84,51 @@ const renderRules = {
     );
   },
   heading1: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading1], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading1]]}>
+      {children}
     </View>
   ),
   heading2: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading2], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading2]]}>
+      {children}
     </View>
   ),
   heading3: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading3], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading3]]}>
+      {children}
     </View>
   ),
   heading4: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading4], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading4]]}>
+      {children}
     </View>
   ),
   heading5: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading5], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading5]]}>
+      {children}
     </View>
   ),
   heading6: (node, children, parent, styles) => (
-    <View key={node.key} style={styles.headingContainer}>
-      {applyStyle(children, [styles.heading, styles.heading6], 'Text')}
+    // applying styles.heading and styles.headingX to the view is fine here because of style rollup we do in the AstRenderer.js file for text display items
+    <View
+      key={node.key}
+      style={[styles.headingContainer, [styles.heading, styles.heading6]]}>
+      {children}
     </View>
   ),
   paragraph: (node, children, parent, styles) => (
