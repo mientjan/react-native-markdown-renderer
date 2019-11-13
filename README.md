@@ -729,6 +729,7 @@ A full list of things you can turn off is [here](https://github.com/markdown-it/
 ### TODO
 
 - [ ] Code highlighting
+- [ ] Provide options for customising image display (fit image)
 - [ ] Rework styles and rules - the way it is all applied works but is annoying to, for instance, change the text color of everything.
 
 
