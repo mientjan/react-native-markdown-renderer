@@ -43,6 +43,8 @@ const getRenderer = (
   onLinkPress,
   maxTopLevelChildren,
   topLevelMaxExceededItem,
+  allowedImageHandlers,
+  defaultImageHandler,
 ) => {
   if (renderer && rules) {
     console.warn(
@@ -78,6 +80,8 @@ const getRenderer = (
       onLinkPress,
       maxTopLevelChildren,
       topLevelMaxExceededItem,
+      allowedImageHandlers,
+      defaultImageHandler,
     );
   }
 };
@@ -108,6 +112,14 @@ const Markdown = ({
   onLinkPress = () => {},
   maxTopLevelChildren = null,
   topLevelMaxExceededItem = <Text>...</Text>,
+  allowedImageHandlers = [
+    'data:image/png;base64',
+    'data:image/gif;base64',
+    'data:image/jpeg;base64',
+    'https://',
+    'http://',
+  ],
+  defaultImageHandler = 'https://',
 }) => {
   const momoizedRenderer = useMemo(
     () =>
@@ -118,6 +130,8 @@ const Markdown = ({
         onLinkPress,
         maxTopLevelChildren,
         topLevelMaxExceededItem,
+        allowedImageHandlers,
+        defaultImageHandler,
       ),
     [
       maxTopLevelChildren,
@@ -126,6 +140,8 @@ const Markdown = ({
       rules,
       style,
       topLevelMaxExceededItem,
+      allowedImageHandlers,
+      defaultImageHandler,
     ],
   );
   const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [
@@ -176,6 +192,8 @@ Markdown.propTypes = {
   markdownit: PropTypes.instanceOf(MarkdownIt),
   plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
   style: PropTypes.any,
+  allowedImageHandlers: PropTypes.arrayOf(PropTypes.string),
+  defaultImageHandler: PropTypes.string,
 };
 
 export default Markdown;
