@@ -32,7 +32,7 @@
     "css-to-react-native": "^3.0.0",
     "markdown-it": "^10.0.0",
     "prop-types": "^15.7.2",
-    "react-native-fit-image": "^1.5.4"
+    "react-native-fit-image": "^1.5.5"
   },
   "peerDependencies": {
     "@types/markdown-it": "^0.0.9",
