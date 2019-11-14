@@ -292,20 +292,40 @@ const renderRules = {
   softbreak: (node, children, parent, styles) => (
     <Text key={node.key}>{'\n'}</Text>
   ),
-  image: (node, children, parent, styles) => {
+  image: (
+    node,
+    children,
+    parent,
+    styles,
+    allowedImageHandlers,
+    defaultImageHandler,
+  ) => {
     const {src, alt} = node.attributes;
+
+    // we check that the source starts with at least one of the elements in allowedImageHandlers
+    const show =
+      allowedImageHandlers.filter(value => {
+        return src.toLowerCase().startsWith(value.toLowerCase());
+      }).length > 0;
+
+    if (show === false && defaultImageHandler === null) {
+      return null;
+    }
+
     const imageProps = {
       indicator: true,
       key: node.key,
       style: styles.image,
       source: {
-        uri: src,
+        uri: show === true ? src : `${defaultImageHandler}${src}`,
       },
     };
+
     if (alt) {
       imageProps.accessible = true;
       imageProps.accessibilityLabel = alt;
     }
+
     return <FitImage {...imageProps} />;
   },
 };

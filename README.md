@@ -69,6 +69,8 @@ And some additional, less used options:
 | `plugins` | `false` | An array of plugins to be applied to the markdownit instance
 | `maxTopLevelChildren` | `false` | Defaults to null, if defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
 | `topLevelMaxExceededItem` | `false` | Defauls to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit. Make sure to give it a key!
+| `allowedImageHandlers` | `false` | Defauls to `['data:image/png;base64', 'data:image/gif;base64', 'data:image/jpeg;base64', 'https://', 'http://']` - Any image that does not start with one of these will have the `defaultImageHandler` value prepended to it (unless `defaultImageHandler` is null in which case it won't try to render anything)
+| `defaultImageHandler` | `false` | Defauls to `http://` - will be prepended to an image url if it does not start with something in the `allowedImageHandlers` array, if this is set to null, it won't try to recover but will just not render anything instead.
 
 
 # Syntax Support

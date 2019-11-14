@@ -15,12 +15,16 @@ export default class AstRenderer {
     onLinkPress,
     maxTopLevelChildren,
     topLevelMaxExceededItem,
+    allowedImageHandlers,
+    defaultImageHandler,
   ) {
     this._renderRules = renderRules;
     this._style = style;
     this._onLinkPress = onLinkPress;
     this._maxTopLevelChildren = maxTopLevelChildren;
     this._topLevelMaxExceededItem = topLevelMaxExceededItem;
+    this._allowedImageHandlers = allowedImageHandlers;
+    this._defaultImageHandler = defaultImageHandler;
 
     // this is all the style props that are unique to <Text> components as of 07/Nov/2019
     this._textStyleProps = [
@@ -121,6 +125,17 @@ export default class AstRenderer {
         parentNodes,
         this._style,
         this._onLinkPress,
+      );
+    }
+
+    if (node.type === 'image') {
+      return renderFunction(
+        node,
+        children,
+        parentNodes,
+        this._style,
+        this._allowedImageHandlers,
+        this._defaultImageHandler,
       );
     }
 
