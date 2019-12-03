@@ -109,7 +109,7 @@ const Markdown = ({
   markdownit = MarkdownIt({
     typographer: true,
   }),
-  onLinkPress = () => {},
+  onLinkPress,
   maxTopLevelChildren = null,
   topLevelMaxExceededItem = <Text>...</Text>,
   allowedImageHandlers = [
