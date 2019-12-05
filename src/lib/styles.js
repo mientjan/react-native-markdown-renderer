@@ -1,9 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
 import PlatformEnum from './data/PlatformEnum';
 
-/**
- *
- */
 export const styles = StyleSheet.create({
   root: {},
   view: {},
@@ -121,6 +118,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
+    width: '100%',
   },
   hardbreak: {
     width: '100%',
@@ -137,9 +135,7 @@ export const styles = StyleSheet.create({
   tableHeader: {},
   tableHeaderCell: {
     flex: 1,
-    // color: '#000000',
     padding: 5,
-    // backgroundColor: 'green',
   },
   tableRow: {
     borderBottomWidth: 1,

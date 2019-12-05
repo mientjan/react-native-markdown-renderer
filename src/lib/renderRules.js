@@ -218,7 +218,7 @@ const renderRules = {
               [PlatformEnum.IOS]: '\u00B7',
             })}
           </Text>
-          <View style={[styles.listItem]}>{children}</View>
+          <View style={styles.listItem}>{children}</View>
         </View>
       );
     }
@@ -240,24 +240,24 @@ const renderRules = {
             {listItemNumber}
             {node.markup}
           </Text>
-          <View style={[styles.listItem]}>{children}</View>
+          <View style={styles.listItem}>{children}</View>
         </View>
       );
     }
 
     return (
-      <View key={node.key} style={[styles.listItem]}>
+      <View key={node.key} style={styles.listItem}>
         {children}
       </View>
     );
   },
   table: (node, children, parent, styles) => (
-    <View key={node.key} style={[styles.table]}>
+    <View key={node.key} style={styles.table}>
       {children}
     </View>
   ),
   thead: (node, children, parent, styles) => (
-    <View key={node.key} style={[styles.tableHeader]}>
+    <View key={node.key} style={styles.tableHeader}>
       {children}
     </View>
   ),
@@ -266,14 +266,14 @@ const renderRules = {
   ),
   th: (node, children, parent, styles) => {
     return (
-      <View key={node.key} style={[styles.tableHeaderCell]}>
+      <View key={node.key} style={styles.tableHeaderCell}>
         {children}
       </View>
     );
   },
   tr: (node, children, parent, styles) => {
     return (
-      <View key={node.key} style={[styles.tableRow]}>
+      <View key={node.key} style={styles.tableRow}>
         {children}
       </View>
     );
