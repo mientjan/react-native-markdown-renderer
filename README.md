@@ -46,7 +46,7 @@ export default class Page extends PureComponent {
 
 Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
 
-Think of the new implementation like applying styles in CSS. changes to the body effect everything, but can be overwritten further down the style / component tree.
+Think of the implementation like applying styles in CSS. changes to the body effect everything, but can be overwritten further down the style / component tree.
 
 The gotcha is if you try to use the text style override to change all text styles, this only changes things that are rendered using the ‘text’ rule. Instead you should change root, and then modify child styles (like code blocks etc) as needed.
 
@@ -556,7 +556,7 @@ Rules are used to specify how you want certain elements to be displayed. The exi
 
 The list of rules that can be overwritten is:
 
-```["unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
+```["root" "unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
 
 <details><summary>Example Implementation</summary>
 <p>
@@ -612,7 +612,7 @@ Styles are used to override how certain rules are styled. The existing implement
 
 The list of styles that can be overwritten is:
 
-```["root", "view", "codeBlock", "codeInline", "del", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "inlineCode", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "strikethrough", "link", "blocklink", "u", "image"]```
+```["root", "codeBlock", "codeInline", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "textGroup", "strikethrough", "link", "blocklink", "image"]```
 
 **NOTE:** There is no merge of the style properties, if you specify a style property, it will completely overwrite existing styles for that property.
 
