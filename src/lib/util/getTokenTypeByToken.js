@@ -1,5 +1,4 @@
 const regSelectOpenClose = /_open|_close/g;
-// const regSelectHofH1 = /\w/g;
 
 /**
  *

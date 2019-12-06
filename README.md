@@ -5,7 +5,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 ### Compatibility with react-native-markdown-renderer
 
-This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
+This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements, although **Due to how the new style rules work, there may be some tweaking needed**
 
 ### Install
 
@@ -42,6 +42,11 @@ export default class Page extends PureComponent {
 }
 ```
 
+### How to style stuff
+
+Styling is applied 
+
+
 ### Props and Functions
 
 The `<Markdown>` object takes the following common props:
@@ -49,9 +54,11 @@ The `<Markdown>` object takes the following common props:
 | Property | Required | Description                                                      
 | --- | --- | ---
 | `children` | `true` | The markdown string to render
-| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
 | `style` | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
+| `mergeStyle` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
+| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
 | `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
+
 
 And some additional, less used options:
 

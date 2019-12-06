@@ -1,8 +1,8 @@
 import getUniqueID from './util/getUniqueID';
 import convertAdditionalStyles from './util/convertAdditionalStyles';
-/**
- *
- */
+
+import textStyleProps from './data/textStyleProps';
+
 export default class AstRenderer {
   /**
    *
@@ -25,29 +25,6 @@ export default class AstRenderer {
     this._topLevelMaxExceededItem = topLevelMaxExceededItem;
     this._allowedImageHandlers = allowedImageHandlers;
     this._defaultImageHandler = defaultImageHandler;
-
-    // this is all the style props that are unique to <Text> components as of 07/Nov/2019
-    this._textStyleProps = [
-      'textShadowOffset',
-      'color',
-      'fontSize',
-      'fontStyle',
-      'fontWeight',
-      'lineHeight',
-      'textAlign',
-      'textDecorationLine',
-      'textShadowColor',
-      'fontFamily',
-      'textShadowRadius',
-      'includeFontPadding',
-      'textAlignVertical',
-      'fontVariant',
-      'letterSpacing',
-      'textDecorationColor',
-      'textDecorationStyle',
-      'textTransform',
-      'writingDirection',
-    ];
   }
 
   /**
@@ -63,6 +40,7 @@ export default class AstRenderer {
         `${type} renderRule not defined example: <Markdown rules={renderRules}>`,
       );
     }
+
     return renderFunction;
   };
 
@@ -72,19 +50,27 @@ export default class AstRenderer {
    * @param parentNodes
    * @return {*}
    */
-  renderNode = (node, parentNodes) => {
+  renderNode = (node, parentNodes, isRoot = false) => {
     const renderFunction = this.getRenderFunction(node.type);
-
     const parents = [...parentNodes];
+
     parents.unshift(node);
 
-    if (node.type === 'text') {
+    // calculate the children first
+
+    let children = node.children.map(value => {
+      return this.renderNode(value, parents);
+    });
+
+    // text node type is a special case because it is always the 'last' element in a chain
+
+    if (node.type === 'text' || node.type === 'list_item') {
       // we build up a style object for text types, this effectively grabs the styles from parents and
       // applies them in order of priority parent (most) to child (least) priority
       // so that if we overwride the text style, it does not overwrite a header1 style, for instance.
       const styleObj = {};
 
-      for (let a = 0; a < parentNodes.length; a++) {
+      for (let a = parentNodes.length - 1; a > 0; a--) {
         // grab and additional attributes specified by markdown-it
         let refStyle = {};
 
@@ -105,18 +91,16 @@ export default class AstRenderer {
         const arr = Object.keys(refStyle);
 
         for (let b = 0; b < arr.length; b++) {
-          if (this._textStyleProps.includes(arr[b])) {
+          if (textStyleProps.includes(arr[b])) {
             styleObj[arr[b]] = refStyle[arr[b]];
           }
         }
       }
 
-      return renderFunction(node, [], parentNodes, this._style, styleObj);
+      return renderFunction(node, children, parentNodes, this._style, styleObj);
     }
 
-    const children = node.children.map(value => {
-      return this.renderNode(value, parents);
-    });
+    // render any special types of nodes that have different renderRule function signatures
 
     if (node.type === 'link' || node.type === 'blocklink') {
       return renderFunction(
@@ -139,6 +123,19 @@ export default class AstRenderer {
       );
     }
 
+    // cull top level children
+
+    if (
+      isRoot === true &&
+      this._maxTopLevelChildren &&
+      children.length > this._maxTopLevelChildren
+    ) {
+      children = children.slice(0, this._maxTopLevelChildren);
+      children.push(this._topLevelMaxExceededItem);
+    }
+
+    // render anythign else that has a normal signature
+
     return renderFunction(node, children, parentNodes, this._style);
   };
 
@@ -148,17 +145,7 @@ export default class AstRenderer {
    * @return {*}
    */
   render = nodes => {
-    let children = nodes.map(value => this.renderNode(value, []));
-    const root = {type: 'root', key: getUniqueID()};
-
-    if (
-      this._maxTopLevelChildren &&
-      children.length > this._maxTopLevelChildren
-    ) {
-      children = children.slice(0, this._maxTopLevelChildren);
-      children.push(this._topLevelMaxExceededItem);
-    }
-
-    return this.getRenderFunction(root.type)(root, children, null, this._style);
+    const root = {type: 'root', key: getUniqueID(), children: nodes};
+    return this.renderNode(root, [], true);
   };
 }

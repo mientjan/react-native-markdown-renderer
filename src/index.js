@@ -1,6 +1,6 @@
 /**
  * Base Markdown component
- * @author Mient-jan Stelling
+ * @author Mient-jan Stelling + contributors
  */
 
 import React, {useMemo} from 'react';
@@ -16,11 +16,10 @@ import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
 import PluginContainer from './lib/plugin/PluginContainer';
 import blockPlugin from './lib/plugin/blockPlugin';
+import removeTextStyleProps from './lib/util/removeTextStyleProps';
 import {styles} from './lib/styles';
 import {stringToTokens} from './lib/util/stringToTokens';
-/**
- *
- */
+
 export {
   getUniqueID,
   openUrl,
@@ -34,12 +33,14 @@ export {
   PluginContainer,
   blockPlugin,
   styles,
+  removeTextStyleProps,
 };
 
 const getRenderer = (
   renderer,
   rules,
   style,
+  mergeStyle,
   onLinkPress,
   maxTopLevelChildren,
   topLevelMaxExceededItem,
@@ -68,15 +69,28 @@ const getRenderer = (
       );
     }
   } else {
+    let useStyles = {};
+
+    if (mergeStyle === true) {
+      Object.keys(styles).forEach(value => {
+        useStyles[value] = {
+          ...styles[value],
+          ...style[value],
+        };
+      });
+    } else {
+      useStyles = {
+        ...styles,
+        ...style,
+      };
+    }
+
     return new AstRenderer(
       {
         ...renderRules,
         ...(rules || {}),
       },
-      {
-        ...styles,
-        ...style,
-      },
+      useStyles,
       onLinkPress,
       maxTopLevelChildren,
       topLevelMaxExceededItem,
@@ -97,21 +111,19 @@ const getMarkdownParser = (markdownit, plugins) => {
   return md;
 };
 
-/**
- * react-native-markdown-display
- */
 const Markdown = ({
   children,
   renderer = null,
   rules = null,
   plugins = [],
   style = null,
+  mergeStyle = false,
   markdownit = MarkdownIt({
     typographer: true,
   }),
   onLinkPress,
   maxTopLevelChildren = null,
-  topLevelMaxExceededItem = <Text>...</Text>,
+  topLevelMaxExceededItem = <Text key="dotdotdot">...</Text>,
   allowedImageHandlers = [
     'data:image/png;base64',
     'data:image/gif;base64',
@@ -127,6 +139,7 @@ const Markdown = ({
         renderer,
         rules,
         style,
+        mergeStyle,
         onLinkPress,
         maxTopLevelChildren,
         topLevelMaxExceededItem,
@@ -139,6 +152,7 @@ const Markdown = ({
       renderer,
       rules,
       style,
+      mergeStyle,
       topLevelMaxExceededItem,
       allowedImageHandlers,
       defaultImageHandler,
@@ -152,9 +166,6 @@ const Markdown = ({
   return parser(children, momoizedRenderer.render, markdownParser);
 };
 
-/**
- * Definition of the prop types
- */
 Markdown.propTypes = {
   children: PropTypes.node.isRequired,
   renderer: PropTypes.oneOfType([
@@ -192,6 +203,7 @@ Markdown.propTypes = {
   markdownit: PropTypes.instanceOf(MarkdownIt),
   plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
   style: PropTypes.any,
+  mergeStyle: PropTypes.bool,
   allowedImageHandlers: PropTypes.arrayOf(PropTypes.string),
   defaultImageHandler: PropTypes.string,
 };
