@@ -5,7 +5,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 ### Compatibility with react-native-markdown-renderer
 
-This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements.
+This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements - **Due to how the new style rules work, there may be some tweaking needed**, [see how to style stuff section below](#How-to-style-stuff)
 
 ### Install
 
@@ -42,6 +42,65 @@ export default class Page extends PureComponent {
 }
 ```
 
+### How to style stuff
+
+Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
+
+Think of the implementation like applying styles in CSS. changes to the body effect everything, but can be overwritten further down the style / component tree.
+
+The gotcha is if you try to use the text style override to change all text styles, this only changes things that are rendered using the ‘text’ rule. Instead you should change root, and then modify child styles (like code blocks etc) as needed.
+
+
+<details><summary>Example</summary>
+<p>
+
+<img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
+
+```jsx
+const copy = `
+This is some text which is red because of the root style, which is also really small!
+
+\`\`\`
+//This is a code block woooo
+
+const cool = () => {
+  console.log('????');
+};
+\`\`\`
+
+and some more small text
+
+# This is a h1
+## this is a h2
+### this is a h3
+`;
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <SafeAreaView>
+        <View style={{marginHorizontal: 20}}>
+          <Markdown
+            mergeStyle={true} 
+            style={{
+              root: {color: 'red', fontSize: 10},
+              heading1: {color: 'purple'},
+              codeBlock: {color: 'black', fontSize: 14}
+            }}
+          >
+            {copy}
+          </Markdown>
+        </View>
+      </SafeAreaView>
+    </>
+  );
+};
+```
+
+</p>
+</details>
+
+
 ### Props and Functions
 
 The `<Markdown>` object takes the following common props:
@@ -49,9 +108,11 @@ The `<Markdown>` object takes the following common props:
 | Property | Required | Description                                                      
 | --- | --- | ---
 | `children` | `true` | The markdown string to render
-| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
 | `style` | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
+| `mergeStyle` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
+| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
 | `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
+
 
 And some additional, less used options:
 
@@ -495,7 +556,7 @@ Rules are used to specify how you want certain elements to be displayed. The exi
 
 The list of rules that can be overwritten is:
 
-```["unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
+```["root" "unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
 
 <details><summary>Example Implementation</summary>
 <p>
@@ -551,9 +612,9 @@ Styles are used to override how certain rules are styled. The existing implement
 
 The list of styles that can be overwritten is:
 
-```["root", "view", "codeBlock", "codeInline", "del", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "inlineCode", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "strikethrough", "link", "blocklink", "u", "image"]```
+```["root", "codeBlock", "codeInline", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "textGroup", "strikethrough", "link", "blocklink", "image"]```
 
-**NOTE:** There is no merge of the style properties, if you specify a style property, it will completely overwrite existing styles for that property.
+**NOTE:** by default there is no of the style properties, if you specify a style property, it will completely overwrite existing styles for that property **UNLESS** you specify `mergeStyle` as true.
 
 <details><summary>Example Implementation</summary>
 <p>

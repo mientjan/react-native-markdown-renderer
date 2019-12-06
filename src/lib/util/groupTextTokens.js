@@ -1,11 +1,10 @@
-// import getIsTextType from './getIsTextType';
 import Token from './Token';
-// import getIsInlineTextType from './getIsInlineTextType';
 
 export default function groupTextTokens(tokens) {
   const result = [];
 
   let hasGroup = false;
+
   tokens.forEach((token, index) => {
     if (!token.block && !hasGroup) {
       hasGroup = true;

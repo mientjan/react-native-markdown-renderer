@@ -1,9 +1,7 @@
 import {Platform, StyleSheet} from 'react-native';
-import PlatformEnum from './data/PlatformEnum';
 
 export const styles = StyleSheet.create({
   root: {},
-  view: {},
   codeBlock: {
     borderWidth: 1,
     borderColor: '#CCCCCC',
@@ -18,12 +16,10 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 4,
   },
-  del: {
-    backgroundColor: '#000000',
-  },
   em: {
     fontStyle: 'italic',
   },
+  // both heading and headingContainer are the same thing, here for backwards compatability
   headingContainer: {
     flexDirection: 'row',
   },
@@ -55,37 +51,29 @@ export const styles = StyleSheet.create({
     paddingVertical: 4,
     backgroundColor: '#CCCCCC',
   },
-  inlineCode: {
-    borderRadius: 3,
-    borderWidth: 1,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
-  },
   list: {},
   listItem: {
     flex: 1,
     flexWrap: 'wrap',
   },
   listUnordered: {},
-
   listUnorderedItem: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-
   listUnorderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
     ...Platform.select({
-      [PlatformEnum.ANDROID]: {
+      android: {
         marginTop: 5,
       },
     }),
     ...Platform.select({
-      [PlatformEnum.IOS]: {
+      ios: {
         lineHeight: 36,
       },
-      [PlatformEnum.ANDROID]: {
+      android: {
         lineHeight: 30,
       },
     }),
@@ -98,15 +86,15 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     ...Platform.select({
-      [PlatformEnum.ANDROID]: {
+      android: {
         marginTop: 4,
       },
     }),
     ...Platform.select({
-      [PlatformEnum.IOS]: {
+      ios: {
         lineHeight: 36,
       },
-      [PlatformEnum.ANDROID]: {
+      android: {
         lineHeight: 30,
       },
     }),
@@ -147,6 +135,7 @@ export const styles = StyleSheet.create({
     padding: 5,
   },
   text: {},
+  textGroup: {},
   strikethrough: {
     textDecorationLine: 'line-through',
   },
@@ -155,10 +144,6 @@ export const styles = StyleSheet.create({
   },
   blocklink: {
     flex: 1,
-    borderColor: '#000000',
-    borderBottomWidth: 1,
-  },
-  u: {
     borderColor: '#000000',
     borderBottomWidth: 1,
   },
