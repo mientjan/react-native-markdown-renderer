@@ -5,7 +5,7 @@ a web-view markdown renderer but a renderer that uses native components for all 
 
 ### Compatibility with react-native-markdown-renderer
 
-This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements, although **Due to how the new style rules work, there may be some tweaking needed**
+This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements - **Due to how the new style rules work, there may be some tweaking needed**, [see how to style stuff section below](#How-to-style-stuff)
 
 ### Install
 
@@ -44,7 +44,61 @@ export default class Page extends PureComponent {
 
 ### How to style stuff
 
-Styling is applied 
+Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
+
+Think of the new implementation like applying styles in CSS. changes to the body effect everything, but can be overwritten further down the style / component tree.
+
+The gotcha is if you try to use the text style override to change all text styles, this only changes things that are rendered using the ‘text’ rule. Instead you should change root, and then modify child styles (like code blocks etc) as needed.
+
+
+<details><summary>Example</summary>
+<p>
+
+<img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
+
+```
+const copy = `
+This is some text which is red because of the root style, which is also really small!
+
+\`\`\`
+//This is a code block woooo
+
+const cool = () => {
+  console.log('????');
+};
+\`\`\`
+
+and some more small text
+
+# This is a h1
+## this is a h2
+### this is a h3
+`;
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <SafeAreaView>
+        <View style={{marginHorizontal: 20}}>
+          <Markdown
+            mergeStyle={true} 
+            style={{
+              root: {color: 'red', fontSize: 10},
+              heading1: {color: 'purple'},
+              codeBlock: {color: 'black', fontSize: 14}
+            }}
+          >
+            {copy}
+          </Markdown>
+        </View>
+      </SafeAreaView>
+    </>
+  );
+};
+```
+
+</p>
+</details>
 
 
 ### Props and Functions

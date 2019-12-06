@@ -6,7 +6,13 @@ import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
 import removeTextStyleProps from './util/removeTextStyleProps';
 
-const codeBlockAndFence = (node, children, parent, styles) => {
+const codeBlockAndFence = (
+  node,
+  children,
+  parent,
+  styles,
+  inheritedStyles = {},
+) => {
   // we trim new lines off the end of code blocks because the parser sends an extra one.
   let {content} = node;
 
@@ -18,7 +24,7 @@ const codeBlockAndFence = (node, children, parent, styles) => {
   }
 
   return (
-    <Text key={node.key} style={styles.codeBlock}>
+    <Text key={node.key} style={[inheritedStyles, styles.codeBlock]}>
       {content}
     </Text>
   );
@@ -34,9 +40,9 @@ const renderRules = {
       {children}
     </View>
   ),
-  text: (node, children, parent, styles, styleOverride = {}) => {
+  text: (node, children, parent, styles, inheritedStyles = {}) => {
     return (
-      <Text key={node.key} style={[styles.text, styleOverride]}>
+      <Text key={node.key} style={[inheritedStyles, styles.text]}>
         {node.content}
       </Text>
     );
@@ -173,9 +179,9 @@ const renderRules = {
       {children}
     </View>
   ),
-  code_inline: (node, children, parent, styles) => {
+  code_inline: (node, children, parent, styles, inheritedStyles = {}) => {
     return (
-      <Text key={node.key} style={styles.codeInline}>
+      <Text key={node.key} style={[inheritedStyles, styles.codeInline]}>
         {node.content}
       </Text>
     );
@@ -205,13 +211,13 @@ const renderRules = {
       </View>
     );
   },
-  list_item: (node, children, parent, styles, styleOverride = {}) => {
+  list_item: (node, children, parent, styles, inheritedStyles = {}) => {
     if (hasParents(parent, 'bullet_list')) {
       return (
         <View
           key={node.key}
           style={removeTextStyleProps(styles.listUnorderedItem)}>
-          <Text style={[styles.listUnorderedItemIcon, styleOverride]}>
+          <Text style={[inheritedStyles, styles.listUnorderedItemIcon]}>
             {Platform.select({
               android: '\u2022',
               ios: '\u00B7',
@@ -240,7 +246,7 @@ const renderRules = {
         <View
           key={node.key}
           style={removeTextStyleProps(styles.listOrderedItem)}>
-          <Text style={[styles.listOrderedItemIcon, styleOverride]}>
+          <Text style={[inheritedStyles, styles.listOrderedItemIcon]}>
             {listItemNumber}
             {node.markup}
           </Text>

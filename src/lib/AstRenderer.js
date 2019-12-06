@@ -64,13 +64,19 @@ export default class AstRenderer {
 
     // text node type is a special case because it is always the 'last' element in a chain
 
-    if (node.type === 'text' || node.type === 'list_item') {
+    if (
+      node.type === 'text' ||
+      node.type === 'list_item' ||
+      node.type === 'code_inline' ||
+      node.type === 'code_block' ||
+      node.type === 'fence'
+    ) {
       // we build up a style object for text types, this effectively grabs the styles from parents and
       // applies them in order of priority parent (most) to child (least) priority
       // so that if we overwride the text style, it does not overwrite a header1 style, for instance.
       const styleObj = {};
 
-      for (let a = parentNodes.length - 1; a > 0; a--) {
+      for (let a = parentNodes.length - 1; a > -1; a--) {
         // grab and additional attributes specified by markdown-it
         let refStyle = {};
 
