@@ -614,7 +614,7 @@ The list of styles that can be overwritten is:
 
 ```["root", "codeBlock", "codeInline", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "textGroup", "strikethrough", "link", "blocklink", "image"]```
 
-**NOTE:** There is no merge of the style properties, if you specify a style property, it will completely overwrite existing styles for that property.
+**NOTE:** by default there is no of the style properties, if you specify a style property, it will completely overwrite existing styles for that property **UNLESS** you specify `mergeStyle` as true.
 
 <details><summary>Example Implementation</summary>
 <p>
