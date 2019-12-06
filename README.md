@@ -56,7 +56,7 @@ The gotcha is if you try to use the text style override to change all text style
 
 <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
 
-```
+```jsx
 const copy = `
 This is some text which is red because of the root style, which is also really small!
 
