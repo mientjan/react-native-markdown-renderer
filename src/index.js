@@ -4,7 +4,7 @@
  */
 
 import React, {useMemo} from 'react';
-import {Text} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import parser from './lib/parser';
 import getUniqueID from './lib/util/getUniqueID';
@@ -34,6 +34,39 @@ export {
   blockPlugin,
   styles,
   removeTextStyleProps,
+};
+
+// we use StyleSheet.flatten here to make sure we have an object, in case someone
+// passes in a StyleSheet.create result to the style prop
+const getStyle = (mergeStyle, styles, style) => {
+  let useStyles = {};
+
+  if (mergeStyle === true && style) {
+    Object.keys(styles).forEach(value => {
+      useStyles[value] = {
+        ...styles[value],
+        ...(style !== null ? StyleSheet.flatten(style[value]) : {}),
+      };
+    });
+  } else {
+    useStyles = {
+      ...styles,
+    };
+
+    if (style !== null) {
+      Object.keys(style).forEach(value => {
+        useStyles[value] = {
+          ...StyleSheet.flatten(style[value]),
+        };
+      });
+    }
+  }
+
+  Object.keys(useStyles).forEach(value => {
+    useStyles['_VIEW_SAFE_' + value] = removeTextStyleProps(useStyles[value]);
+  });
+
+  return StyleSheet.create(useStyles);
 };
 
 const getRenderer = (
@@ -69,21 +102,7 @@ const getRenderer = (
       );
     }
   } else {
-    let useStyles = {};
-
-    if (mergeStyle === true) {
-      Object.keys(styles).forEach(value => {
-        useStyles[value] = {
-          ...styles[value],
-          ...style[value],
-        };
-      });
-    } else {
-      useStyles = {
-        ...styles,
-        ...style,
-      };
-    }
+    let useStyles = getStyle(mergeStyle, styles, style);
 
     return new AstRenderer(
       {
