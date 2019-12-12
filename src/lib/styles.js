@@ -1,4 +1,4 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Platform} from 'react-native';
 
 // this is converted to a stylesheet internally at run time with StyleSheet.create(
 export const styles = {

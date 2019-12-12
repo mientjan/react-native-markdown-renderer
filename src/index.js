@@ -38,7 +38,7 @@ export {
 
 // we use StyleSheet.flatten here to make sure we have an object, in case someone
 // passes in a StyleSheet.create result to the style prop
-const getStyle = (mergeStyle, styles, style) => {
+const getStyle = (mergeStyle, style) => {
   let useStyles = {};
 
   if (mergeStyle === true && style) {
@@ -102,7 +102,7 @@ const getRenderer = (
       );
     }
   } else {
-    let useStyles = getStyle(mergeStyle, styles, style);
+    let useStyles = getStyle(mergeStyle, style);
 
     return new AstRenderer(
       {
