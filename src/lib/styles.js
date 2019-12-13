@@ -1,6 +1,7 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Platform} from 'react-native';
 
-export const styles = StyleSheet.create({
+// this is converted to a stylesheet internally at run time with StyleSheet.create(
+export const styles = {
   root: {},
   codeBlock: {
     borderWidth: 1,
@@ -68,6 +69,12 @@ export const styles = StyleSheet.create({
       android: {
         marginTop: 5,
       },
+      ios: {
+        marginTop: 0,
+      },
+      default: {
+        marginTop: 0,
+      },
     }),
     ...Platform.select({
       ios: {
@@ -75,6 +82,9 @@ export const styles = StyleSheet.create({
       },
       android: {
         lineHeight: 30,
+      },
+      default: {
+        lineHeight: 36,
       },
     }),
   },
@@ -89,6 +99,9 @@ export const styles = StyleSheet.create({
       android: {
         marginTop: 4,
       },
+      default: {
+        marginTop: 0,
+      },
     }),
     ...Platform.select({
       ios: {
@@ -96,6 +109,9 @@ export const styles = StyleSheet.create({
       },
       android: {
         lineHeight: 30,
+      },
+      default: {
+        lineHeight: 36,
       },
     }),
   },
@@ -150,4 +166,4 @@ export const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
-});
+};

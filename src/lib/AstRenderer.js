@@ -1,3 +1,5 @@
+import {StyleSheet} from 'react-native';
+
 import getUniqueID from './util/getUniqueID';
 import convertAdditionalStyles from './util/convertAdditionalStyles';
 
@@ -57,7 +59,6 @@ export default class AstRenderer {
     parents.unshift(node);
 
     // calculate the children first
-
     let children = node.children.map(value => {
       return this.renderNode(value, parents);
     });
@@ -90,7 +91,10 @@ export default class AstRenderer {
 
         // combine in specific styles for the object
         if (this._style[parentNodes[a].type]) {
-          refStyle = {...refStyle, ...this._style[parentNodes[a].type]};
+          refStyle = {
+            ...refStyle,
+            ...StyleSheet.flatten(this._style[parentNodes[a].type]),
+          };
         }
 
         // then work out if any of them are text styles that should be used in the end.

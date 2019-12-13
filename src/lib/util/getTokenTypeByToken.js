@@ -35,6 +35,9 @@ export default function getTokenTypeByToken(token) {
       cleanedType = `${cleanedType}${token.tag.substr(1)}`;
       break;
     }
+    default: {
+      break;
+    }
   }
 
   return cleanedType;
