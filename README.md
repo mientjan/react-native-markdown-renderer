@@ -46,9 +46,9 @@ export default class Page extends PureComponent {
 
 Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
 
-Think of the implementation like applying styles in CSS. changes to the body effect everything, but can be overwritten further down the style / component tree.
+Think of the implementation like applying styles in CSS. changes to the `root` effect everything, but can be overwritten further down the style / component tree.
 
-The gotcha is if you try to use the text style override to change all text styles, this only changes things that are rendered using the ‘text’ rule. Instead you should change root, and then modify child styles (like code blocks etc) as needed.
+**Be careful when styling 'text`:** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `root` style.
 
 
 <details><summary>Example</summary>
@@ -614,7 +614,7 @@ The list of styles that can be overwritten is:
 
 ```["root", "codeBlock", "codeInline", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "textGroup", "strikethrough", "link", "blocklink", "image"]```
 
-**NOTE:** by default there is no of the style properties, if you specify a style property, it will completely overwrite existing styles for that property **UNLESS** you specify `mergeStyle` as true.
+**NOTE:** If you specify a style property, it will completely overwrite existing styles for that property **UNLESS** you specify `mergeStyle` as true, in which case a merge will take place.
 
 <details><summary>Example Implementation</summary>
 <p>
