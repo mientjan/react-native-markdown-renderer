@@ -48,7 +48,7 @@ Text styles are applied in a way that makes it much more convenient to manage ch
 
 Think of the implementation like applying styles in CSS. changes to the `root` effect everything, but can be overwritten further down the style / component tree.
 
-**Be careful when styling 'text`:** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `root` style.
+**Be careful when styling 'text':** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `root` style.
 
 
 <details><summary>Example</summary>
