@@ -3,7 +3,7 @@
  * @author Mient-jan Stelling
  */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { View } from 'react-native';
 import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
@@ -48,6 +48,7 @@ export default class Markdown extends Component {
     children: PropTypes.node.isRequired,
     renderer: PropTypes.oneOfType([PropTypes.func, PropTypes.instanceOf(AstRenderer)]),
     onLinkPress: PropTypes.func,
+    testID: string,
     rules: (props, propName, componentName) => {
       let invalidProps = [];
       const prop = props[propName];
@@ -165,7 +166,8 @@ export default class Markdown extends Component {
             ...styles,
             ...style,
           },
-          props.onLinkPress
+          props.onLinkPress,
+          props.testID
         );
       }
     }

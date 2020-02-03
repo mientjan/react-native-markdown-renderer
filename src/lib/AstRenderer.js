@@ -15,10 +15,11 @@ export default class AstRenderer {
    * @param {Object.<string, function>} renderRules
    * @param {any} style
    */
-  constructor(renderRules, style, onLinkPress) {
+  constructor(renderRules, style, onLinkPress, testID) {
     this._renderRules = renderRules;
     this._style = style;
     this._onLinkPress = onLinkPress;
+    this._testID = testID
   }
 
   /**
@@ -50,18 +51,18 @@ export default class AstRenderer {
     parents.unshift(node);
 
     if (node.type === "text") {
-      return renderFunction(node, [], parentNodes, this._style);
+      return renderFunction(node, [], parentNodes, this._style, this._testID);
     }
 
     const children = node.children.map(value => {
-      return this.renderNode(value, parents);
+      return this.renderNode(value, parents, this._testID);
     });
 
     if (node.type === "link" || node.type === "blocklink") {
-      return renderFunction(node, children, parentNodes, this._style, this._onLinkPress);
+      return renderFunction(node, children, parentNodes, this._style, this._onLinkPress, this._testID);
     }
 
-    return renderFunction(node, children, parentNodes, this._style);
+    return renderFunction(node, children, parentNodes, this._style, this._testID);
   };
 
   /**

@@ -16,9 +16,9 @@ const renderRules = {
     );
   },
 
-  textgroup: (node, children, parent, styles) => {
+  textgroup: (node, children, parent, styles, testID) => {
     return (
-      <Text key={node.key} style={styles.text}>
+      <Text key={node.key} style={styles.text} testID={testID}>
         {children}
       </Text>
     );
@@ -35,36 +35,37 @@ const renderRules = {
     return <Text key={node.key}>{children}</Text>;
   },
 
-  strong: (node, children, parent, styles) => {
+  strong: (node, children, parent, styles, testID) => {
     return (
-      <Text key={node.key} style={styles.strong}>
+      <Text key={node.key} style={styles.strong} testID = {testID}>
         {children}
       </Text>
     );
   },
 
-  s: (node, children, parent, styles) => {
+  s: (node, children, parent, styles, testID) => {
     return (
-      <Text key={node.key} style={styles.strikethrough}>
+      <Text key={node.key} style={styles.strikethrough} testID = {testID}>
         {children}
       </Text>
     );
   },
   // a
-  link: (node, children, parent, styles, onLinkPress) => {
+  link: (node, children, parent, styles, onLinkPress, testID) => {
     return (
-      <Text key={node.key} style={styles.link} onPress={() => openUrl(node.attributes.href, onLinkPress)}>
+      <Text key={node.key} style={styles.link} onPress={() => openUrl(node.attributes.href, onLinkPress)} testID = {testID}>
         {children}
       </Text>
     );
   },
   // a with a non text element nested inside
-  blocklink: (node, children, parent, styles, onLinkPress) => {
+  blocklink: (node, children, parent, styles, onLinkPress, testID) => {
     return (
       <TouchableWithoutFeedback
         key={node.key}
         onPress={() => openUrl(node.attributes.href, onLinkPress)}
         style={styles.blocklink}
+        testID = {testID}
       >
         <View style={styles.image}>{children}</View>
       </TouchableWithoutFeedback>

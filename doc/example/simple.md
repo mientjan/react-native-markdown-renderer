@@ -29,10 +29,10 @@ export default class Page extends PureComponent {
     // return false to handle it yourself
     return true
   }
-
+  testID = "testID"
   render() {
     return (
-    	<Markdown onLinkPress={this.onLinkdPress}>{copy}</Markdown>
+    	<Markdown onLinkPress={this.onLinkdPress} testID={testID}>{copy}</Markdown>
     );
   }
 }
