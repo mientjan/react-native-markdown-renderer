@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 
 // this is converted to a stylesheet internally at run time with StyleSheet.create(
 export const styles = {
+  // The main container
   body: {},
 
   // Headings
@@ -55,17 +56,13 @@ export const styles = {
   },
 
   // Lists
+  bullet_list: {},
+  ordered_list: {},
   list_item: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  bullet_list: {},
-  // @pseudo class, does not have a render rule
-  bullet_list_content: {
-    flex: 1,
-    flexWrap: 'wrap',
-  },
-  // @pseudo class, does not have a render rule
+  // @pseudo class, does not have a unique render rule
   bullet_list_icon: {
     marginLeft: 10,
     marginRight: 10,
@@ -92,13 +89,12 @@ export const styles = {
       },
     }),
   },
-  ordered_list: {},
-  // @pseudo class, does not have a render rule
-  ordered_list_content: {
+  // @pseudo class, does not have a unique render rule
+  bullet_list_content: {
     flex: 1,
     flexWrap: 'wrap',
   },
-  // @pseudo class, does not have a render rule
+  // @pseudo class, does not have a unique render rule
   ordered_list_icon: {
     marginLeft: 10,
     marginRight: 10,
@@ -121,6 +117,11 @@ export const styles = {
         lineHeight: 36,
       },
     }),
+  },
+  // @pseudo class, does not have a unique render rule
+  ordered_list_content: {
+    flex: 1,
+    flexWrap: 'wrap',
   },
 
   // Code

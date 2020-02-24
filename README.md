@@ -233,14 +233,10 @@ And some additional, less used options:
   2. Consectetur adipiscing elit
   3. Integer molestie lorem at massa
 
-
-  1. You can use sequential numbers...
-  1. ...or keep all the numbers as `1.`
-
   Start numbering with offset:
 
   57. foo
-  1. bar
+  58. bar
 ```
 
 | iOS | Android
@@ -418,19 +414,6 @@ Horizontal Rules
   Some text below
 
 
-Typographic Replacements
-
-  Enable typographer option to see result.
-
-  (c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-  test.. test... test..... test?..... test!....
-
-  !!!!!! ???? ,,  -- ---
-
-  "Smartypants, double quotes" and 'single quotes'
-
-
 Emphasis
 
   **This is bold text**
@@ -469,14 +452,10 @@ Lists
   2. Consectetur adipiscing elit
   3. Integer molestie lorem at massa
 
-
-  1. You can use sequential numbers...
-  1. ...or keep all the numbers as `1.`
-
   Start numbering with offset:
 
   57. foo
-  1. bar
+  58. bar
 
 
 Code
@@ -547,6 +526,18 @@ Images
 
   [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 ```
+
+Typographic Replacements
+
+  Enable typographer option to see result.
+
+  (c) (C) (r) (R) (tm) (TM) (p) (P) +-
+
+  test.. test... test..... test?..... test!....
+
+  !!!!!! ???? ,,  -- ---
+
+  "Smartypants, double quotes" and 'single quotes'
 
 </p>
 </details>
