@@ -112,6 +112,7 @@ The `<Markdown>` object takes the following common props:
 | `mergeStyle` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
 | `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
 | `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
+| `debugPrintTree` | `false` | Will print the AST tree to the console to help you see what the markdown is being translated to
 
 
 And some additional, less used options:

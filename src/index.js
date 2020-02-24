@@ -79,6 +79,7 @@ const getRenderer = (
   topLevelMaxExceededItem,
   allowedImageHandlers,
   defaultImageHandler,
+  debugPrintTree,
 ) => {
   if (renderer && rules) {
     console.warn(
@@ -115,6 +116,7 @@ const getRenderer = (
       topLevelMaxExceededItem,
       allowedImageHandlers,
       defaultImageHandler,
+      debugPrintTree,
     );
   }
 };
@@ -130,60 +132,66 @@ const getMarkdownParser = (markdownit, plugins) => {
   return md;
 };
 
-const Markdown = ({
-  children,
-  renderer = null,
-  rules = null,
-  plugins = [],
-  style = null,
-  mergeStyle = false,
-  markdownit = MarkdownIt({
-    typographer: true,
-  }),
-  onLinkPress,
-  maxTopLevelChildren = null,
-  topLevelMaxExceededItem = <Text key="dotdotdot">...</Text>,
-  allowedImageHandlers = [
-    'data:image/png;base64',
-    'data:image/gif;base64',
-    'data:image/jpeg;base64',
-    'https://',
-    'http://',
-  ],
-  defaultImageHandler = 'https://',
-}) => {
-  const momoizedRenderer = useMemo(
-    () =>
-      getRenderer(
+const Markdown = React.memo(
+  ({
+    children,
+    renderer = null,
+    rules = null,
+    plugins = [],
+    style = null,
+    mergeStyle = false,
+    markdownit = MarkdownIt({
+      typographer: true,
+    }),
+    onLinkPress,
+    maxTopLevelChildren = null,
+    topLevelMaxExceededItem = <Text key="dotdotdot">...</Text>,
+    allowedImageHandlers = [
+      'data:image/png;base64',
+      'data:image/gif;base64',
+      'data:image/jpeg;base64',
+      'https://',
+      'http://',
+    ],
+    defaultImageHandler = 'https://',
+    debugPrintTree = false,
+  }) => {
+    const momoizedRenderer = useMemo(
+      () =>
+        getRenderer(
+          renderer,
+          rules,
+          style,
+          mergeStyle,
+          onLinkPress,
+          maxTopLevelChildren,
+          topLevelMaxExceededItem,
+          allowedImageHandlers,
+          defaultImageHandler,
+          debugPrintTree,
+        ),
+      [
+        maxTopLevelChildren,
+        onLinkPress,
         renderer,
         rules,
         style,
         mergeStyle,
-        onLinkPress,
-        maxTopLevelChildren,
         topLevelMaxExceededItem,
         allowedImageHandlers,
         defaultImageHandler,
-      ),
-    [
-      maxTopLevelChildren,
-      onLinkPress,
-      renderer,
-      rules,
-      style,
-      mergeStyle,
-      topLevelMaxExceededItem,
-      allowedImageHandlers,
-      defaultImageHandler,
-    ],
-  );
-  const markdownParser = useMemo(() => getMarkdownParser(markdownit, plugins), [
-    markdownit,
-    plugins,
-  ]);
+        debugPrintTree,
+      ],
+    );
 
-  return parser(children, momoizedRenderer.render, markdownParser);
-};
+    const markdownParser = useMemo(
+      () => getMarkdownParser(markdownit, plugins),
+      [markdownit, plugins],
+    );
+
+    return parser(children, momoizedRenderer.render, markdownParser);
+  },
+);
 
 Markdown.propTypes = {
   children: PropTypes.node.isRequired,
@@ -225,6 +233,7 @@ Markdown.propTypes = {
   mergeStyle: PropTypes.bool,
   allowedImageHandlers: PropTypes.arrayOf(PropTypes.string),
   defaultImageHandler: PropTypes.string,
+  debugPrintTree: PropTypes.bool,
 };
 
 export default Markdown;

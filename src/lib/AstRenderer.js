@@ -19,6 +19,7 @@ export default class AstRenderer {
     topLevelMaxExceededItem,
     allowedImageHandlers,
     defaultImageHandler,
+    debugPrintTree,
   ) {
     this._renderRules = renderRules;
     this._style = style;
@@ -27,6 +28,7 @@ export default class AstRenderer {
     this._topLevelMaxExceededItem = topLevelMaxExceededItem;
     this._allowedImageHandlers = allowedImageHandlers;
     this._defaultImageHandler = defaultImageHandler;
+    this._debugPrintTree = debugPrintTree;
   }
 
   /**
@@ -55,6 +57,16 @@ export default class AstRenderer {
   renderNode = (node, parentNodes, isRoot = false) => {
     const renderFunction = this.getRenderFunction(node.type);
     const parents = [...parentNodes];
+
+    if (this._debugPrintTree === true) {
+      let str = '';
+
+      for (let a = 0; a < parents.length; a++) {
+        str = str + '-';
+      }
+
+      console.log(`${str}${node.type}`);
+    }
 
     parents.unshift(node);
 
