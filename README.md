@@ -817,9 +817,6 @@ A full list of things you can turn off is [here](https://github.com/markdown-it/
 - [x] Rework styles and rules - the way it is all applied works but is annoying to, for instance, change the text color of everything.
 
 
-### Other Resources
-
- - [Documentation / Examples](https://github.com/iamacup/react-native-markdown-display/tree/master/doc)
- - [Example App](https://github.com/iamacup/react-native-markdown-display/tree/master/example)
+### Other Notes
 
 This is a fork of [react-native-markdown-renderer](https://github.com/mientjan/react-native-markdown-renderer), a library that unfortunately has not been updated for some time so i took all of the outstanding pull requests from that library and tested + merged as necessary.
