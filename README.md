@@ -525,7 +525,7 @@ Images
   With a reference later in the document defining the URL location:
 
   [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-```
+
 
 Typographic Replacements
 
@@ -538,6 +538,8 @@ Typographic Replacements
   !!!!!! ???? ,,  -- ---
 
   "Smartypants, double quotes" and 'single quotes'
+
+```
 
 </p>
 </details>
