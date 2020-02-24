@@ -1,11 +1,10 @@
 # React Native Markdown Display [![npm version](https://badge.fury.io/js/react-native-markdown-display.svg)](https://badge.fury.io/js/react-native-markdown-display) [![Known Vulnerabilities](https://snyk.io/test/github/iamacup/react-native-markdown-display/badge.svg)](https://snyk.io/test/github/iamacup/react-native-markdown-display)
 
-It a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__
-a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten when needed as seen in the examples.
+It a 100% compatible CommonMark renderer, a react-native markdown renderer done right. This is __not__ a web-view markdown renderer but a renderer that uses native components for all its elements. These components can be overwritten and styled as needed.
 
 ### Compatibility with react-native-markdown-renderer
 
-This is intended to be a drop-in replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements - **Due to how the new style rules work, there may be some tweaking needed**, [see how to style stuff section below](#How-to-style-stuff)
+This is intended to be a replacement for react-native-markdown-renderer, with a variety of bug fixes and enhancements - **Due to how the new style rules work, there may be some tweaking needed**, [see how to style stuff section below](#How-to-style-stuff)
 
 ### Install
 
@@ -46,9 +45,9 @@ export default class Page extends PureComponent {
 
 Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
 
-Think of the implementation like applying styles in CSS. changes to the `root` effect everything, but can be overwritten further down the style / component tree.
+Think of the implementation like applying styles in CSS. changes to the `body` effect everything, but can be overwritten further down the style / component tree.
 
-**Be careful when styling 'text':** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `root` style.
+**Be careful when styling 'text':** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `body` style.
 
 
 <details><summary>Example</summary>
@@ -172,28 +171,6 @@ And some additional, less used options:
 </p>
 </details>
 
-
-<details><summary>Typographic Replacements</summary>
-<p>
-
-```
-  Enable typographer option to see result.
-
-  (c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-  test.. test... test..... test?..... test!....
-
-  !!!!!! ???? ,,  -- ---
-
-  "Smartypants, double quotes" and 'single quotes'
-```
-
-| iOS | Android
-| --- | ---
-| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-3.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-3.png"/>  
-
-</p>
-</details>
 
 
 <details><summary>Emphasis</summary>
@@ -380,6 +357,30 @@ And some additional, less used options:
 </p>
 </details>
 
+
+<details><summary>Typographic Replacements</summary>
+<p>
+
+```
+  Enable typographer option to see result.
+
+  (c) (C) (r) (R) (tm) (TM) (p) (P) +-
+
+  test.. test... test..... test?..... test!....
+
+  !!!!!! ???? ,,  -- ---
+
+  "Smartypants, double quotes" and 'single quotes'
+```
+
+| iOS | Android
+| --- | ---
+| <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/ios-3.png"/>  | <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/android-3.png"/>  
+
+</p>
+</details>
+
+
 <details><summary>Plugins and Extensions</summary>
 <p>
 
@@ -551,71 +552,13 @@ Images
 </details>
 
 
-# Rules
+# Rules and Styles
 
-Rules are used to specify how you want certain elements to be displayed. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
-
-The list of rules that can be overwritten is:
-
-```["root" "unknown", "textgroup", "inline", "text", "span", "strong", "s", "link", "blocklink", "em", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "paragraph", "hardbreak", "blockquote", "code_inline", "code_block", "fence", "pre", "bullet_list", "ordered_list", "list_item", "table", "thead", "tbody", "th", "tr", "td", "hr", "softbreak", "image"]```
-
-<details><summary>Example Implementation</summary>
-<p>
-
-```jsx
-import react from 'react';
-import {View, PureComponent, Text} from 'react-native';
-import Markdown, {getUniqueID} from 'react-native-markdown-display';
-
-const rules = {
-    heading1: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
-        [{children}]
-      </Text>,
-    heading2: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
-        [{children}]
-      </Text>,
-    heading3: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
-        [{children}]
-      </Text>,
-};
-
-const copy = `
-# h1 Heading 8-)
-## h2 Heading 8-)
-### h3 Heading 8-)
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-`;
-
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown rules={rules}>{copy}</Markdown>
-    );
-  }
-}
-```
-
-</p>
-</details>
-
-
-# Style
+### Styles 
 
 Styles are used to override how certain rules are styled. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js)
 
-The list of styles that can be overwritten is:
-
-```["root", "codeBlock", "codeInline", "em", "headingContainer", "heading", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "hr", "blockquote", "list", "listItem", "listUnordered", "listUnorderedItem", "listUnorderedItemIcon", "listOrdered", "listOrderedItem", "listOrderedItemIcon", "paragraph", "hardbreak", "strong", "table", "tableHeader", "tableHeaderCell", "tableRow", "tableRowCell", "text", "textGroup", "strikethrough", "link", "blocklink", "image"]```
-
-**NOTE:** If you specify a style property, it will completely overwrite existing styles for that property **UNLESS** you specify `mergeStyle` as true, in which case a merge will take place.
+**NOTE:** By default styles are merged with the existing implementation, to change this, see `mergeStyle`
 
 <details><summary>Example Implementation</summary>
 <p>
@@ -676,6 +619,98 @@ export default class Page extends PureComponent {
 
 </p>
 </details>
+
+### Rules
+
+Rules are used to specify how you want certain elements to be displayed. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js)
+
+<details><summary>Example Implementation</summary>
+<p>
+
+```jsx
+import react from 'react';
+import {View, PureComponent, Text} from 'react-native';
+import Markdown, {getUniqueID} from 'react-native-markdown-display';
+
+const rules = {
+    heading1: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
+        [{children}]
+      </Text>,
+    heading2: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
+        [{children}]
+      </Text>,
+    heading3: (node, children, parent, styles) =>
+      <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
+        [{children}]
+      </Text>,
+};
+
+const copy = `
+# h1 Heading 8-)
+## h2 Heading 8-)
+### h3 Heading 8-)
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+`;
+
+export default class Page extends PureComponent {
+  render() {
+    return (
+      <Markdown rules={rules}>{copy}</Markdown>
+    );
+  }
+}
+```
+
+</p>
+</details>
+
+
+### All rules and their associated styles:
+
+| Render Rule | Style(s) |
+| ------ | ----------- |
+| `body` | `body` | 
+| `heading1` | `heading1` |
+| `heading2` | `heading2` |
+| `heading3` | `heading3` |
+| `heading4` | `heading4` |
+| `heading5` | `heading5` |
+| `heading6` | `heading6` | 
+| `hr` | `hr` | 
+| `strong` | `strong` | 
+| `em` | `em` | 
+| `s` | `s` | 
+| `blockquote` | `blockquote` | 
+| `bullet_list` | `bullet_list`, `bullet_list_icon`, `bullet_list_content` | 
+| `ordered_list` | `ordered_list`, `ordered_list_icon`, `ordered_list_content` | 
+| `list_item` | `list_item` | 
+| `code_inline` | `code_inline` | 
+| `code_block` | `code_block` | 
+| `fence` | `fence` | 
+| `table` | `table` | 
+| `thead` | `thead` | 
+| `tbody` | `tbody` | 
+| `th` | `th` | 
+| `tr` | `tr` | 
+| `td` | `td` | 
+| `link` | `link` | 
+| `blocklink` | `blocklink` | 
+| `image` | `image` | 
+| `text` | `text` | 
+| `textgroup` | `textgroup` | 
+| `paragraph` | `paragraph` | 
+| `hardbreak` | `hardbreak` | 
+| `softbreak` | `softbreak` | 
+| `pre` | `pre` | 
+| `inline` | `inline` | 
+| `span` | `span` | 
 
 
 # Handling Links
