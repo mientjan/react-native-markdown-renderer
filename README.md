@@ -57,7 +57,7 @@ Think of the implementation like applying styles in CSS. changes to the `body` e
 
 ```jsx
 const copy = `
-This is some text which is red because of the root style, which is also really small!
+This is some text which is red because of the body style, which is also really small!
 
 \`\`\`
 //This is a code block woooo
@@ -82,7 +82,7 @@ const App: () => React$Node = () => {
           <Markdown
             mergeStyle={true} 
             style={{
-              root: {color: 'red', fontSize: 10},
+              body: {color: 'red', fontSize: 10},
               heading1: {color: 'purple'},
               codeBlock: {color: 'black', fontSize: 14}
             }}
