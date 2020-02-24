@@ -75,53 +75,6 @@ export default class AstRenderer {
       return this.renderNode(value, parents);
     });
 
-    // text node type is a special case because it is always the 'last' element in a chain
-
-    if (
-      node.type === 'text' ||
-      node.type === 'list_item' ||
-      node.type === 'code_inline' ||
-      node.type === 'code_block' ||
-      node.type === 'fence'
-    ) {
-      // we build up a style object for text types, this effectively grabs the styles from parents and
-      // applies them in order of priority parent (most) to child (least) priority
-      // so that if we overwride the text style, it does not overwrite a header1 style, for instance.
-      const styleObj = {};
-
-      for (let a = parentNodes.length - 1; a > -1; a--) {
-        // grab and additional attributes specified by markdown-it
-        let refStyle = {};
-
-        if (
-          parentNodes[a].attributes &&
-          parentNodes[a].attributes.style &&
-          typeof parentNodes[a].attributes.style === 'string'
-        ) {
-          refStyle = convertAdditionalStyles(parentNodes[a].attributes.style);
-        }
-
-        // combine in specific styles for the object
-        if (this._style[parentNodes[a].type]) {
-          refStyle = {
-            ...refStyle,
-            ...StyleSheet.flatten(this._style[parentNodes[a].type]),
-          };
-        }
-
-        // then work out if any of them are text styles that should be used in the end.
-        const arr = Object.keys(refStyle);
-
-        for (let b = 0; b < arr.length; b++) {
-          if (textStyleProps.includes(arr[b])) {
-            styleObj[arr[b]] = refStyle[arr[b]];
-          }
-        }
-      }
-
-      return renderFunction(node, children, parentNodes, this._style, styleObj);
-    }
-
     // render any special types of nodes that have different renderRule function signatures
 
     if (node.type === 'link' || node.type === 'blocklink') {
@@ -143,6 +96,65 @@ export default class AstRenderer {
         this._allowedImageHandlers,
         this._defaultImageHandler,
       );
+    }
+
+    // We are at the bottom of some tree - grab all the parent styles
+    // this effectively grabs the styles from parents and
+    // applies them in order of priority parent (least) to child (most)
+    // to allow styling global, then lower down things individually
+
+    // we have to handle list_item seperately here because they have some child
+    // pseudo classes that need the additional style props from parents passed down to them
+    if (children.length === 0 || node.type === 'list_item') {
+      const styleObj = {};
+
+      for (let a = parentNodes.length - 1; a > -1; a--) {
+        // grab and additional attributes specified by markdown-it
+        let refStyle = {};
+
+        if (
+          parentNodes[a].attributes &&
+          parentNodes[a].attributes.style &&
+          typeof parentNodes[a].attributes.style === 'string'
+        ) {
+          refStyle = convertAdditionalStyles(parentNodes[a].attributes.style);
+        }
+
+        // combine in specific styles for the object
+        if (this._style[parentNodes[a].type]) {
+          refStyle = {
+            ...refStyle,
+            ...StyleSheet.flatten(this._style[parentNodes[a].type]),
+          };
+
+          // workaround for list_items and their content cascading down the tree
+          if (parentNodes[a].type === 'list_item') {
+            let contentStyle = {};
+
+            if (parentNodes[a + 1].type === 'bullet_list') {
+              contentStyle = this._style.bullet_list_content;
+            } else if (parentNodes[a + 1].type === 'ordered_list') {
+              contentStyle = this._style.ordered_list_content;
+            }
+
+            refStyle = {
+              ...refStyle,
+              ...StyleSheet.flatten(contentStyle),
+            };
+          }
+        }
+
+        // then work out if any of them are text styles that should be used in the end.
+        const arr = Object.keys(refStyle);
+
+        for (let b = 0; b < arr.length; b++) {
+          if (textStyleProps.includes(arr[b])) {
+            styleObj[arr[b]] = refStyle[arr[b]];
+          }
+        }
+      }
+
+      return renderFunction(node, children, parentNodes, this._style, styleObj);
     }
 
     // cull top level children
@@ -167,7 +179,7 @@ export default class AstRenderer {
    * @return {*}
    */
   render = nodes => {
-    const root = {type: 'root', key: getUniqueID(), children: nodes};
+    const root = {type: 'body', key: getUniqueID(), children: nodes};
     return this.renderNode(root, [], true);
   };
 }
