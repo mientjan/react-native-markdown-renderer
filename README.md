@@ -551,7 +551,7 @@ const App: () => React$Node = () => {
 
 Styles are used to override how certain rules are styled. The existing implementation is [here](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js)
 
-**NOTE:** By default styles are merged with the existing implementation, to change this, see `mergeStyle`
+**NOTE:** By default styles are merged with the existing implementation, to change this, see the `mergeStyle` prop
 
 <details><summary>Example Implementation</summary>
 <p>
