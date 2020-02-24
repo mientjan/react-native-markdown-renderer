@@ -41,64 +41,6 @@ export default class Page extends PureComponent {
 }
 ```
 
-### How to style stuff
-
-Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
-
-Think of the implementation like applying styles in CSS. changes to the `body` effect everything, but can be overwritten further down the style / component tree.
-
-**Be careful when styling 'text':** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `body` style.
-
-
-<details><summary>Example</summary>
-<p>
-
-<img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
-
-```jsx
-const copy = `
-This is some text which is red because of the body style, which is also really small!
-
-\`\`\`
-//This is a code block woooo
-
-const cool = () => {
-  console.log('????');
-};
-\`\`\`
-
-and some more small text
-
-# This is a h1
-## this is a h2
-### this is a h3
-`;
-
-const App: () => React$Node = () => {
-  return (
-    <>
-      <SafeAreaView>
-        <View style={{marginHorizontal: 20}}>
-          <Markdown
-            mergeStyle={true} 
-            style={{
-              body: {color: 'red', fontSize: 10},
-              heading1: {color: 'purple'},
-              code_block: {color: 'black', fontSize: 14}
-            }}
-          >
-            {copy}
-          </Markdown>
-        </View>
-      </SafeAreaView>
-    </>
-  );
-};
-```
-
-</p>
-</details>
-
 
 ### Props and Functions
 
@@ -546,6 +488,64 @@ Typographic Replacements
 
 
 # Rules and Styles
+
+### How to style stuff
+
+Text styles are applied in a way that makes it much more convenient to manage changes to global styles while also allowing fine tuning of individual elements.
+
+Think of the implementation like applying styles in CSS. changes to the `body` effect everything, but can be overwritten further down the style / component tree.
+
+**Be careful when styling 'text':** the text rule is not applied to all rendered text, most notably list bullet points. If you want to, for instance, color all text, change the `body` style.
+
+
+<details><summary>Example</summary>
+<p>
+
+<img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
+
+```jsx
+const copy = `
+This is some text which is red because of the body style, which is also really small!
+
+\`\`\`
+//This is a code block woooo
+
+const cool = () => {
+  console.log('????');
+};
+\`\`\`
+
+and some more small text
+
+# This is a h1
+## this is a h2
+### this is a h3
+`;
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <SafeAreaView>
+        <View style={{marginHorizontal: 20}}>
+          <Markdown
+            mergeStyle={true} 
+            style={{
+              body: {color: 'red', fontSize: 10},
+              heading1: {color: 'purple'},
+              code_block: {color: 'black', fontSize: 14}
+            }}
+          >
+            {copy}
+          </Markdown>
+        </View>
+      </SafeAreaView>
+    </>
+  );
+};
+```
+
+</p>
+</details>
 
 ### Styles 
 
