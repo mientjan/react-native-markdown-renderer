@@ -688,9 +688,9 @@ export default class Page extends PureComponent {
 | `em` | `em` | 
 | `s` | `s` | 
 | `blockquote` | `blockquote` | 
-| `bullet_list` | `bullet_list`, `bullet_list_icon`, `bullet_list_content` | 
-| `ordered_list` | `ordered_list`, `ordered_list_icon`, `ordered_list_content` | 
-| `list_item` | `list_item` | 
+| `bullet_list` | `bullet_list` | 
+| `ordered_list` | `ordered_list` | 
+| `list_item` | `list_item` - This is a special case that contains a set of pseudo classes that don't align to the render rule: `ordered_list_icon`, `ordered_list_content`, `bullet_list_icon`, `bullet_list_content` | 
 | `code_inline` | `code_inline` | 
 | `code_block` | `code_block` | 
 | `fence` | `fence` | 
@@ -711,7 +711,6 @@ export default class Page extends PureComponent {
 | `pre` | `pre` | 
 | `inline` | `inline` | 
 | `span` | `span` | 
-
 
 # Handling Links
 
