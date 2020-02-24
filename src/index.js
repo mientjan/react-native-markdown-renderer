@@ -139,7 +139,7 @@ const Markdown = React.memo(
     rules = null,
     plugins = [],
     style = null,
-    mergeStyle = false,
+    mergeStyle = true,
     markdownit = MarkdownIt({
       typographer: true,
     }),

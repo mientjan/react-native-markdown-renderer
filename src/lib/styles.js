@@ -2,67 +2,71 @@ import {Platform} from 'react-native';
 
 // this is converted to a stylesheet internally at run time with StyleSheet.create(
 export const styles = {
-  root: {},
-  codeBlock: {
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
-    backgroundColor: '#f5f5f5',
-    padding: 10,
-    borderRadius: 4,
-  },
-  codeInline: {
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
-    backgroundColor: '#f5f5f5',
-    padding: 10,
-    borderRadius: 4,
-  },
-  em: {
-    fontStyle: 'italic',
-  },
-  // both heading and headingContainer are the same thing, here for backwards compatability
-  headingContainer: {
-    flexDirection: 'row',
-  },
-  heading: {},
+  body: {},
+
+  // Headings
   heading1: {
+    flexDirection: 'row',
     fontSize: 32,
   },
   heading2: {
+    flexDirection: 'row',
     fontSize: 24,
   },
   heading3: {
+    flexDirection: 'row',
     fontSize: 18,
   },
   heading4: {
+    flexDirection: 'row',
     fontSize: 16,
   },
   heading5: {
+    flexDirection: 'row',
     fontSize: 13,
   },
   heading6: {
+    flexDirection: 'row',
     fontSize: 11,
   },
+
+  // Horizontal Rule
   hr: {
     backgroundColor: '#000000',
     height: 1,
   },
+
+  // Emphasis
+  strong: {
+    fontWeight: 'bold',
+  },
+  em: {
+    fontStyle: 'italic',
+  },
+  s: {
+    textDecorationLine: 'line-through',
+  },
+
+  // Blockquotes
   blockquote: {
     paddingHorizontal: 14,
     paddingVertical: 4,
     backgroundColor: '#CCCCCC',
   },
-  list: {},
-  listItem: {
-    flex: 1,
-    flexWrap: 'wrap',
-  },
-  listUnordered: {},
-  listUnorderedItem: {
+
+  // Lists
+  list_item: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-  listUnorderedItemIcon: {
+  bullet_list: {},
+  // @pseudo class, does not have a render rule
+  bullet_list_content: {
+    flex: 1,
+    flexWrap: 'wrap',
+  },
+  // @pseudo class, does not have a render rule
+  bullet_list_icon: {
     marginLeft: 10,
     marginRight: 10,
     ...Platform.select({
@@ -88,11 +92,14 @@ export const styles = {
       },
     }),
   },
-  listOrdered: {},
-  listOrderedItem: {
-    flexDirection: 'row',
+  ordered_list: {},
+  // @pseudo class, does not have a render rule
+  ordered_list_content: {
+    flex: 1,
+    flexWrap: 'wrap',
   },
-  listOrderedItemIcon: {
+  // @pseudo class, does not have a render rule
+  ordered_list_icon: {
     marginLeft: 10,
     marginRight: 10,
     ...Platform.select({
@@ -115,6 +122,70 @@ export const styles = {
       },
     }),
   },
+
+  // Code
+  code_inline: {
+    borderWidth: 1,
+    borderColor: '#CCCCCC',
+    backgroundColor: '#f5f5f5',
+    padding: 10,
+    borderRadius: 4,
+  },
+  code_block: {
+    borderWidth: 1,
+    borderColor: '#CCCCCC',
+    backgroundColor: '#f5f5f5',
+    padding: 10,
+    borderRadius: 4,
+  },
+  fence: {
+    borderWidth: 1,
+    borderColor: '#CCCCCC',
+    backgroundColor: '#f5f5f5',
+    padding: 10,
+    borderRadius: 4,
+  },
+
+  // Tables
+  table: {
+    borderWidth: 1,
+    borderColor: '#000000',
+    borderRadius: 3,
+  },
+  thead: {},
+  tbody: {},
+  th: {
+    flex: 1,
+    padding: 5,
+  },
+  tr: {
+    borderBottomWidth: 1,
+    borderColor: '#000000',
+    flexDirection: 'row',
+  },
+  td: {
+    flex: 1,
+    padding: 5,
+  },
+
+  // Links
+  link: {
+    textDecorationLine: 'underline',
+  },
+  blocklink: {
+    flex: 1,
+    borderColor: '#000000',
+    borderBottomWidth: 1,
+  },
+
+  // Images
+  image: {
+    flex: 1,
+  },
+
+  // Text Output
+  text: {},
+  textgroup: {},
   paragraph: {
     marginTop: 10,
     marginBottom: 10,
@@ -128,42 +199,10 @@ export const styles = {
     width: '100%',
     height: 1,
   },
-  strong: {
-    fontWeight: 'bold',
-  },
-  table: {
-    borderWidth: 1,
-    borderColor: '#000000',
-    borderRadius: 3,
-  },
-  tableHeader: {},
-  tableHeaderCell: {
-    flex: 1,
-    padding: 5,
-  },
-  tableRow: {
-    borderBottomWidth: 1,
-    borderColor: '#000000',
-    flexDirection: 'row',
-  },
-  tableRowCell: {
-    flex: 1,
-    padding: 5,
-  },
-  text: {},
-  textGroup: {},
-  strikethrough: {
-    textDecorationLine: 'line-through',
-  },
-  link: {
-    textDecorationLine: 'underline',
-  },
-  blocklink: {
-    flex: 1,
-    borderColor: '#000000',
-    borderBottomWidth: 1,
-  },
-  image: {
-    flex: 1,
-  },
+  softbreak: {},
+
+  // Believe these are never used but retained for completeness
+  pre: {},
+  inline: {},
+  span: {},
 };
