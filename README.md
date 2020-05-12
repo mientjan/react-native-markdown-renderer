@@ -1000,8 +1000,7 @@ You can dissable any type of markdown you want, which is very useful in a mobile
 This example will stop images and links.
 
 ```jsx
-import Markdown from 'react-native-markdown-display';
-import MarkdownIt from 'react-native-markdown-display/src/MarkdownIt';
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 
 const copy = `
 # This heading will show with formatting
