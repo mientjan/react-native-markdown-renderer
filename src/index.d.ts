@@ -1,5 +1,5 @@
-// tslint:disable:max-classes-per-file
-import { MarkdownIt, Token } from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import Token from 'markdown-it/lib/token';
 import { ComponentType, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -9,14 +9,36 @@ export function openUrl(url: string): void;
 export function hasParents(parents: any[], type: string): boolean;
 
 export type RenderFunction = (
-  node: any,
+  node: ASTNode,
   children: ReactNode[],
-  parent: ReactNode,
+  parentNodes: ASTNode[],
   styles: any,
+  styleObj?: any,
 ) => ReactNode;
 
-export interface RenderRules {
+export type RenderLinkFunction = (
+  node: ASTNode,
+  children: ReactNode[],
+  parentNodes: ASTNode[],
+  styles: any,
+  onLinkPress: (url: string) => boolean,
+) => ReactNode;
+
+export type RenderImageFunction = (
+  node: ASTNode,
+  children: ReactNode[],
+  parentNodes: ASTNode[],
+  styles: any,
+  allowedImageHandlers: string[],
+  defaultImageHandler: string,
+) => ReactNode;
+
+export type RenderRules = {
   [name: string]: RenderFunction;
+} & {
+  link?: RenderLinkFunction;
+  blocklink?: RenderLinkFunction;
+  image?: RenderImageFunction;
 }
 
 export const renderRules: RenderRules;
@@ -30,6 +52,7 @@ export interface ASTNode {
   sourceType: string; // original source token name
   key: string;
   content: string;
+  markup: string;
   tokenIndex: number;
   index: number;
   attributes: Record<string, any>;
