@@ -62,7 +62,6 @@ And some additional, less used options:
 | --- | --- | ---
 | `renderer` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
 | `markdownit` | `false` | A custom markdownit instance with your configuration, default is `MarkdownIt({typographer: true})`
-| `plugins` | `false` | An array of plugins to be applied to the markdownit instance
 | `maxTopLevelChildren` | `false` | Defaults to null, if defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
 | `topLevelMaxExceededItem` | `false` | Defaults to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit. Make sure to give it a key!
 | `allowedImageHandlers` | `false` | Defaults to `['data:image/png;base64', 'data:image/gif;base64', 'data:image/jpeg;base64', 'https://', 'http://']` - Any image that does not start with one of these will have the `defaultImageHandler` value prepended to it (unless `defaultImageHandler` is null in which case it won't try to render anything)
@@ -322,7 +321,223 @@ And some additional, less used options:
 <details><summary>Plugins and Extensions</summary>
 <p>
 
-  Plugins for **extra** syntax support - [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin) for the markdown-it library that this library is built on.
+  Plugins for **extra** syntax support can be added using any markdown-it compatible plugins - [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin) for documentation from markdown-it. An example for integration follows:
+
+#### Step 1
+
+Inspect what the plugin will output - this can be achieved with the following code, using `markdown-it-block-embed` as an example for adding video support: 
+
+```jsx
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
+import blockEmbedPlugin from 'markdown-it-block-embed';
+
+const markdownItInstance = 
+    MarkdownIt({typographer: true})
+      .use(blockEmbedPlugin, {
+        containerClassName: "video-embed"
+      });
+
+const copy = `
+# Some header
+
+@[youtube](lJIrF4YjHfQ)
+`;
+
+// this shows you the tree that is used by the react-native-markdown-display
+const astTree = markdownItInstance.parse(copy, {});
+console.log(astTree);
+
+//this contains the html that would be generated - not used by react-native-markdown-display but useful for reference
+const html = markdownItInstance.render(copy);
+console.log(html);
+
+```
+
+The above code will output something like this:
+
+```
+astTree:
+
+(4) [Token, Token, Token, Token]
+
+0: Token {type: "heading_open", tag: "h1", attrs: null, map: Array(2), nesting: 1, …}
+1: Token {type: "inline", tag: "", attrs: null, map: Array(2), nesting: 0, …}
+2: Token {type: "heading_close", tag: "h1", attrs: null, map: null, nesting: -1, …}
+3: Token {type: "video", tag: "div", attrs: null, map: Array(2), nesting: 0, …}
+
+length: 4
+```
+
+```
+html:
+
+
+<h1>Some header</h1>
+<div class="video-embed block-embed-service-youtube"><iframe type="text/html" src="//www.youtube.com/embed/lJIrF4YjHfQ" frameborder="0" width="640" height="390" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+```
+
+#### Step 2
+
+Identify the new components and integrate the plugin with a rendered compoonent. 
+
+In the example above, the heading_open, inline and heading_close tags are all handled by the existing code base, but we need to handle the **'video'** type. 
+
+Note, in the example below we use the `debugPrintTree` property to see what rules we are rendering:
+
+```jsx
+import React from 'react';
+import { SafeAreaView, ScrollView, View, StatusBar } from 'react-native';
+
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
+import blockEmbedPlugin from 'markdown-it-block-embed';
+
+const markdownItInstance = 
+    MarkdownIt({typographer: true})
+      .use(blockEmbedPlugin, {
+        containerClassName: "video-embed"
+      });
+
+const copy = `
+# Some header
+
+@[youtube](lJIrF4YjHfQ)
+`;
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar/>
+      <SafeAreaView>
+        <ScrollView
+          style={{height: '100%'}}
+        >
+          <View>
+            <Markdown
+              debugPrintTree
+              markdownit={markdownItInstance}
+            >
+              {copy}
+            </Markdown>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
+
+```
+
+In the console, we will see the following rendered tree:
+
+```
+body
+-heading1
+--textgroup
+---text
+-video
+```
+
+with the following error message
+
+```
+Warning, unknown render rule encountered: video. 'unknown' render rule used (by default, returns null - nothing rendered) 
+```
+
+
+#### Step 3
+
+We need to create the render rules and styles to handle this new **'video'** component
+
+
+```jsx
+import React from 'react';
+import { SafeAreaView, ScrollView, View, StatusBar, Text } from 'react-native';
+
+import Markdown, { MarkdownIt, getUniqueID } from 'react-native-markdown-display';
+import blockEmbedPlugin from 'markdown-it-block-embed';
+
+const markdownItInstance = 
+    MarkdownIt({typographer: true})
+      .use(blockEmbedPlugin, {
+        containerClassName: "video-embed"
+      });
+
+const copy = `
+# Some header
+
+@[youtube](lJIrF4YjHfQ)
+`;
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar/>
+      <SafeAreaView>
+        <ScrollView
+          style={{height: '100%'}}
+        >
+          <View>
+            <Markdown
+              debugPrintTree
+              markdownit={markdownItInstance}
+              style={{
+                  video: {
+                    color: 'red',
+                  }
+                }}
+              rules={{
+                  video: (node, children, parent, styles) =>{
+                    // examine the node properties to see what video we need to render
+                    console.log(node); // expected output of this is in readme.md below this code snip
+
+                    return (<Text key={getUniqueID()} style={styles.video}>
+                      Return a video component instead of this text component!
+                    </Text>);
+                  }
+                   
+                }}
+            >
+              {copy}
+            </Markdown>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
+```
+
+And all of the video properties needed to render something meaningful are on the node, like this:
+
+```
+{type: "video", sourceType: "video", sourceInfo: {…}, sourceMeta: null, block: true, …}
+  attributes: {}
+  block: true
+  children: []
+  content: ""
+  index: 1
+  key: "rnmr_1720a98f540_video"
+  markup: "@[youtube](lJIrF4YjHfQ)"
+  sourceInfo:
+    service: YouTubeService
+      env: PluginEnvironment {md: MarkdownIt, options: {…}, services: {…}}
+      name: "youtube"
+      options:
+        height: 390
+        width: 640
+      serviceName: "youtube"
+      videoID: "lJIrF4YjHfQ"
+      videoReference: "lJIrF4YjHfQ"
+  sourceMeta: null
+  sourceType: "video"
+  tokenIndex: 5
+  type: "video"
+```
+
 
 </p>
 </details>

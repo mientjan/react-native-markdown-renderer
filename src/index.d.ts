@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file
-import { MarkdownIt, Token } from 'markdown-it';
-import { ComponentType, ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import {MarkdownIt, Token} from 'markdown-it';
+import {ComponentType, ReactNode} from 'react';
+import {StyleSheet, View} from 'react-native';
 
 export function getUniqueID(): string;
 export function openUrl(url: string): void;

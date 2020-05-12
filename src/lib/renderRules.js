@@ -137,7 +137,7 @@ const renderRules = {
 
     if (hasParents(parent, 'ordered_list')) {
       const orderedListIndex = parent.findIndex(
-        el => el.type === 'ordered_list',
+        (el) => el.type === 'ordered_list',
       );
 
       const orderedList = parent[orderedListIndex];
@@ -272,7 +272,7 @@ const renderRules = {
 
     // we check that the source starts with at least one of the elements in allowedImageHandlers
     const show =
-      allowedImageHandlers.filter(value => {
+      allowedImageHandlers.filter((value) => {
         return src.toLowerCase().startsWith(value.toLowerCase());
       }).length > 0;
 

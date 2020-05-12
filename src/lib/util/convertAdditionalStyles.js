@@ -4,7 +4,7 @@ export default function convertAdditionalStyles(style) {
   const rules = style.split(';');
 
   const tuples = rules
-    .map(rule => {
+    .map((rule) => {
       let [key, value] = rule.split(':');
 
       if (key && value) {
@@ -15,7 +15,7 @@ export default function convertAdditionalStyles(style) {
         return null;
       }
     })
-    .filter(x => {
+    .filter((x) => {
       return x != null;
     });
 
