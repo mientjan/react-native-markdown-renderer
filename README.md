@@ -323,66 +323,11 @@ And some additional, less used options:
 
   Plugins for **extra** syntax support can be added using any markdown-it compatible plugins - [see plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin) for documentation from markdown-it. An example for integration follows:
 
+
 #### Step 1
 
-Inspect what the plugin will output - this can be achieved with the following code, using `markdown-it-block-embed` as an example for adding video support: 
+Identify the new components and integrate the plugin with a rendered compoonent. We can use the `debugPrintTree` property to see what rules we are rendering:
 
-```jsx
-import Markdown, { MarkdownIt } from 'react-native-markdown-display';
-import blockEmbedPlugin from 'markdown-it-block-embed';
-
-const markdownItInstance = 
-    MarkdownIt({typographer: true})
-      .use(blockEmbedPlugin, {
-        containerClassName: "video-embed"
-      });
-
-const copy = `
-# Some header
-
-@[youtube](lJIrF4YjHfQ)
-`;
-
-// this shows you the tree that is used by the react-native-markdown-display
-const astTree = markdownItInstance.parse(copy, {});
-console.log(astTree);
-
-//this contains the html that would be generated - not used by react-native-markdown-display but useful for reference
-const html = markdownItInstance.render(copy);
-console.log(html);
-
-```
-
-The above code will output something like this:
-
-```
-astTree:
-
-(4) [Token, Token, Token, Token]
-
-0: Token {type: "heading_open", tag: "h1", attrs: null, map: Array(2), nesting: 1, …}
-1: Token {type: "inline", tag: "", attrs: null, map: Array(2), nesting: 0, …}
-2: Token {type: "heading_close", tag: "h1", attrs: null, map: null, nesting: -1, …}
-3: Token {type: "video", tag: "div", attrs: null, map: Array(2), nesting: 0, …}
-
-length: 4
-```
-
-```
-html:
-
-
-<h1>Some header</h1>
-<div class="video-embed block-embed-service-youtube"><iframe type="text/html" src="//www.youtube.com/embed/lJIrF4YjHfQ" frameborder="0" width="640" height="390" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-```
-
-#### Step 2
-
-Identify the new components and integrate the plugin with a rendered compoonent. 
-
-In the example above, the heading_open, inline and heading_close tags are all handled by the existing code base, but we need to handle the **'video'** type. 
-
-Note, in the example below we use the `debugPrintTree` property to see what rules we are rendering:
 
 ```jsx
 import React from 'react';
@@ -439,16 +384,16 @@ body
 -video
 ```
 
-with the following error message
+With the following error message:
 
 ```
 Warning, unknown render rule encountered: video. 'unknown' render rule used (by default, returns null - nothing rendered) 
 ```
 
 
-#### Step 3
+#### Step 2
 
-We need to create the render rules and styles to handle this new **'video'** component
+We need to create the **render rules** and **styles** to handle this new **'video'** component
 
 
 ```jsx
@@ -536,6 +481,59 @@ And all of the video properties needed to render something meaningful are on the
   sourceType: "video"
   tokenIndex: 5
   type: "video"
+```
+
+#### Other Debugging
+
+You can do some additional debugging of what the markdown instance is spitting out like this:
+
+```jsx
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
+import blockEmbedPlugin from 'markdown-it-block-embed';
+
+const markdownItInstance = 
+    MarkdownIt({typographer: true})
+      .use(blockEmbedPlugin, {
+        containerClassName: "video-embed"
+      });
+
+const copy = `
+# Some header
+
+@[youtube](lJIrF4YjHfQ)
+`;
+
+// this shows you the tree that is used by the react-native-markdown-display
+const astTree = markdownItInstance.parse(copy, {});
+console.log(astTree);
+
+//this contains the html that would be generated - not used by react-native-markdown-display but useful for reference
+const html = markdownItInstance.render(copy);
+console.log(html);
+
+```
+
+The above code will output something like this:
+
+```
+astTree:
+
+(4) [Token, Token, Token, Token]
+
+0: Token {type: "heading_open", tag: "h1", attrs: null, map: Array(2), nesting: 1, …}
+1: Token {type: "inline", tag: "", attrs: null, map: Array(2), nesting: 0, …}
+2: Token {type: "heading_close", tag: "h1", attrs: null, map: null, nesting: -1, …}
+3: Token {type: "video", tag: "div", attrs: null, map: Array(2), nesting: 0, …}
+
+length: 4
+```
+
+```
+html:
+
+
+<h1>Some header</h1>
+<div class="video-embed block-embed-service-youtube"><iframe type="text/html" src="//www.youtube.com/embed/lJIrF4YjHfQ" frameborder="0" width="640" height="390" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 ```
 
 
