@@ -2,6 +2,6 @@
 /.idea
 package-lock.json
 /.DS_Store
-yarn-error.lock
+yarn-error.log
 yarn.lock
 .eslintcache
