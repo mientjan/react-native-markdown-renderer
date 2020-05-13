@@ -326,7 +326,7 @@ And some additional, less used options:
 
 #### Step 1
 
-Identify the new components and integrate the plugin with a rendered compoonent. We can use the `debugPrintTree` property to see what rules we are rendering:
+Identify the new components and integrate the plugin with a rendered component. We can use the `debugPrintTree` property to see what rules we are rendering:
 
 
 ```jsx
@@ -1020,13 +1020,6 @@ const copy = `
 
 A full list of things you can turn off is [here](https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.js)
 
-
-
-### TODO
-
-- [ ] Code highlighting
-- [ ] Provide options for customising image display (fit image)
-- [x] Rework styles and rules - the way it is all applied works but is annoying to, for instance, change the text color of everything.
 
 
 ### Other Notes
