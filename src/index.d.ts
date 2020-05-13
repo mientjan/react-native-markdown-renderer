@@ -14,6 +14,9 @@ export type RenderFunction = (
   parentNodes: ASTNode[],
   styles: any,
   styleObj?: any,
+  // non-existent parameter, used to fix error where RenderImageFunction
+  // doesn't override properly due to having more arguments than this type
+  _?: any,
 ) => ReactNode;
 
 export type RenderLinkFunction = (
