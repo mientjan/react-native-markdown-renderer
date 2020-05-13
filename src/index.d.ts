@@ -89,6 +89,7 @@ export interface MarkdownProps {
   renderer?: AstRenderer;
   markdownit?: MarkdownIt;
   mergeStyle?: boolean;
+  debugPrintTree?: boolean;
 }
 
 type MarkdownStatic = React.ComponentType<MarkdownProps>;
