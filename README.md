@@ -49,9 +49,9 @@ The `<Markdown>` object takes the following common props:
 | Property | Default | Required | Description                                                      
 | --- | --- | --- | ---
 | `children` | N/A | `true` | The markdown string to render
-| `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
+| `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#style) for more info
 | `mergeStyle` | `true` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
-| `rules` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js) | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
+| `rules` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js) | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for more info
 | `onLinkPress` | `import { Linking } from 'react-native';` and `Linking.openURL(url);` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
 | `debugPrintTree` | `false` | `false` | Will print the AST tree to the console to help you see what the markdown is being translated to
 
