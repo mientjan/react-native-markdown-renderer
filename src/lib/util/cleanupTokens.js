@@ -4,7 +4,7 @@ import renderInlineAsText from './renderInlineAsText';
 
 export function cleanupTokens(tokens) {
   tokens = flattenInlineTokens(tokens);
-  tokens.forEach(token => {
+  tokens.forEach((token) => {
     token.type = getTokenTypeByToken(token);
 
     // set image and hardbreak to block elements
@@ -33,7 +33,7 @@ export function cleanupTokens(tokens) {
       token.type === 'link' &&
       token.nesting === -1
     ) {
-      if (stack.some(stackToken => stackToken.block)) {
+      if (stack.some((stackToken) => stackToken.block)) {
         stack[0].type = 'blocklink';
         stack[0].block = true;
         token.type = 'blocklink';

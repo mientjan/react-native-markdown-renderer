@@ -14,8 +14,6 @@ import tokensToAST from './lib/util/tokensToAST';
 import renderRules from './lib/renderRules';
 import AstRenderer from './lib/AstRenderer';
 import MarkdownIt from 'markdown-it';
-import PluginContainer from './lib/plugin/PluginContainer';
-import blockPlugin from './lib/plugin/blockPlugin';
 import removeTextStyleProps from './lib/util/removeTextStyleProps';
 import {styles} from './lib/styles';
 import {stringToTokens} from './lib/util/stringToTokens';
@@ -30,8 +28,6 @@ export {
   stringToTokens,
   tokensToAST,
   MarkdownIt,
-  PluginContainer,
-  blockPlugin,
   styles,
   removeTextStyleProps,
 };
@@ -41,11 +37,19 @@ export {
 const getStyle = (mergeStyle, style) => {
   let useStyles = {};
 
-  if (mergeStyle === true && style) {
-    Object.keys(styles).forEach(value => {
+  if (mergeStyle === true && style !== null) {
+    // make sure we get anything user defuned
+    Object.keys(style).forEach((value) => {
+      useStyles[value] = {
+        ...StyleSheet.flatten(style[value]),
+      };
+    });
+
+    // combine any existing styles
+    Object.keys(styles).forEach((value) => {
       useStyles[value] = {
         ...styles[value],
-        ...(style !== null ? StyleSheet.flatten(style[value]) : {}),
+        ...StyleSheet.flatten(style[value]),
       };
     });
   } else {
@@ -54,7 +58,7 @@ const getStyle = (mergeStyle, style) => {
     };
 
     if (style !== null) {
-      Object.keys(style).forEach(value => {
+      Object.keys(style).forEach((value) => {
         useStyles[value] = {
           ...StyleSheet.flatten(style[value]),
         };
@@ -62,7 +66,7 @@ const getStyle = (mergeStyle, style) => {
     }
   }
 
-  Object.keys(useStyles).forEach(value => {
+  Object.keys(useStyles).forEach((value) => {
     useStyles['_VIEW_SAFE_' + value] = removeTextStyleProps(useStyles[value]);
   });
 
@@ -121,23 +125,11 @@ const getRenderer = (
   }
 };
 
-const getMarkdownParser = (markdownit, plugins) => {
-  let md = markdownit;
-  if (plugins && plugins.length > 0) {
-    plugins.forEach(plugin => {
-      md = md.use.apply(md, plugin.toArray());
-    });
-  }
-
-  return md;
-};
-
 const Markdown = React.memo(
   ({
     children,
     renderer = null,
     rules = null,
-    plugins = [],
     style = null,
     mergeStyle = true,
     markdownit = MarkdownIt({
@@ -184,12 +176,9 @@ const Markdown = React.memo(
       ],
     );
 
-    const markdownParser = useMemo(
-      () => getMarkdownParser(markdownit, plugins),
-      [markdownit, plugins],
-    );
+    const momoizedParser = useMemo(() => markdownit, [markdownit]);
 
-    return parser(children, momoizedRenderer.render, markdownParser);
+    return parser(children, momoizedRenderer.render, momoizedParser);
   },
 );
 
@@ -212,7 +201,7 @@ Markdown.propTypes = {
 
     if (typeof prop === 'object') {
       invalidProps = Object.keys(prop).filter(
-        key => typeof prop[key] !== 'function',
+        (key) => typeof prop[key] !== 'function',
       );
     }
 
@@ -228,7 +217,6 @@ Markdown.propTypes = {
     }
   },
   markdownit: PropTypes.instanceOf(MarkdownIt),
-  plugins: PropTypes.arrayOf(PropTypes.instanceOf(PluginContainer)),
   style: PropTypes.any,
   mergeStyle: PropTypes.bool,
   allowedImageHandlers: PropTypes.arrayOf(PropTypes.string),

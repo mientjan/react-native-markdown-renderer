@@ -1,6 +1,6 @@
 {
   "name": "react-native-markdown-display",
-  "version": "6.0.1",
+  "version": "6.1.0",
   "description": "Markdown renderer for react-native, with CommonMark spec support + adds syntax extensions & sugar (URL autolinking, typographer), originally created by Mient-jan Stelling as react-native-markdown-renderer",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -35,16 +35,19 @@
     "react-native-fit-image": "^1.5.5"
   },
   "peerDependencies": {
-    "@types/markdown-it": "^0.0.9",
+    "@types/markdown-it": "^10.0.1",
     "@types/react-native": ">=0.50.0",
     "react": "^16.2.0",
     "react-native": ">=0.50.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
-    "@react-native-community/eslint-config": "^0.0.7",
-    "eslint": "^6.8.0",
-    "pre-commit": "1.2.2"
+    "@babel/core": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@typescript-eslint/parser": "^2.32.0",
+    "eslint": "^7.0.0",
+    "json-schema": "^0.2.5",
+    "pre-commit": "1.2.2",
+    "typescript": "^3.8.3"
   }
 }

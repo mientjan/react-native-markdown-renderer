@@ -36,13 +36,14 @@ export default class AstRenderer {
    * @param {string} type
    * @return {string}
    */
-  getRenderFunction = type => {
+  getRenderFunction = (type) => {
     const renderFunction = this._renderRules[type];
 
     if (!renderFunction) {
-      throw new Error(
-        `${type} renderRule not defined example: <Markdown rules={renderRules}>`,
+      console.warn(
+        `Warning, unknown render rule encountered: ${type}. 'unknown' render rule used (by default, returns null - nothing rendered)`,
       );
+      return this._renderRules.unknown;
     }
 
     return renderFunction;
@@ -71,7 +72,7 @@ export default class AstRenderer {
     parents.unshift(node);
 
     // calculate the children first
-    let children = node.children.map(value => {
+    let children = node.children.map((value) => {
       return this.renderNode(value, parents);
     });
 
@@ -178,7 +179,7 @@ export default class AstRenderer {
    * @param nodes
    * @return {*}
    */
-  render = nodes => {
+  render = (nodes) => {
     const root = {type: 'body', key: getUniqueID(), children: nodes};
     return this.renderNode(root, [], true);
   };
