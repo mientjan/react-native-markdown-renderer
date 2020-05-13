@@ -79,17 +79,6 @@ export function stringToTokens(
 
 export function tokensToAST(tokens: ReadonlyArray<Token>): ASTNode[];
 
-interface PluginContainerResult<A> extends Array<any> {
-  0: A;
-}
-
-export class PluginContainer<A> {
-  constructor(plugin: A, ...options: any[]);
-  toArray(): PluginContainerResult<A>;
-}
-
-export function blockPlugin(md: any, name: string, options: object): any;
-
 export const styles: any;
 
 export interface MarkdownProps {
@@ -97,7 +86,6 @@ export interface MarkdownProps {
   style?: StyleSheet.NamedStyles<any>;
   renderer?: AstRenderer;
   markdownit?: MarkdownIt;
-  plugins?: Array<PluginContainer<any>>;
   mergeStyle?: boolean;
 }
 
