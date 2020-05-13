@@ -46,26 +46,26 @@ export default class Page extends PureComponent {
 
 The `<Markdown>` object takes the following common props:
 
-| Property | Required | Description                                                      
-| --- | --- | ---
-| `children` | `true` | The markdown string to render
-| `style` | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
-| `mergeStyle` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
-| `rules` | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
-| `onLinkPress` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
-| `debugPrintTree` | `false` | Will print the AST tree to the console to help you see what the markdown is being translated to
+| Property | Default | Required | Description                                                      
+| --- | --- | --- | ---
+| `children` | N/A | `true` | The markdown string to render
+| `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#style) for full list
+| `mergeStyle` | `true` | `false` | if true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
+| `rules` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js) | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for full list
+| `onLinkPress` | `import { Linking } from 'react-native';` and `Linking.openURL(url);` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
+| `debugPrintTree` | `false` | `false` | Will print the AST tree to the console to help you see what the markdown is being translated to
 
 
 And some additional, less used options:
 
-| Property | Required | Description    
-| --- | --- | ---
-| `renderer` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
-| `markdownit` | `false` | A custom markdownit instance with your configuration, default is `MarkdownIt({typographer: true})`
-| `maxTopLevelChildren` | `false` | Defaults to null, if defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
-| `topLevelMaxExceededItem` | `false` | Defaults to `<Text>...</Text>` - will render when `maxTopLevelChildren` is hit. Make sure to give it a key!
-| `allowedImageHandlers` | `false` | Defaults to `['data:image/png;base64', 'data:image/gif;base64', 'data:image/jpeg;base64', 'https://', 'http://']` - Any image that does not start with one of these will have the `defaultImageHandler` value prepended to it (unless `defaultImageHandler` is null in which case it won't try to render anything)
-| `defaultImageHandler` | `false` | Defaults to `http://` - will be prepended to an image url if it does not start with something in the `allowedImageHandlers` array, if this is set to null, it won't try to recover but will just not render anything instead.
+| Property | Default | Required | Description    
+| --- | ---  | --- | ---
+| `renderer` | `instanceOf(AstRenderer)` | `false` | Used to specify a custom renderer, you can not use the rules or styles props with a custom renderer.
+| `markdownit` | `instanceOf(MarkdownIt)` | `false` | A custom markdownit instance with your configuration, default is `MarkdownIt({typographer: true})`
+| `maxTopLevelChildren` | `null` | `false` | If defined as a number will only render out first `n` many top level children, then will try to render out `topLevelMaxExceededItem`
+| `topLevelMaxExceededItem` | `<Text key="dotdotdot">...</Text>` | `false` | Will render when `maxTopLevelChildren` is hit. Make sure to give it a key!
+| `allowedImageHandlers` | `['data:image/png;base64', 'data:image/gif;base64', 'data:image/jpeg;base64', 'https://', 'http://']` | `false` | Any image that does not start with one of these will have the `defaultImageHandler` value prepended to it (unless `defaultImageHandler` is null in which case it won't try to render anything)
+| `defaultImageHandler` | `http://` | `false` | Will be prepended to an image url if it does not start with something in the `allowedImageHandlers` array, if this is set to null, it won't try to recover but will just not render anything instead.
 
 
 # Syntax Support
