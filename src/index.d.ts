@@ -37,9 +37,8 @@ export type RenderImageFunction = (
   defaultImageHandler: string,
 ) => ReactNode;
 
-export type RenderRules = {
-  [name: string]: RenderFunction;
-} & {
+export interface RenderRules {
+  [name: string]: RenderFunction | undefined;
   link?: RenderLinkFunction;
   blocklink?: RenderLinkFunction;
   image?: RenderImageFunction;
