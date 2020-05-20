@@ -95,5 +95,5 @@ export interface MarkdownProps {
 type MarkdownStatic = React.ComponentType<MarkdownProps>;
 export const Markdown: MarkdownStatic;
 export type Markdown = MarkdownStatic;
-
+export {MarkdownIt};
 export default Markdown;
