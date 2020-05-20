@@ -1,5 +1,6 @@
 // tslint:disable:max-classes-per-file
-import {MarkdownIt, Token} from 'markdown-it';
+import MarkdownIt from 'markdown-it';
+import Token from 'markdown-it/lib/token';
 import {ComponentType, ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
 
@@ -9,14 +10,37 @@ export function openUrl(url: string): void;
 export function hasParents(parents: any[], type: string): boolean;
 
 export type RenderFunction = (
-  node: any,
+  node: ASTNode,
   children: ReactNode[],
-  parent: ReactNode,
+  parentNodes: ASTNode[],
   styles: any,
+  styleObj?: any,
+  // must have this so that we can have fixed overrides with more arguments
+  ...args: any,
+) => ReactNode;
+
+export type RenderLinkFunction = (
+  node: ASTNode,
+  children: ReactNode[],
+  parentNodes: ASTNode[],
+  styles: any,
+  onLinkPress: (url: string) => boolean,
+) => ReactNode;
+
+export type RenderImageFunction = (
+  node: ASTNode,
+  children: ReactNode[],
+  parentNodes: ASTNode[],
+  styles: any,
+  allowedImageHandlers: string[],
+  defaultImageHandler: string,
 ) => ReactNode;
 
 export interface RenderRules {
-  [name: string]: RenderFunction;
+  [name: string]: RenderFunction | undefined;
+  link?: RenderLinkFunction;
+  blocklink?: RenderLinkFunction;
+  image?: RenderImageFunction;
 }
 
 export const renderRules: RenderRules;
@@ -30,6 +54,7 @@ export interface ASTNode {
   sourceType: string; // original source token name
   key: string;
   content: string;
+  markup: string;
   tokenIndex: number;
   index: number;
   attributes: Record<string, any>;
@@ -56,17 +81,6 @@ export function stringToTokens(
 
 export function tokensToAST(tokens: ReadonlyArray<Token>): ASTNode[];
 
-interface PluginContainerResult<A> extends Array<any> {
-  0: A;
-}
-
-export class PluginContainer<A> {
-  constructor(plugin: A, ...options: any[]);
-  toArray(): PluginContainerResult<A>;
-}
-
-export function blockPlugin(md: any, name: string, options: object): any;
-
 export const styles: any;
 
 export interface MarkdownProps {
@@ -74,12 +88,12 @@ export interface MarkdownProps {
   style?: StyleSheet.NamedStyles<any>;
   renderer?: AstRenderer;
   markdownit?: MarkdownIt;
-  plugins?: Array<PluginContainer<any>>;
   mergeStyle?: boolean;
+  debugPrintTree?: boolean;
 }
 
 type MarkdownStatic = React.ComponentType<MarkdownProps>;
 export const Markdown: MarkdownStatic;
 export type Markdown = MarkdownStatic;
-
+export {MarkdownIt};
 export default Markdown;
