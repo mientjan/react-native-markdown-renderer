@@ -21,8 +21,9 @@ npm install -S react-native-markdown-display
 ### Get Started
 
 ```jsx
-import react from 'react';
-import { PureComponent } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
+
 import Markdown from 'react-native-markdown-display';
 
 const copy = `# h1 Heading 8-)
@@ -32,13 +33,25 @@ const copy = `# h1 Heading 8-)
 This is normal text
 `;
 
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown>{copy}</Markdown>
-    );
-  }
-}
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+          <Markdown>
+            {copy}
+          </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
 ```
 
 
@@ -331,7 +344,7 @@ Identify the new components and integrate the plugin with a rendered component. 
 
 ```jsx
 import React from 'react';
-import { SafeAreaView, ScrollView, View, StatusBar } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
 
 import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 import blockEmbedPlugin from 'markdown-it-block-embed';
@@ -351,19 +364,18 @@ const copy = `
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar/>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
           style={{height: '100%'}}
         >
-          <View>
             <Markdown
               debugPrintTree
               markdownit={markdownItInstance}
             >
               {copy}
             </Markdown>
-          </View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -398,9 +410,9 @@ We need to create the **render rules** and **styles** to handle this new **'vide
 
 ```jsx
 import React from 'react';
-import { SafeAreaView, ScrollView, View, StatusBar, Text } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
 
-import Markdown, { MarkdownIt, getUniqueID } from 'react-native-markdown-display';
+import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 import blockEmbedPlugin from 'markdown-it-block-embed';
 
 const markdownItInstance = 
@@ -418,12 +430,12 @@ const copy = `
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar/>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
           style={{height: '100%'}}
         >
-          <View>
             <Markdown
               debugPrintTree
               markdownit={markdownItInstance}
@@ -446,7 +458,6 @@ const App: () => React$Node = () => {
             >
               {copy}
             </Markdown>
-          </View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -717,6 +728,11 @@ Think of the implementation like applying styles in CSS. changes to the `body` e
 <img src="https://github.com/iamacup/react-native-markdown-display/raw/master/doc/images/style-example.png"/> 
 
 ```jsx
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
+
+import Markdown from 'react-native-markdown-display';
+
 const copy = `
 This is some text which is red because of the body style, which is also really small!
 
@@ -738,23 +754,28 @@ and some more small text
 const App: () => React$Node = () => {
   return (
     <>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <View style={{marginHorizontal: 20}}>
-          <Markdown
-            mergeStyle={true} 
-            style={{
-              body: {color: 'red', fontSize: 10},
-              heading1: {color: 'purple'},
-              code_block: {color: 'black', fontSize: 14}
-            }}
-          >
-            {copy}
-          </Markdown>
-        </View>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+            <Markdown
+              style={{
+                body: {color: 'red', fontSize: 10},
+                heading1: {color: 'purple'},
+                code_block: {color: 'black', fontSize: 14}
+              }}
+            >
+              {copy}
+            </Markdown>
+        </ScrollView>
       </SafeAreaView>
     </>
   );
 };
+
+export default App;
 ```
 
 </p>
@@ -770,10 +791,10 @@ Styles are used to override how certain rules are styled. The existing implement
 <p>
 
 ```jsx
-import react from 'react';
-import {View, PureComponent, Text} from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
+
 import Markdown from 'react-native-markdown-display';
-import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   heading: {
@@ -814,13 +835,27 @@ const copy = `
 | ext    | extension to be used for dest files. |
 `;
 
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown style={styles}>{copy}</Markdown>
-    );
-  }
-}
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+            <Markdown
+              style={styles}
+            >
+              {copy}
+            </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
 ```
 
 </p>
@@ -834,22 +869,23 @@ Rules are used to specify how you want certain elements to be displayed. The exi
 <p>
 
 ```jsx
-import react from 'react';
-import {View, PureComponent, Text} from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
+
 import Markdown, {getUniqueID} from 'react-native-markdown-display';
 
 const rules = {
     heading1: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
-        [{children}]
+        >> H1 TEXT HERE >> "{children}"
       </Text>,
     heading2: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
-        [{children}]
+        >> H2 TEXT HERE >> "{children}"
       </Text>,
     heading3: (node, children, parent, styles) =>
       <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
-        [{children}]
+        >> H3 TEXT HERE >> "{children}"
       </Text>,
 };
 
@@ -865,13 +901,27 @@ const copy = `
 | ext    | extension to be used for dest files. |
 `;
 
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown rules={rules}>{copy}</Markdown>
-    );
-  }
-}
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+            <Markdown
+              rules={rules}
+            >
+              {copy}
+            </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
 ```
 
 </p>
@@ -928,16 +978,17 @@ It is possible to overwrite this behaviour in one of two ways:
 <p>
 
 ```jsx
-import react from 'react';
-import { PureComponent } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
+
 import Markdown from 'react-native-markdown-display';
 
 const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
 
-export default class Page extends PureComponent {
-  onLinkPress = (url) => {
+const onLinkPress = (url) => {
     if (url) {
       // some custom logic
+      return false;
     }
     
     // return true to open with `Linking.openURL
@@ -945,12 +996,27 @@ export default class Page extends PureComponent {
     return true
   }
 
-  render() {
-    return (
-      <Markdown onLinkPress={this.onLinkPress}>{copy}</Markdown>
-    );
-  }
-}
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+          <Markdown
+             onLinkPress={onLinkPress}
+          >
+            {copy}
+          </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
 ```
 
 </p>
@@ -964,9 +1030,12 @@ You will need to overwrite one or both of `link` and `blocklink`, the original d
 Something like this with `yourCustomHandlerFunctionOrLogicHere`:
 
 ```jsx
-import react from 'react';
-import {View, PureComponent, Text} from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
+
 import Markdown, {getUniqueID} from 'react-native-markdown-display';
+
+const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
 
 const rules = {
   link: (node, children, parent, styles) => {
@@ -978,15 +1047,27 @@ const rules = {
   },
 };
 
-const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+          <Markdown
+             rules={rules}
+          >
+            {copy}
+          </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
 
-export default class Page extends PureComponent {
-  render() {
-    return (
-      <Markdown rules={rules}>{copy}</Markdown>
-    );
-  }
-}
+export default App;
 ```
 
 </p>
@@ -1000,6 +1081,9 @@ You can dissable any type of markdown you want, which is very useful in a mobile
 This example will stop images and links.
 
 ```jsx
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
+
 import Markdown, { MarkdownIt } from 'react-native-markdown-display';
 
 const copy = `
@@ -1008,14 +1092,29 @@ const copy = `
 [but this link will just](be displayed as this text)
 `;
 
-<Markdown
-  markdownit={
-    MarkdownIt({typographer: true}).disable([ 'link', 'image' ])
-  }
->
-  {copy}
-</Markdown>
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+            <Markdown
+              markdownit={
+                MarkdownIt({typographer: true}).disable([ 'link', 'image' ])
+              }
+            >
+              {copy}
+            </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
 
+export default App;
 ```
 
 A full list of things you can turn off is [here](https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.js)
