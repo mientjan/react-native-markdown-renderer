@@ -16,7 +16,7 @@ export type RenderFunction = (
   styles: any,
   styleObj?: any,
   // must have this so that we can have fixed overrides with more arguments
-  ...args: any,
+  ...args: any
 ) => ReactNode;
 
 export type RenderLinkFunction = (

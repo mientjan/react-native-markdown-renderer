@@ -17,6 +17,7 @@ import MarkdownIt from 'markdown-it';
 import removeTextStyleProps from './lib/util/removeTextStyleProps';
 import {styles} from './lib/styles';
 import {stringToTokens} from './lib/util/stringToTokens';
+import FitImage from 'react-native-fit-image';
 
 export {
   getUniqueID,
@@ -30,6 +31,7 @@ export {
   MarkdownIt,
   styles,
   removeTextStyleProps,
+  FitImage,
 };
 
 // we use StyleSheet.flatten here to make sure we have an object, in case someone
