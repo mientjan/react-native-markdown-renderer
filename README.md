@@ -872,19 +872,19 @@ Rules are used to specify how you want certain elements to be displayed. The exi
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
 
-import Markdown, {getUniqueID} from 'react-native-markdown-display';
+import Markdown from 'react-native-markdown-display';
 
 const rules = {
     heading1: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading1]}>
+      <Text key={node.key} style={[styles.heading, styles.heading1]}>
         >> H1 TEXT HERE >> "{children}"
       </Text>,
     heading2: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading2]}>
+      <Text key={node.key} style={[styles.heading, styles.heading2]}>
         >> H2 TEXT HERE >> "{children}"
       </Text>,
     heading3: (node, children, parent, styles) =>
-      <Text key={getUniqueID()} style={[styles.heading, styles.heading3]}>
+      <Text key={node.key} style={[styles.heading, styles.heading3]}>
         >> H3 TEXT HERE >> "{children}"
       </Text>,
 };
