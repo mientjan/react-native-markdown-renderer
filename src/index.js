@@ -18,6 +18,7 @@ import removeTextStyleProps from './lib/util/removeTextStyleProps';
 import {styles} from './lib/styles';
 import {stringToTokens} from './lib/util/stringToTokens';
 import FitImage from 'react-native-fit-image';
+import textStyleProps from './lib/data/textStyleProps';
 
 export {
   getUniqueID,
@@ -32,6 +33,7 @@ export {
   styles,
   removeTextStyleProps,
   FitImage,
+  textStyleProps,
 };
 
 // we use StyleSheet.flatten here to make sure we have an object, in case someone
@@ -185,7 +187,7 @@ const Markdown = React.memo(
 );
 
 Markdown.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
   renderer: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(AstRenderer),
