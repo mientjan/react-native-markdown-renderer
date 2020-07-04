@@ -449,7 +449,7 @@ const App: () => React$Node = () => {
                     // examine the node properties to see what video we need to render
                     console.log(node); // expected output of this is in readme.md below this code snip
 
-                    return (<Text key={getUniqueID()} style={styles.video}>
+                    return (<Text key={node.key} style={styles.video}>
                       Return a video component instead of this text component!
                     </Text>);
                   }
@@ -1033,7 +1033,7 @@ Something like this with `yourCustomHandlerFunctionOrLogicHere`:
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
 
-import Markdown, {getUniqueID} from 'react-native-markdown-display';
+import Markdown from 'react-native-markdown-display';
 
 const copy = `[This is a link!](https://github.com/iamacup/react-native-markdown-display/)`;
 

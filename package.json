@@ -7,9 +7,6 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint --fix --cache ./src"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iamacup/react-native-markdown-display.git"
