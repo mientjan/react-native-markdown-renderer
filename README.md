@@ -61,7 +61,7 @@ The `<Markdown>` object takes the following common props:
 
 | Property | Default | Required | Description                                                      
 | --- | --- | --- | ---
-| `children` | N/A | `true` | The markdown string to render
+| `children` | N/A | `true` | The markdown string to render, or the [pre-processed tree](#pre-processing)
 | `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#style) for more info
 | `mergeStyle` | `true` | `false` | If true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
 | `rules` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js) | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for more info
@@ -1119,6 +1119,48 @@ export default App;
 
 A full list of things you can turn off is [here](https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.js)
 
+
+### Pre Processing
+
+It is possible to need to pre-process the data outside of this library ([related discussion here](https://github.com/iamacup/react-native-markdown-display/issues/79)). As a result, you can pass an AST tree directly as the children like this:
+
+```jsx
+import React from 'react';
+import { SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
+
+import Markdown, { MarkdownIt, tokensToAST, stringToTokens } from 'react-native-markdown-display';
+
+const markdownItInstance = MarkdownIt({typographer: true});
+
+const copy = `
+# Hello this is a title
+
+This is some text with **BOLD!**
+`;
+
+const ast = tokensToAST(stringToTokens(copy, markdownItInstance))
+
+const App: () => React$Node = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{height: '100%'}}
+        >
+            <Markdown
+            >
+              {ast}
+            </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
+```
 
 
 ### Other Notes
