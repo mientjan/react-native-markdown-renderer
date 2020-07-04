@@ -11,6 +11,10 @@ import groupTextTokens from './util/groupTextTokens';
  * @return {View}
  */
 export default function parser(source, renderer, markdownIt) {
+  if(Array.isArray(source)) {
+    return renderer(source);
+  }
+
   let tokens = stringToTokens(source, markdownIt);
   tokens = cleanupTokens(tokens);
   tokens = groupTextTokens(tokens);
