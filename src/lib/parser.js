@@ -11,7 +11,7 @@ import groupTextTokens from './util/groupTextTokens';
  * @return {View}
  */
 export default function parser(source, renderer, markdownIt) {
-  if(Array.isArray(source)) {
+  if (Array.isArray(source)) {
     return renderer(source);
   }
 

@@ -187,10 +187,7 @@ const Markdown = React.memo(
 );
 
 Markdown.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.array,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired,
   renderer: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.instanceOf(AstRenderer),
