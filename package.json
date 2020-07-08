@@ -35,12 +35,12 @@
     "react-native-fit-image": "^1.5.5"
   },
   "peerDependencies": {
-    "@types/markdown-it": "^10.0.1",
-    "@types/react-native": ">=0.50.0",
     "react": "^16.2.0",
     "react-native": ">=0.50.4"
   },
   "devDependencies": {
+    "@types/markdown-it": "^10.0.1",
+    "@types/react-native": ">=0.50.0",
     "@babel/core": "^7.9.6",
     "@babel/runtime": "^7.9.6",
     "@react-native-community/eslint-config": "^1.1.0",
