@@ -797,10 +797,6 @@ import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
 const styles = StyleSheet.create({
-  heading: {
-    borderBottomWidth: 1,
-    borderColor: '#000000',
-  },
   heading1: {
     fontSize: 32,
     backgroundColor: '#000000',
