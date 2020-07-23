@@ -123,7 +123,9 @@ const renderRules = {
     if (hasParents(parent, 'bullet_list')) {
       return (
         <View key={node.key} style={styles._VIEW_SAFE_list_item}>
-          <Text style={[modifiedInheritedStylesObj, styles.bullet_list_icon]}>
+          <Text
+            style={[modifiedInheritedStylesObj, styles.bullet_list_icon]}
+            accessible={false}>
             {Platform.select({
               android: '\u2022',
               ios: '\u00B7',
