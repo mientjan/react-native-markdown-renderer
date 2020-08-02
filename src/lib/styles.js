@@ -66,28 +66,6 @@ export const styles = {
   bullet_list_icon: {
     marginLeft: 10,
     marginRight: 10,
-    ...Platform.select({
-      android: {
-        marginTop: 5,
-      },
-      ios: {
-        marginTop: 0,
-      },
-      default: {
-        marginTop: 0,
-      },
-    }),
-    ...Platform.select({
-      ios: {
-        lineHeight: 36,
-      },
-      android: {
-        lineHeight: 30,
-      },
-      default: {
-        lineHeight: 36,
-      },
-    }),
   },
   // @pseudo class, does not have a unique render rule
   bullet_list_content: {
@@ -98,25 +76,6 @@ export const styles = {
   ordered_list_icon: {
     marginLeft: 10,
     marginRight: 10,
-    ...Platform.select({
-      android: {
-        marginTop: 4,
-      },
-      default: {
-        marginTop: 0,
-      },
-    }),
-    ...Platform.select({
-      ios: {
-        lineHeight: 36,
-      },
-      android: {
-        lineHeight: 30,
-      },
-      default: {
-        lineHeight: 36,
-      },
-    }),
   },
   // @pseudo class, does not have a unique render rule
   ordered_list_content: {
