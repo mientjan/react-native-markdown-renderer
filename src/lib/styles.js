@@ -50,8 +50,8 @@ export const styles = {
 
   // Blockquotes
   blockquote: {
-    backgroundColor: "#F5F5F5",
-    borderColor: "#CCC",
+    backgroundColor: '#F5F5F5',
+    borderColor: '#CCC',
     borderLeftWidth: 4,
     marginLeft: 5,
     paddingHorizontal: 5,
@@ -93,11 +93,11 @@ export const styles = {
     padding: 10,
     borderRadius: 4,
     ...Platform.select({
-      ["ios"]: {
-        fontFamily: "Courier",
+      ['ios']: {
+        fontFamily: 'Courier',
       },
-      ["android"]: {
-        fontFamily: "monospace",
+      ['android']: {
+        fontFamily: 'monospace',
       },
     }),
   },
@@ -108,11 +108,11 @@ export const styles = {
     padding: 10,
     borderRadius: 4,
     ...Platform.select({
-      ["ios"]: {
-        fontFamily: "Courier",
+      ['ios']: {
+        fontFamily: 'Courier',
       },
-      ["android"]: {
-        fontFamily: "monospace",
+      ['android']: {
+        fontFamily: 'monospace',
       },
     }),
   },
@@ -123,11 +123,11 @@ export const styles = {
     padding: 10,
     borderRadius: 4,
     ...Platform.select({
-      ["ios"]: {
-        fontFamily: "Courier",
+      ['ios']: {
+        fontFamily: 'Courier',
       },
-      ["android"]: {
-        fontFamily: "monospace",
+      ['android']: {
+        fontFamily: 'monospace',
       },
     }),
   },
