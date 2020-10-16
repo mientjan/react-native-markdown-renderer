@@ -62,7 +62,7 @@ The `<Markdown>` object takes the following common props:
 | Property | Default | Required | Description                                                      
 | --- | --- | --- | ---
 | `children` | N/A | `true` | The markdown string to render, or the [pre-processed tree](#pre-processing)
-| `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#style) for more info
+| `style` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/styles.js) | `false` | An object to override the styling for the various rules, [see style section below](#rules-and-styles) for more info
 | `mergeStyle` | `true` | `false` | If true, when a style is supplied, the individual items are merged with the default styles instead of overwriting them
 | `rules` | [source](https://github.com/iamacup/react-native-markdown-display/blob/master/src/lib/renderRules.js) | `false` | An object of rules that specify how to render each markdown item, [see rules section below](#rules) for more info
 | `onLinkPress` | `import { Linking } from 'react-native';` and `Linking.openURL(url);` | `false` | A handler function to change click behaviour, [see handling links section below](#handling-links) for more info
