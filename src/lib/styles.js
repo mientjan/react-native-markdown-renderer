@@ -50,9 +50,11 @@ export const styles = {
 
   // Blockquotes
   blockquote: {
-    paddingHorizontal: 14,
-    paddingVertical: 4,
-    backgroundColor: '#CCCCCC',
+    backgroundColor: "#F5F5F5",
+    borderColor: "#CCC",
+    borderLeftWidth: 4,
+    marginLeft: 5,
+    paddingHorizontal: 5,
   },
 
   // Lists
