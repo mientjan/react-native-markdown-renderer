@@ -93,7 +93,7 @@ export interface MarkdownProps {
   onLinkPress?: (url: string) => boolean;
 }
 
-type MarkdownStatic = React.ComponentType<MarkdownProps>;
+type MarkdownStatic = ComponentType<MarkdownProps>;
 export const Markdown: MarkdownStatic;
 export type Markdown = MarkdownStatic;
 export {MarkdownIt};
