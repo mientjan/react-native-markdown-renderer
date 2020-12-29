@@ -30,6 +30,7 @@ export interface MarkdownParser {
 export interface ASTNode {
   type: string;
   sourceType: string; // original source token name
+  sourceInfo: string;
   key: string;
   content: string;
   tokenIndex: number;
