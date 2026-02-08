@@ -36,7 +36,7 @@ describe('rootRenderRule', () => {
 });
 
 describe('AstRenderer', () => {
-  const textRule = jest.fn((node: ASTNode, children: any[], parent: any[], styles: any) => {
+  const textRule = jest.fn((node: ASTNode, _children: any[], _parent: any[], _styles: any) => {
     return React.createElement('Text', { key: node.key }, node.content);
   });
 

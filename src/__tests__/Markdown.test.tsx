@@ -102,7 +102,7 @@ describe('Markdown', () => {
   });
 
   it('renders with custom renderer function', () => {
-    const customRenderer = (nodes: ASTNode[]) => (
+    const customRenderer = (_nodes: ASTNode[]) => (
       <View key="custom">
         <Text>Custom Render</Text>
       </View>
@@ -126,7 +126,7 @@ describe('Markdown', () => {
 
   it('renders with plugins array', () => {
     // Simple no-op plugin
-    const noopPlugin = (md: MarkdownIt) => {};
+    const noopPlugin = (_md: MarkdownIt) => {};
     const container = new PluginContainer(noopPlugin);
     const tree = create(<Markdown plugins={[container]}>{'# Hello'}</Markdown>);
     expect(tree.toJSON()).toBeTruthy();
@@ -134,7 +134,7 @@ describe('Markdown', () => {
 
   it('logs warning when both renderer and rules are provided', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-    const customRenderer = (nodes: ASTNode[]) => <View key="custom" />;
+    const customRenderer = (_nodes: ASTNode[]) => <View key="custom" />;
     create(
       <Markdown renderer={customRenderer} rules={{ text: () => null }}>
         {'# Hello'}
@@ -146,7 +146,7 @@ describe('Markdown', () => {
 
   it('logs warning when both renderer and style are provided', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-    const customRenderer = (nodes: ASTNode[]) => <View key="custom" />;
+    const customRenderer = (_nodes: ASTNode[]) => <View key="custom" />;
     create(
       <Markdown renderer={customRenderer} style={{ heading1: { fontSize: 20 } }}>
         {'# Hello'}

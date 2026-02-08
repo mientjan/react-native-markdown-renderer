@@ -1,5 +1,4 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
 import applyStyle from '../../lib/util/applyStyle';
 
 describe('applyStyle', () => {

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
@@ -70,7 +70,8 @@ export default function Markdown({
     let md = markdownit;
     if (plugins.length > 0) {
       plugins.forEach((plugin) => {
-        md = md.use.apply(md, plugin.toArray() as [any, ...any[]]);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, prefer-spread
+        md = md.use(...(plugin.toArray() as [any, ...any[]]));
       });
     }
     return md;
