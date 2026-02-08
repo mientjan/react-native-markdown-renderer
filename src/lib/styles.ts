@@ -1,9 +1,6 @@
 import { Platform, StyleSheet } from 'react-native';
 import PlatformEnum from './data/PlatformEnum';
 
-/**
- *
- */
 export const styles = StyleSheet.create({
   root: {},
   view: {},
@@ -69,15 +66,12 @@ export const styles = StyleSheet.create({
   listItem: {
     flex: 1,
     flexWrap: 'wrap',
-    // backgroundColor: 'green',
   },
   listUnordered: {},
-
   listUnorderedItem: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-
   listUnorderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
@@ -94,7 +88,6 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 20,
   },
-
   listOrdered: {},
   listOrderedItem: {
     flexDirection: 'row',
@@ -138,9 +131,7 @@ export const styles = StyleSheet.create({
   tableHeader: {},
   tableHeaderCell: {
     flex: 1,
-    // color: '#000000',
     padding: 5,
-    // backgroundColor: 'green',
   },
   tableRow: {
     borderBottomWidth: 1,
@@ -162,7 +153,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#000000',
     borderBottomWidth: 1,
-
   },
   u: {
     borderColor: '#000000',
