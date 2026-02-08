@@ -1,9 +1,18 @@
 import getTokenTypeByToken from './getTokenTypeByToken';
 import flattenInlineTokens from './flattenInlineTokens';
 
-export function cleanupTokens(tokens) {
-  tokens = flattenInlineTokens(tokens);
-  tokens.forEach(token => {
+interface CleanupToken {
+  type: string;
+  tag?: string;
+  nesting?: number;
+  block?: boolean;
+  children?: CleanupToken[] | null;
+  [key: string]: unknown;
+}
+
+export function cleanupTokens<T extends CleanupToken>(tokens: T[]): T[] {
+  let result = flattenInlineTokens(tokens);
+  result.forEach((token) => {
     token.type = getTokenTypeByToken(token);
 
     // set image and hardbreak to block elements
@@ -16,12 +25,12 @@ export function cleanupTokens(tokens) {
    * changing a link token to a blocklink to fix issue where link tokens with
    * nested non text tokens breaks component
    */
-  const stack = [];
-  tokens = tokens.reduce((acc, token, index) => {
+  const stack: T[] = [];
+  result = result.reduce<T[]>((acc, token) => {
     if (token.type === 'link' && token.nesting === 1) {
       stack.push(token);
     } else if (stack.length > 0 && token.type === 'link' && token.nesting === -1) {
-      if (stack.some(stackToken => stackToken.block)) {
+      if (stack.some((stackToken) => stackToken.block)) {
         stack[0].type = 'blocklink';
         stack[0].block = true;
         token.type = 'blocklink';
@@ -31,7 +40,7 @@ export function cleanupTokens(tokens) {
       stack.push(token);
 
       while (stack.length) {
-        acc.push(stack.shift());
+        acc.push(stack.shift()!);
       }
     } else if (stack.length > 0) {
       stack.push(token);
@@ -42,5 +51,5 @@ export function cleanupTokens(tokens) {
     return acc;
   }, []);
 
-  return tokens;
+  return result;
 }

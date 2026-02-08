@@ -1,12 +1,15 @@
-// import getIsTextType from './getIsTextType';
 import Token from './Token';
-// import getIsInlineTextType from './getIsInlineTextType';
 
-export default function groupTextTokens(tokens) {
-  const result = [];
+interface GroupableToken {
+  block?: boolean;
+  [key: string]: unknown;
+}
+
+export default function groupTextTokens<T extends GroupableToken>(tokens: T[]): (T | Token)[] {
+  const result: (T | Token)[] = [];
 
   let hasGroup = false;
-  tokens.forEach((token, index) => {
+  tokens.forEach((token) => {
     if (!token.block && !hasGroup) {
       hasGroup = true;
       result.push(new Token('textgroup', 1));

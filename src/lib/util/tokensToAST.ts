@@ -1,20 +1,29 @@
 import getUniqueID from './getUniqueID';
 import getTokenTypeByToken from './getTokenTypeByToken';
+import type { ASTNode } from '../../types';
 
-/**
- *
- * @param {{type: string, tag:string, content: string, children: *, attrs: Array, meta, info, block: boolean}} token
- * @param {number} tokenIndex
- * @return {{type: string, content, tokenIndex: *, index: number, attributes: {}, children: *}}
- */
-function createNode(token, tokenIndex) {
+interface TokenInput {
+  type?: string;
+  tag?: string;
+  content?: string;
+  attrs?: [string, string][] | null;
+  info?: string;
+  meta?: unknown;
+  block?: boolean;
+  markup?: string;
+  nesting?: number;
+  children?: TokenInput[] | null;
+  [key: string]: unknown;
+}
+
+function createNode(token: TokenInput, tokenIndex: number): ASTNode {
   const type = getTokenTypeByToken(token);
-  const content = token.content;
+  const content = token.content || '';
 
-  let attributes = {};
+  let attributes: Record<string, string> = {};
 
   if (token.attrs) {
-    attributes = token.attrs.reduce((prev, curr) => {
+    attributes = token.attrs.reduce<Record<string, string>>((prev, curr) => {
       const [name, value] = curr;
       return { ...prev, [name]: value };
     }, {});
@@ -22,28 +31,23 @@ function createNode(token, tokenIndex) {
 
   return {
     type,
-    sourceType: token.type,
-    sourceInfo: token.info,
+    sourceType: token.type || '',
+    sourceInfo: token.info || '',
     sourceMeta: token.meta,
-    block: token.block,
-    markup: token.markup,
+    block: token.block || false,
+    markup: token.markup || '',
     key: getUniqueID(),
     content,
     tokenIndex,
     index: 0,
     attributes,
-    children: tokensToAST(token.children),
+    children: tokensToAST(token.children || null),
   };
 }
 
-/**
- *
- * @param {Array<{type: string, tag:string, content: string, children: *, attrs: Array}>}tokens
- * @return {Array}
- */
-export default function tokensToAST(tokens) {
-  let stack = [];
-  let children = [];
+export default function tokensToAST(tokens: TokenInput[] | null | undefined): ASTNode[] {
+  const stack: ASTNode[][] = [];
+  let children: ASTNode[] = [];
 
   if (!tokens || tokens.length === 0) {
     return [];
@@ -61,7 +65,7 @@ export default function tokensToAST(tokens) {
         stack.push(children);
         children = astNode.children;
       } else if (token.nesting === -1) {
-        children = stack.pop();
+        children = stack.pop()!;
       } else if (token.nesting === 0) {
         children.push(astNode);
       }
