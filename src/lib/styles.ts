@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   listUnordered: {},
   listUnorderedItem: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   listUnorderedItemIcon: {
     marginLeft: 10,
@@ -82,6 +82,9 @@ export const styles = StyleSheet.create({
       [PlatformEnum.ANDROID]: {
         lineHeight: 30,
       },
+      default: {
+        lineHeight: 30,
+      },
     }),
   },
   listUnorderedItemText: {
@@ -91,6 +94,7 @@ export const styles = StyleSheet.create({
   listOrdered: {},
   listOrderedItem: {
     flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   listOrderedItemIcon: {
     marginLeft: 10,
@@ -100,6 +104,9 @@ export const styles = StyleSheet.create({
         lineHeight: 36,
       },
       [PlatformEnum.ANDROID]: {
+        lineHeight: 30,
+      },
+      default: {
         lineHeight: 30,
       },
     }),

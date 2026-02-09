@@ -200,8 +200,8 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -251,8 +251,8 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -311,6 +311,7 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
@@ -362,6 +363,7 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
@@ -828,8 +830,8 @@ exports[`Integration renders with a custom render rule override 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -879,8 +881,8 @@ exports[`Integration renders with a custom render rule override 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -939,6 +941,7 @@ exports[`Integration renders with a custom render rule override 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
@@ -990,6 +993,7 @@ exports[`Integration renders with a custom render rule override 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
@@ -1473,8 +1477,8 @@ exports[`Integration renders with custom styles applied 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -1524,8 +1528,8 @@ exports[`Integration renders with custom styles applied 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
-          "justifyContent": "flex-start",
         }
       }
     >
@@ -1584,6 +1588,7 @@ exports[`Integration renders with custom styles applied 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
@@ -1635,6 +1640,7 @@ exports[`Integration renders with custom styles applied 1`] = `
     <View
       style={
         {
+          "alignItems": "flex-start",
           "flexDirection": "row",
         }
       }
