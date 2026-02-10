@@ -78,7 +78,7 @@ const renderRules: RenderRules = {
 
   heading1: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return (
-      <View key={node.key} style={styles.headingContainer as any}>
+      <View key={node.key} style={[styles.headingContainer as any, styles.heading1Container as any]}>
         {applyStyle(children as any, [styles.heading, styles.heading1], 'Text')}
       </View>
     );
@@ -86,7 +86,7 @@ const renderRules: RenderRules = {
 
   heading2: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return (
-      <View key={node.key} style={styles.headingContainer as any}>
+      <View key={node.key} style={[styles.headingContainer as any, styles.heading2Container as any]}>
         {applyStyle(children as any, [styles.heading, styles.heading2], 'Text')}
       </View>
     );

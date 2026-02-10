@@ -6,18 +6,33 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 10,
+        },
+      ]
     }
   >
     <Text
       style={
         [
-          {},
-          {},
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
           {
             "fontSize": 32,
+            "lineHeight": 40,
           },
         ]
       }
@@ -29,18 +44,33 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
   </View>
   <View
     style={
-      {
-        "flexDirection": "row",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
     }
   >
     <Text
       style={
         [
-          {},
-          {},
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
           {
             "fontSize": 24,
+            "lineHeight": 30,
           },
         ]
       }
@@ -54,16 +84,24 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     style={
       {
         "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
       }
     }
   >
     <Text
       style={
         [
-          {},
-          {},
           {
-            "fontSize": 18,
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
           },
         ]
       }
@@ -80,13 +118,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         This is a 
@@ -142,19 +185,24 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         onPress={[Function]}
         style={
           {
-            "textDecorationLine": "underline",
+            "color": "#0969da",
           }
         }
       >
@@ -171,8 +219,8 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
@@ -192,7 +240,9 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -202,13 +252,14 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -233,13 +284,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 1
@@ -253,13 +309,14 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -284,13 +341,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 2
@@ -303,7 +365,9 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -313,13 +377,14 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -345,13 +410,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 1
@@ -365,13 +435,14 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -397,13 +468,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 2
@@ -420,22 +496,28 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         style={
           {
-            "backgroundColor": "#f5f5f5",
-            "borderColor": "#CCCCCC",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "padding": 10,
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
           }
         }
       >
@@ -446,11 +528,13 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
   <Text
     style={
       {
-        "backgroundColor": "#f5f5f5",
-        "borderColor": "#CCCCCC",
-        "borderRadius": 4,
-        "borderWidth": 1,
-        "padding": 10,
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
       }
     }
   >
@@ -460,10 +544,10 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
   <View
     style={
       {
-        "backgroundColor": "#CCCCCC",
-        "margin": 20,
-        "paddingHorizontal": 20,
-        "paddingVertical": 10,
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -474,13 +558,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           "flexDirection": "row",
           "flexWrap": "wrap",
           "justifyContent": "flex-start",
-          "marginBottom": 10,
-          "marginTop": 10,
+          "marginBottom": 16,
+          "marginTop": 0,
         }
       }
     >
       <Text
-        style={{}}
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
       >
         <Text>
           Blockquote text
@@ -492,9 +581,9 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     style={
       [
         {
-          "borderColor": "#000000",
-          "borderRadius": 3,
+          "borderColor": "#d0d7de",
           "borderWidth": 1,
+          "marginBottom": 16,
         },
       ]
     }
@@ -502,7 +591,9 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     <View
       style={
         [
-          {},
+          {
+            "backgroundColor": "#f6f8fa",
+          },
         ]
       }
     >
@@ -511,7 +602,7 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -521,14 +612,23 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header A
@@ -539,14 +639,23 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header B
@@ -561,7 +670,7 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -571,14 +680,22 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 1
@@ -589,14 +706,22 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 2
@@ -610,8 +735,10 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     style={
       [
         {
-          "backgroundColor": "#000000",
-          "height": 1,
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
         },
       ]
     }
@@ -623,13 +750,18 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         Hard line break follows
@@ -659,18 +791,33 @@ exports[`Integration renders with a custom render rule override 1`] = `
   </View>
   <View
     style={
-      {
-        "flexDirection": "row",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
     }
   >
     <Text
       style={
         [
-          {},
-          {},
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
           {
             "fontSize": 24,
+            "lineHeight": 30,
           },
         ]
       }
@@ -684,16 +831,24 @@ exports[`Integration renders with a custom render rule override 1`] = `
     style={
       {
         "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
       }
     }
   >
     <Text
       style={
         [
-          {},
-          {},
           {
-            "fontSize": 18,
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
           },
         ]
       }
@@ -710,13 +865,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         This is a 
@@ -772,19 +932,24 @@ exports[`Integration renders with a custom render rule override 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         onPress={[Function]}
         style={
           {
-            "textDecorationLine": "underline",
+            "color": "#0969da",
           }
         }
       >
@@ -801,8 +966,8 @@ exports[`Integration renders with a custom render rule override 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
@@ -822,7 +987,9 @@ exports[`Integration renders with a custom render rule override 1`] = `
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -832,13 +999,14 @@ exports[`Integration renders with a custom render rule override 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -863,13 +1031,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 1
@@ -883,13 +1056,14 @@ exports[`Integration renders with a custom render rule override 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -914,13 +1088,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 2
@@ -933,7 +1112,9 @@ exports[`Integration renders with a custom render rule override 1`] = `
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -943,13 +1124,14 @@ exports[`Integration renders with a custom render rule override 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -975,13 +1157,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 1
@@ -995,13 +1182,14 @@ exports[`Integration renders with a custom render rule override 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -1027,13 +1215,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 2
@@ -1050,22 +1243,28 @@ exports[`Integration renders with a custom render rule override 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         style={
           {
-            "backgroundColor": "#f5f5f5",
-            "borderColor": "#CCCCCC",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "padding": 10,
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
           }
         }
       >
@@ -1076,11 +1275,13 @@ exports[`Integration renders with a custom render rule override 1`] = `
   <Text
     style={
       {
-        "backgroundColor": "#f5f5f5",
-        "borderColor": "#CCCCCC",
-        "borderRadius": 4,
-        "borderWidth": 1,
-        "padding": 10,
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
       }
     }
   >
@@ -1090,10 +1291,10 @@ exports[`Integration renders with a custom render rule override 1`] = `
   <View
     style={
       {
-        "backgroundColor": "#CCCCCC",
-        "margin": 20,
-        "paddingHorizontal": 20,
-        "paddingVertical": 10,
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -1104,13 +1305,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
           "flexDirection": "row",
           "flexWrap": "wrap",
           "justifyContent": "flex-start",
-          "marginBottom": 10,
-          "marginTop": 10,
+          "marginBottom": 16,
+          "marginTop": 0,
         }
       }
     >
       <Text
-        style={{}}
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
       >
         <Text>
           Blockquote text
@@ -1122,9 +1328,9 @@ exports[`Integration renders with a custom render rule override 1`] = `
     style={
       [
         {
-          "borderColor": "#000000",
-          "borderRadius": 3,
+          "borderColor": "#d0d7de",
           "borderWidth": 1,
+          "marginBottom": 16,
         },
       ]
     }
@@ -1132,7 +1338,9 @@ exports[`Integration renders with a custom render rule override 1`] = `
     <View
       style={
         [
-          {},
+          {
+            "backgroundColor": "#f6f8fa",
+          },
         ]
       }
     >
@@ -1141,7 +1349,7 @@ exports[`Integration renders with a custom render rule override 1`] = `
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -1151,14 +1359,23 @@ exports[`Integration renders with a custom render rule override 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header A
@@ -1169,14 +1386,23 @@ exports[`Integration renders with a custom render rule override 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header B
@@ -1191,7 +1417,7 @@ exports[`Integration renders with a custom render rule override 1`] = `
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -1201,14 +1427,22 @@ exports[`Integration renders with a custom render rule override 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 1
@@ -1219,14 +1453,22 @@ exports[`Integration renders with a custom render rule override 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 2
@@ -1240,8 +1482,10 @@ exports[`Integration renders with a custom render rule override 1`] = `
     style={
       [
         {
-          "backgroundColor": "#000000",
-          "height": 1,
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
         },
       ]
     }
@@ -1253,13 +1497,18 @@ exports[`Integration renders with a custom render rule override 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         Hard line break follows
@@ -1282,16 +1531,30 @@ exports[`Integration renders with custom styles applied 1`] = `
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 10,
+        },
+      ]
     }
   >
     <Text
       style={
         [
-          {},
-          {},
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
           {
             "color": "red",
             "fontSize": 48,
@@ -1306,18 +1569,33 @@ exports[`Integration renders with custom styles applied 1`] = `
   </View>
   <View
     style={
-      {
-        "flexDirection": "row",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
     }
   >
     <Text
       style={
         [
-          {},
-          {},
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
           {
             "fontSize": 24,
+            "lineHeight": 30,
           },
         ]
       }
@@ -1331,16 +1609,24 @@ exports[`Integration renders with custom styles applied 1`] = `
     style={
       {
         "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
       }
     }
   >
     <Text
       style={
         [
-          {},
-          {},
           {
-            "fontSize": 18,
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
           },
         ]
       }
@@ -1357,13 +1643,18 @@ exports[`Integration renders with custom styles applied 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         This is a 
@@ -1419,19 +1710,24 @@ exports[`Integration renders with custom styles applied 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         onPress={[Function]}
         style={
           {
-            "textDecorationLine": "underline",
+            "color": "#0969da",
           }
         }
       >
@@ -1448,8 +1744,8 @@ exports[`Integration renders with custom styles applied 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
@@ -1469,7 +1765,9 @@ exports[`Integration renders with custom styles applied 1`] = `
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -1479,13 +1777,14 @@ exports[`Integration renders with custom styles applied 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -1510,13 +1809,18 @@ exports[`Integration renders with custom styles applied 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 1
@@ -1530,13 +1834,14 @@ exports[`Integration renders with custom styles applied 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -1561,13 +1866,18 @@ exports[`Integration renders with custom styles applied 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Unordered item 2
@@ -1580,7 +1890,9 @@ exports[`Integration renders with custom styles applied 1`] = `
   <View
     style={
       [
-        {},
+        {
+          "marginBottom": 16,
+        },
         {},
       ]
     }
@@ -1590,13 +1902,14 @@ exports[`Integration renders with custom styles applied 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -1622,13 +1935,18 @@ exports[`Integration renders with custom styles applied 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 1
@@ -1642,13 +1960,14 @@ exports[`Integration renders with custom styles applied 1`] = `
         {
           "alignItems": "flex-start",
           "flexDirection": "row",
+          "marginTop": 4,
         }
       }
     >
       <Text
         style={
           {
-            "lineHeight": 36,
+            "lineHeight": 24,
             "marginLeft": 10,
             "marginRight": 10,
           }
@@ -1674,13 +1993,18 @@ exports[`Integration renders with custom styles applied 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "flex-start",
-              "marginBottom": 10,
-              "marginTop": 10,
+              "marginBottom": 16,
+              "marginTop": 0,
             }
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Ordered item 2
@@ -1697,22 +2021,28 @@ exports[`Integration renders with custom styles applied 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text
         style={
           {
-            "backgroundColor": "#f5f5f5",
-            "borderColor": "#CCCCCC",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "padding": 10,
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
           }
         }
       >
@@ -1723,11 +2053,13 @@ exports[`Integration renders with custom styles applied 1`] = `
   <Text
     style={
       {
-        "backgroundColor": "#f5f5f5",
-        "borderColor": "#CCCCCC",
-        "borderRadius": 4,
-        "borderWidth": 1,
-        "padding": 10,
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
       }
     }
   >
@@ -1737,10 +2069,10 @@ exports[`Integration renders with custom styles applied 1`] = `
   <View
     style={
       {
-        "backgroundColor": "#CCCCCC",
-        "margin": 20,
-        "paddingHorizontal": 20,
-        "paddingVertical": 10,
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
       }
     }
   >
@@ -1751,13 +2083,18 @@ exports[`Integration renders with custom styles applied 1`] = `
           "flexDirection": "row",
           "flexWrap": "wrap",
           "justifyContent": "flex-start",
-          "marginBottom": 10,
-          "marginTop": 10,
+          "marginBottom": 16,
+          "marginTop": 0,
         }
       }
     >
       <Text
-        style={{}}
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
       >
         <Text>
           Blockquote text
@@ -1769,9 +2106,9 @@ exports[`Integration renders with custom styles applied 1`] = `
     style={
       [
         {
-          "borderColor": "#000000",
-          "borderRadius": 3,
+          "borderColor": "#d0d7de",
           "borderWidth": 1,
+          "marginBottom": 16,
         },
       ]
     }
@@ -1779,7 +2116,9 @@ exports[`Integration renders with custom styles applied 1`] = `
     <View
       style={
         [
-          {},
+          {
+            "backgroundColor": "#f6f8fa",
+          },
         ]
       }
     >
@@ -1788,7 +2127,7 @@ exports[`Integration renders with custom styles applied 1`] = `
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -1798,14 +2137,23 @@ exports[`Integration renders with custom styles applied 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header A
@@ -1816,14 +2164,23 @@ exports[`Integration renders with custom styles applied 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Header B
@@ -1838,7 +2195,7 @@ exports[`Integration renders with custom styles applied 1`] = `
           [
             {
               "borderBottomWidth": 1,
-              "borderColor": "#000000",
+              "borderColor": "#d0d7de",
               "flexDirection": "row",
             },
           ]
@@ -1848,14 +2205,22 @@ exports[`Integration renders with custom styles applied 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 1
@@ -1866,14 +2231,22 @@ exports[`Integration renders with custom styles applied 1`] = `
           style={
             [
               {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
                 "flex": 1,
-                "padding": 5,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
               },
             ]
           }
         >
           <Text
-            style={{}}
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
           >
             <Text>
               Cell 2
@@ -1887,8 +2260,10 @@ exports[`Integration renders with custom styles applied 1`] = `
     style={
       [
         {
-          "backgroundColor": "#000000",
-          "height": 1,
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
         },
       ]
     }
@@ -1900,13 +2275,18 @@ exports[`Integration renders with custom styles applied 1`] = `
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "flex-start",
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginBottom": 16,
+        "marginTop": 0,
       }
     }
   >
     <Text
-      style={{}}
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
     >
       <Text>
         Hard line break follows

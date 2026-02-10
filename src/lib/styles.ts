@@ -1,68 +1,104 @@
 import { Platform, StyleSheet } from 'react-native';
 import PlatformEnum from './data/PlatformEnum';
 
+const monospaceFont = Platform.select({
+  [PlatformEnum.IOS]: 'Menlo',
+  [PlatformEnum.ANDROID]: 'monospace',
+  default: 'monospace',
+});
+
 export const styles = StyleSheet.create({
   root: {},
   view: {},
   codeBlock: {
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
-    backgroundColor: '#f5f5f5',
-    padding: 10,
-    borderRadius: 4,
+    backgroundColor: '#f6f8fa',
+    padding: 16,
+    borderRadius: 6,
+    fontFamily: monospaceFont,
+    fontSize: 13.6,
+    lineHeight: 20,
+    marginBottom: 16,
   },
   codeInline: {
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
-    backgroundColor: '#f5f5f5',
-    padding: 10,
-    borderRadius: 4,
+    backgroundColor: 'rgba(175,184,193,0.2)',
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    borderRadius: 6,
+    fontFamily: monospaceFont,
+    fontSize: 13.6,
   },
   del: {
-    backgroundColor: '#000000',
+    textDecorationLine: 'line-through',
   },
   em: {
     fontStyle: 'italic',
   },
   headingContainer: {
     flexDirection: 'row',
+    marginTop: 24,
+    marginBottom: 16,
   },
-  heading: {},
+  heading: {
+    fontWeight: '600',
+  },
   heading1: {
     fontSize: 32,
+    lineHeight: 40,
+  },
+  heading1Container: {
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#d8dee4',
   },
   heading2: {
     fontSize: 24,
+    lineHeight: 30,
+  },
+  heading2Container: {
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#d8dee4',
   },
   heading3: {
-    fontSize: 18,
+    fontSize: 20,
+    lineHeight: 25,
   },
   heading4: {
     fontSize: 16,
+    lineHeight: 20,
   },
   heading5: {
-    fontSize: 13,
+    fontSize: 14,
+    lineHeight: 18,
   },
   heading6: {
-    fontSize: 11,
+    fontSize: 13.6,
+    lineHeight: 17,
+    color: '#656d76',
   },
   hr: {
-    backgroundColor: '#000000',
-    height: 1,
+    backgroundColor: '#d0d7de',
+    height: 4,
+    marginTop: 24,
+    marginBottom: 24,
   },
   blockquote: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    margin: 20,
-    backgroundColor: '#CCCCCC',
+    borderLeftWidth: 4,
+    borderLeftColor: '#d0d7de',
+    paddingHorizontal: 16,
+    marginBottom: 16,
   },
   inlineCode: {
-    borderRadius: 3,
-    borderWidth: 1,
-    fontFamily: 'Courier',
-    fontWeight: 'bold',
+    borderRadius: 6,
+    backgroundColor: 'rgba(175,184,193,0.2)',
+    fontFamily: monospaceFont,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    fontSize: 13.6,
   },
-  list: {},
+  list: {
+    marginBottom: 16,
+  },
   listItem: {
     flex: 1,
     flexWrap: 'wrap',
@@ -71,53 +107,34 @@ export const styles = StyleSheet.create({
   listUnorderedItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
+    marginTop: 4,
   },
   listUnorderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
-    ...Platform.select({
-      [PlatformEnum.IOS]: {
-        lineHeight: 36,
-      },
-      [PlatformEnum.ANDROID]: {
-        lineHeight: 30,
-      },
-      default: {
-        lineHeight: 30,
-      },
-    }),
+    lineHeight: 24,
   },
   listUnorderedItemText: {
-    fontSize: 20,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 24,
   },
   listOrdered: {},
   listOrderedItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
+    marginTop: 4,
   },
   listOrderedItemIcon: {
     marginLeft: 10,
     marginRight: 10,
-    ...Platform.select({
-      [PlatformEnum.IOS]: {
-        lineHeight: 36,
-      },
-      [PlatformEnum.ANDROID]: {
-        lineHeight: 30,
-      },
-      default: {
-        lineHeight: 30,
-      },
-    }),
+    lineHeight: 24,
   },
   listOrderedItemText: {
-    fontWeight: 'bold',
-    lineHeight: 20,
+    lineHeight: 24,
   },
   paragraph: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 0,
+    marginBottom: 16,
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -132,40 +149,55 @@ export const styles = StyleSheet.create({
   },
   table: {
     borderWidth: 1,
-    borderColor: '#000000',
-    borderRadius: 3,
+    borderColor: '#d0d7de',
+    marginBottom: 16,
   },
-  tableHeader: {},
+  tableHeader: {
+    backgroundColor: '#f6f8fa',
+  },
   tableHeaderCell: {
     flex: 1,
-    padding: 5,
+    paddingVertical: 6,
+    paddingHorizontal: 13,
+    borderWidth: 1,
+    borderColor: '#d0d7de',
+    fontWeight: '600',
   },
   tableRow: {
     borderBottomWidth: 1,
-    borderColor: '#000000',
+    borderColor: '#d0d7de',
     flexDirection: 'row',
   },
   tableRowCell: {
     flex: 1,
-    padding: 5,
+    paddingVertical: 6,
+    paddingHorizontal: 13,
+    borderWidth: 1,
+    borderColor: '#d0d7de',
   },
-  text: {},
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
   strikethrough: {
     textDecorationLine: 'line-through',
   },
   link: {
-    textDecorationLine: 'underline',
+    color: '#0969da',
   },
   blocklink: {
     flex: 1,
-    borderColor: '#000000',
+    borderColor: '#d0d7de',
     borderBottomWidth: 1,
   },
   u: {
-    borderColor: '#000000',
+    borderColor: '#d0d7de',
     borderBottomWidth: 1,
   },
   image: {
     flex: 1,
+  },
+  pre: {
+    marginBottom: 16,
   },
 });
