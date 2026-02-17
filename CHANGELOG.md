@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.1
+
+### Bug Fixes
+
+- Resolved open issues and added missing render rules
+
+### Documentation
+
+- Moved v3 examples from `doc/example/` into `example/screens/` as v4 TypeScript function components
+- Added React Navigation with 5 interactive example screens (basic, file loading, custom styles, custom rules, custom renderer)
+- Created GitHub wiki with 8 documentation pages (Getting Started, Custom Styles, Custom Rules, Custom Renderer, Plugins, API Reference, Migration from v3)
+- Added npm/GitHub badges, package links, Examples section, and Documentation section to README
+- Removed outdated `doc/` directory
+
 ## 4.0.0
 
 ### Breaking Changes

@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/react-native-markdown-renderer.svg)](https://www.npmjs.com/package/react-native-markdown-renderer)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-markdown-renderer.svg)](https://www.npmjs.com/package/react-native-markdown-renderer)
-[![GitHub](https://img.shields.io/github/license/mientjan/react-native-markdown-renderer)](https://github.com/mientjan/react-native-markdown-renderer)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mientjan/react-native-markdown-renderer/blob/master/LICENSE)
 
 A 100% CommonMark-compatible markdown renderer for React Native using native components (not WebView). All elements are rendered as native React Native components that can be overwritten when needed.
 
