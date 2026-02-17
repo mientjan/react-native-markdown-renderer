@@ -21,6 +21,9 @@ config.resolver.extraNodeModules = {
   'markdown-it': path.resolve(libraryRoot, 'node_modules', 'markdown-it'),
 };
 
+// Allow importing .md files as assets
+config.resolver.assetExts.push('md');
+
 // Block the library's node_modules for packages the example already provides
 config.resolver.blockList = [
   new RegExp(
