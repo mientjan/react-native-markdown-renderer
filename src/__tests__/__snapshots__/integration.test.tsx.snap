@@ -1,0 +1,2304 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = `
+<View
+  style={{}}
+>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 10,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 32,
+            "lineHeight": 40,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 1
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 24,
+            "lineHeight": 30,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 2
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 3
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        This is a 
+      </Text>
+      <Text
+        style={
+          {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <Text>
+          bold
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "fontStyle": "italic",
+          }
+        }
+      >
+        <Text>
+          italic
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "textDecorationLine": "line-through",
+          }
+        }
+      >
+        <Text>
+          strikethrough
+        </Text>
+      </Text>
+      <Text>
+         paragraph.
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          {
+            "color": "#0969da",
+          }
+        }
+      >
+        <Text>
+          A link
+        </Text>
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "uri": "https://example.com/image.png",
+        }
+      }
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        1
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        2
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
+          }
+        }
+      >
+        inline code
+      </Text>
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
+      }
+    }
+  >
+    code block
+
+  </Text>
+  <View
+    style={
+      {
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-start",
+          "marginBottom": 16,
+          "marginTop": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
+      >
+        <Text>
+          Blockquote text
+        </Text>
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "borderColor": "#d0d7de",
+          "borderWidth": 1,
+          "marginBottom": 16,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#f6f8fa",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header A
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header B
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 1
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        Hard line break follows
+      </Text>
+      <Text>
+        
+
+      </Text>
+      <Text>
+        next line
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Integration renders with a custom render rule override 1`] = `
+<View
+  style={{}}
+>
+  <View
+    testID="custom-heading"
+  >
+    <Text>
+      CUSTOM: 
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 24,
+            "lineHeight": 30,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 2
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 3
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        This is a 
+      </Text>
+      <Text
+        style={
+          {
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <Text>
+          bold
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "fontStyle": "italic",
+          }
+        }
+      >
+        <Text>
+          italic
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "textDecorationLine": "line-through",
+          }
+        }
+      >
+        <Text>
+          strikethrough
+        </Text>
+      </Text>
+      <Text>
+         paragraph.
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          {
+            "color": "#0969da",
+          }
+        }
+      >
+        <Text>
+          A link
+        </Text>
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "uri": "https://example.com/image.png",
+        }
+      }
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        1
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        2
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
+          }
+        }
+      >
+        inline code
+      </Text>
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
+      }
+    }
+  >
+    code block
+
+  </Text>
+  <View
+    style={
+      {
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-start",
+          "marginBottom": 16,
+          "marginTop": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
+      >
+        <Text>
+          Blockquote text
+        </Text>
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "borderColor": "#d0d7de",
+          "borderWidth": 1,
+          "marginBottom": 16,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#f6f8fa",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header A
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header B
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 1
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        Hard line break follows
+      </Text>
+      <Text>
+        
+
+      </Text>
+      <Text>
+        next line
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Integration renders with custom styles applied 1`] = `
+<View
+  style={{}}
+>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 10,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "color": "red",
+            "fontSize": 48,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 1
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 16,
+          "marginTop": 24,
+        },
+        {
+          "borderBottomColor": "#d8dee4",
+          "borderBottomWidth": 1,
+          "paddingBottom": 8,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 24,
+            "lineHeight": 30,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 2
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "marginBottom": 16,
+        "marginTop": 24,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "fontWeight": "600",
+          },
+          {
+            "fontSize": 20,
+            "lineHeight": 25,
+          },
+        ]
+      }
+    >
+      <Text>
+        Heading 3
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        This is a 
+      </Text>
+      <Text
+        style={
+          {
+            "color": "blue",
+          }
+        }
+      >
+        <Text>
+          bold
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "fontStyle": "italic",
+          }
+        }
+      >
+        <Text>
+          italic
+        </Text>
+      </Text>
+      <Text>
+         and 
+      </Text>
+      <Text
+        style={
+          {
+            "textDecorationLine": "line-through",
+          }
+        }
+      >
+        <Text>
+          strikethrough
+        </Text>
+      </Text>
+      <Text>
+         paragraph.
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        onPress={[Function]}
+        style={
+          {
+            "color": "#0969da",
+          }
+        }
+      >
+        <Text>
+          A link
+        </Text>
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "uri": "https://example.com/image.png",
+        }
+      }
+      style={
+        {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        ·
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Unordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "marginBottom": 16,
+        },
+        {},
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        1
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 1
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "marginTop": 4,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "lineHeight": 24,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+      >
+        2
+        .
+      </Text>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "flexWrap": "wrap",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "flex-start",
+              "marginBottom": 16,
+              "marginTop": 0,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Ordered item 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "backgroundColor": "rgba(175,184,193,0.2)",
+            "borderRadius": 6,
+            "fontFamily": "Menlo",
+            "fontSize": 13.6,
+            "paddingHorizontal": 6,
+            "paddingVertical": 3,
+          }
+        }
+      >
+        inline code
+      </Text>
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "backgroundColor": "#f6f8fa",
+        "borderRadius": 6,
+        "fontFamily": "Menlo",
+        "fontSize": 13.6,
+        "lineHeight": 20,
+        "marginBottom": 16,
+        "padding": 16,
+      }
+    }
+  >
+    code block
+
+  </Text>
+  <View
+    style={
+      {
+        "borderLeftColor": "#d0d7de",
+        "borderLeftWidth": 4,
+        "marginBottom": 16,
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-start",
+          "marginBottom": 16,
+          "marginTop": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          }
+        }
+      >
+        <Text>
+          Blockquote text
+        </Text>
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "borderColor": "#d0d7de",
+          "borderWidth": 1,
+          "marginBottom": 16,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#f6f8fa",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header A
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "fontWeight": "600",
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Header B
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          [
+            {
+              "borderBottomWidth": 1,
+              "borderColor": "#d0d7de",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 1
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "borderColor": "#d0d7de",
+                "borderWidth": 1,
+                "flex": 1,
+                "paddingHorizontal": 13,
+                "paddingVertical": 6,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              }
+            }
+          >
+            <Text>
+              Cell 2
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#d0d7de",
+          "height": 4,
+          "marginBottom": 24,
+          "marginTop": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "flex-start",
+        "marginBottom": 16,
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        }
+      }
+    >
+      <Text>
+        Hard line break follows
+      </Text>
+      <Text>
+        
+
+      </Text>
+      <Text>
+        next line
+      </Text>
+    </Text>
+  </View>
+</View>
+`;

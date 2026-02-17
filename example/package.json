@@ -1,32 +1,25 @@
 {
   "name": "example",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "react-native run-ios",
-    "android": "react-native run-android",
-    "dev": "node ../bin/watch",
-    "test": "jest"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "linkify-it": "^2.0.3",
-    "markdown-it-checkbox": "^1.1.0",
-    "prop-types": "^15.6.1",
-    "react": "16.3.1",
-    "react-native": "0.55.2",
-    "react-native-fit-image": "^1.5.4",
-    "react-native-markdown-renderer": "^3.2.0",
-    "react-native-tab-view": "0.0.77"
+    "expo": "~54.0.33",
+    "expo-asset": "~12.0.12",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-web": "^0.21.0"
   },
   "devDependencies": {
-    "babel-jest": "22.4.3",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "22.4.3",
-    "markdown-it": "^8.4.1",
-    "react-test-renderer": "16.3.1"
+    "@types/react": "~19.1.0",
+    "typescript": "~5.9.2"
   },
-  "jest": {
-    "preset": "react-native"
-  }
+  "private": true
 }
