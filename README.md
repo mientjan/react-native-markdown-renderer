@@ -1,6 +1,12 @@
 # React Native Markdown Renderer
 
+[![npm version](https://img.shields.io/npm/v/react-native-markdown-renderer.svg)](https://www.npmjs.com/package/react-native-markdown-renderer)
+[![npm downloads](https://img.shields.io/npm/dm/react-native-markdown-renderer.svg)](https://www.npmjs.com/package/react-native-markdown-renderer)
+[![GitHub](https://img.shields.io/github/license/mientjan/react-native-markdown-renderer)](https://github.com/mientjan/react-native-markdown-renderer)
+
 A 100% CommonMark-compatible markdown renderer for React Native using native components (not WebView). All elements are rendered as native React Native components that can be overwritten when needed.
+
+**npm:** [react-native-markdown-renderer](https://www.npmjs.com/package/react-native-markdown-renderer) | **GitHub:** [mientjan/react-native-markdown-renderer](https://github.com/mientjan/react-native-markdown-renderer) | **Changelog:** [CHANGELOG.md](CHANGELOG.md)
 
 ## Installation
 
@@ -38,6 +44,26 @@ This is **bold** and *italic* text.
 `}
   </Markdown>
 );
+```
+
+## Examples
+
+The [`example/`](example/) directory contains an Expo app with multiple screens demonstrating key features:
+
+| Screen | Description | Source |
+|--------|-------------|--------|
+| Basic Markdown | Default rendering | [`BasicExample.tsx`](example/screens/BasicExample.tsx) |
+| From .md File | Load markdown from a file asset | [`MarkdownFileExample.tsx`](example/screens/MarkdownFileExample.tsx) |
+| Custom Styles | Override default styles | [`CustomStylesExample.tsx`](example/screens/CustomStylesExample.tsx) |
+| Custom Rules | Replace render rules | [`CustomRulesExample.tsx`](example/screens/CustomRulesExample.tsx) |
+| Custom Renderer | Provide a custom AstRenderer | [`CustomRendererExample.tsx`](example/screens/CustomRendererExample.tsx) |
+
+To run the example app:
+
+```sh
+cd example
+npm install
+npx expo start
 ```
 
 ## TypeScript Support
@@ -140,6 +166,18 @@ const App = () => (
 - Horizontal rules
 - Typographic replacements
 - Plugins for extra syntax support via [markdown-it plugins](https://www.npmjs.com/browse/keyword/markdown-it-plugin)
+
+## Documentation
+
+For comprehensive documentation, visit the [Wiki](https://github.com/mientjan/react-native-markdown-renderer/wiki):
+
+- [Getting Started](https://github.com/mientjan/react-native-markdown-renderer/wiki/Getting-Started)
+- [Custom Styles](https://github.com/mientjan/react-native-markdown-renderer/wiki/Custom-Styles)
+- [Custom Rules](https://github.com/mientjan/react-native-markdown-renderer/wiki/Custom-Rules)
+- [Custom Renderer](https://github.com/mientjan/react-native-markdown-renderer/wiki/Custom-Renderer)
+- [Plugins](https://github.com/mientjan/react-native-markdown-renderer/wiki/Plugins)
+- [API Reference](https://github.com/mientjan/react-native-markdown-renderer/wiki/API-Reference)
+- [Migration from v3](https://github.com/mientjan/react-native-markdown-renderer/wiki/Migration-from-v3)
 
 ## Migration from v3 to v4
 
