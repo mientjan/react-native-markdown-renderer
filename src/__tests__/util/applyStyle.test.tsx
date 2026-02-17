@@ -27,6 +27,27 @@ describe('applyStyle', () => {
     expect(result[0].type).toBe(ViewComponent);
   });
 
+  it('handles null children without crashing', () => {
+    const children = [
+      null,
+      React.createElement(TextComponent, { key: '1', style: { color: 'red' } }, 'hello'),
+    ] as any;
+    const result = applyStyle(children, { fontWeight: 'bold' }, 'Text');
+    expect(result).toHaveLength(2);
+    expect(result[0]).toBeNull();
+    expect(result[1].props.style).toEqual(expect.arrayContaining([{ color: 'red' }, { fontWeight: 'bold' }]));
+  });
+
+  it('handles undefined children without crashing', () => {
+    const children = [
+      undefined,
+      React.createElement(TextComponent, { key: '1', style: { color: 'red' } }, 'hello'),
+    ] as any;
+    const result = applyStyle(children, { fontWeight: 'bold' }, 'Text');
+    expect(result).toHaveLength(2);
+    expect(result[0]).toBeUndefined();
+  });
+
   it('normalizes single style to array', () => {
     const children = [React.createElement(TextComponent, { key: '1', style: { color: 'red' } }, 'hello')];
     const singleStyle = { fontWeight: 'bold' };

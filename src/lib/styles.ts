@@ -191,8 +191,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   u: {
-    borderColor: '#d0d7de',
-    borderBottomWidth: 1,
+    textDecorationLine: 'underline',
   },
   image: {
     flex: 1,
@@ -200,4 +199,9 @@ export const styles = StyleSheet.create({
   pre: {
     marginBottom: 16,
   },
+  softbreak: {},
+  htmlBlock: {
+    marginBottom: 16,
+  },
+  htmlInline: {},
 });

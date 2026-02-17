@@ -78,4 +78,11 @@ describe('Integration', () => {
     const tree = create(<Markdown>{markdown}</Markdown>);
     expect(tree.toJSON()).toBeTruthy();
   });
+
+  it('handles backslash escaping correctly (Issue #146)', () => {
+    const tree = create(<Markdown>{'7\\.'}</Markdown>);
+    const json = JSON.stringify(tree.toJSON());
+    expect(json).toContain('7.');
+    expect(json).not.toContain('7\\.');
+  });
 });

@@ -25,7 +25,13 @@ export default class AstRenderer {
     const renderFunction = this._renderRules[type];
 
     if (!renderFunction) {
-      throw new Error(`${type} renderRule not defined example: <Markdown rules={renderRules}>`);
+      const fallback = this._renderRules['unknown'];
+      if (!fallback) {
+        throw new Error(
+          `${type} renderRule not defined and no "unknown" fallback rule exists. Add a rule via <Markdown rules={{${type}: ...}}>`
+        );
+      }
+      return fallback;
     }
     return renderFunction;
   };

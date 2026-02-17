@@ -258,6 +258,30 @@ const renderRules: RenderRules = {
   image: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return <Image key={node.key} style={styles.image as any} source={{ uri: node.attributes.src }} />;
   },
+
+  html_block: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
+    return (
+      <View key={node.key} style={styles.htmlBlock as any}>
+        <Text>{node.content}</Text>
+      </View>
+    );
+  },
+
+  html_inline: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
+    return (
+      <Text key={node.key} style={styles.htmlInline as any}>
+        {node.content}
+      </Text>
+    );
+  },
+
+  u: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
+    return (
+      <Text key={node.key} style={styles.u as any}>
+        {children}
+      </Text>
+    );
+  },
 };
 
 export default renderRules;

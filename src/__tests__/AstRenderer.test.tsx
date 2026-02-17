@@ -58,9 +58,27 @@ describe('AstRenderer', () => {
     expect(renderer.getRenderFunction('text')).toBe(textRule);
   });
 
-  it('getRenderFunction throws for an unknown type', () => {
+  it('getRenderFunction falls back to the unknown rule when type is not defined', () => {
+    const unknownRule = jest.fn();
+    const rulesWithUnknown = { ...rules, unknown: unknownRule };
+    const renderer = new AstRenderer(rulesWithUnknown, mockStyles);
+    expect(renderer.getRenderFunction('html_block')).toBe(unknownRule);
+  });
+
+  it('getRenderFunction throws when type is not defined and no unknown rule exists', () => {
     const renderer = new AstRenderer(rules, mockStyles);
-    expect(() => renderer.getRenderFunction('unknown_type')).toThrow('unknown_type renderRule not defined');
+    expect(() => renderer.getRenderFunction('html_block')).toThrow(
+      'html_block renderRule not defined and no "unknown" fallback rule exists'
+    );
+  });
+
+  it('renderNode uses the unknown fallback for undefined token types', () => {
+    const unknownRule = jest.fn((node: ASTNode) => React.createElement('Text', { key: node.key }, node.type));
+    const rulesWithUnknown = { ...rules, unknown: unknownRule };
+    const renderer = new AstRenderer(rulesWithUnknown, mockStyles);
+    const node = makeNode({ type: 'html_block', content: '<div>test</div>' });
+    renderer.renderNode(node, []);
+    expect(unknownRule).toHaveBeenCalledTimes(1);
   });
 
   it('renderNode calls the correct render function for the node type', () => {

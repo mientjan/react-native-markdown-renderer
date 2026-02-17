@@ -39,6 +39,9 @@ const mockStyles: MarkdownStyles = {
   strikethrough: {},
   blocklink: {},
   pre: {},
+  htmlBlock: { marginBottom: 16 },
+  htmlInline: {},
+  u: { textDecorationLine: 'underline' },
 };
 
 function makeNode(overrides: Partial<ASTNode> = {}): ASTNode {
@@ -96,6 +99,9 @@ describe('renderRules', () => {
     'span',
     's',
     'pre',
+    'html_block',
+    'html_inline',
+    'u',
   ];
 
   it('has all expected rule keys', () => {
@@ -144,5 +150,33 @@ describe('renderRules', () => {
     const json = tree.toJSON() as any;
     expect(json.type).toBe('Image');
     expect(json.props.source).toEqual({ uri: 'https://example.com/img.png' });
+  });
+
+  it('html_block rule renders raw HTML content in a View', () => {
+    const node = makeNode({ type: 'html_block', content: '<div>test</div>' });
+    const result = renderRules.html_block(node, [], [], mockStyles);
+    const tree = create(result as React.ReactElement);
+    const json = tree.toJSON() as any;
+    expect(json.type).toBe('View');
+    expect(json.children[0].type).toBe('Text');
+    expect(json.children[0].children).toContain('<div>test</div>');
+  });
+
+  it('html_inline rule renders raw HTML content as inline Text', () => {
+    const node = makeNode({ type: 'html_inline', content: '<br>' });
+    const result = renderRules.html_inline(node, [], [], mockStyles);
+    const tree = create(result as React.ReactElement);
+    const json = tree.toJSON() as any;
+    expect(json.type).toBe('Text');
+    expect(json.children).toContain('<br>');
+  });
+
+  it('u rule renders children with underline style', () => {
+    const node = makeNode({ type: 'u', key: 'u-1' });
+    const result = renderRules.u(node, ['underlined text'], [], mockStyles);
+    const tree = create(result as React.ReactElement);
+    const json = tree.toJSON() as any;
+    expect(json.type).toBe('Text');
+    expect(json.props.style).toEqual({ textDecorationLine: 'underline' });
   });
 });

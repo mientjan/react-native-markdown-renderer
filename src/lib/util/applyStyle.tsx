@@ -10,6 +10,9 @@ export default function applyStyle(
   const styleArray = Array.isArray(styles) ? styles : [styles];
 
   return children.map((child) => {
+    if (child == null) {
+      return child;
+    }
     const displayName = (child.type as { displayName?: string })?.displayName;
     if (displayName === type) {
       return <Text key={child.key} {...child.props} style={[].concat(child.props.style, styleArray as never[])} />;
