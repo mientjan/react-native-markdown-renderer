@@ -7,6 +7,13 @@ import hasParents from './util/hasParents';
 import applyStyle from './util/applyStyle';
 import type { ASTNode, RenderRules, MarkdownStyles } from '../types';
 
+function trimTrailingNewline(content: string): string {
+  if (content.length > 0 && content.charAt(content.length - 1) === '\n') {
+    return content.substring(0, content.length - 1);
+  }
+  return content;
+}
+
 const renderRules: RenderRules = {
   unknown: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return (
@@ -52,17 +59,35 @@ const renderRules: RenderRules = {
     );
   },
 
-  link: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
+  link: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles, ...args: unknown[]) => {
+    const onLinkPress = args[0] as ((url: string) => boolean | void) | undefined;
+    const handlePress = () => {
+      const url = node.attributes.href;
+      if (onLinkPress) {
+        onLinkPress(url);
+      } else {
+        openUrl(url);
+      }
+    };
     return (
-      <Text key={node.key} style={styles.link as any} onPress={() => openUrl(node.attributes.href)}>
+      <Text key={node.key} style={styles.link as any} onPress={handlePress}>
         {children}
       </Text>
     );
   },
 
-  blocklink: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
+  blocklink: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles, ...args: unknown[]) => {
+    const onLinkPress = args[0] as ((url: string) => boolean | void) | undefined;
+    const handlePress = () => {
+      const url = node.attributes.href;
+      if (onLinkPress) {
+        onLinkPress(url);
+      } else {
+        openUrl(url);
+      }
+    };
     return (
-      <TouchableWithoutFeedback key={node.key} onPress={() => openUrl(node.attributes.href)}>
+      <TouchableWithoutFeedback key={node.key} onPress={handlePress}>
         <View style={styles.image as any}>{children}</View>
       </TouchableWithoutFeedback>
     );
@@ -123,7 +148,7 @@ const renderRules: RenderRules = {
   ),
 
   hardbreak: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => (
-    <View key={node.key} style={styles.hardbreak as any} />
+    <Text key={node.key}>{'\n'}</Text>
   ),
 
   blockquote: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => (
@@ -143,7 +168,7 @@ const renderRules: RenderRules = {
   code_block: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return (
       <Text key={node.key} style={styles.codeBlock as any}>
-        {node.content}
+        {trimTrailingNewline(node.content)}
       </Text>
     );
   },
@@ -151,7 +176,7 @@ const renderRules: RenderRules = {
   fence: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
     return (
       <Text key={node.key} style={styles.codeBlock as any}>
-        {node.content}
+        {trimTrailingNewline(node.content)}
       </Text>
     );
   },
@@ -189,10 +214,16 @@ const renderRules: RenderRules = {
     }
 
     if (hasParents(parent, 'ordered_list')) {
+      const orderedListParent = parent.find((el) => el.type === 'ordered_list');
+      const startNumber = orderedListParent?.attributes?.start
+        ? parseInt(orderedListParent.attributes.start, 10)
+        : 1;
+      const listItemNumber = startNumber + node.index;
+
       return (
         <View key={node.key} style={styles.listOrderedItem as any}>
           <Text style={styles.listOrderedItemIcon as any}>
-            {node.index + 1}
+            {listItemNumber}
             {node.markup}
           </Text>
           <View style={[styles.listItem as any]}>{children}</View>
@@ -255,8 +286,32 @@ const renderRules: RenderRules = {
     <Text key={node.key}>{'\n'}</Text>
   ),
 
-  image: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {
-    return <Image key={node.key} style={styles.image as any} source={{ uri: node.attributes.src }} />;
+  image: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles, ...args: unknown[]) => {
+    const allowedImageHandlers = (args[0] as string[] | undefined) ?? [
+      'data:image/png;base64', 'data:image/gif;base64', 'data:image/jpeg;base64', 'https://', 'http://',
+    ];
+    const defaultImageHandler = args.length > 1 ? (args[1] as string | null) : 'http://';
+
+    let { src } = node.attributes;
+
+    const isAllowed = allowedImageHandlers.some((handler) => src.startsWith(handler));
+
+    if (!isAllowed) {
+      if (defaultImageHandler == null) {
+        return null;
+      }
+      src = `${defaultImageHandler}${src}`;
+    }
+
+    return (
+      <Image
+        key={node.key}
+        style={styles.image as any}
+        source={{ uri: src }}
+        accessible={!!node.attributes.alt}
+        accessibilityLabel={node.attributes.alt || undefined}
+      />
+    );
   },
 
   html_block: (node: ASTNode, children: ReactNode[], parent: ASTNode[], styles: MarkdownStyles) => {

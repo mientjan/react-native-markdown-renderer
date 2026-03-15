@@ -225,6 +225,7 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     }
   >
     <Image
+      accessible={false}
       source={
         {
           "uri": "https://example.com/image.png",
@@ -539,7 +540,6 @@ exports[`Integration renders a comprehensive markdown document (snapshot) 1`] = 
     }
   >
     code block
-
   </Text>
   <View
     style={
@@ -972,6 +972,7 @@ exports[`Integration renders with a custom render rule override 1`] = `
     }
   >
     <Image
+      accessible={false}
       source={
         {
           "uri": "https://example.com/image.png",
@@ -1286,7 +1287,6 @@ exports[`Integration renders with a custom render rule override 1`] = `
     }
   >
     code block
-
   </Text>
   <View
     style={
@@ -1558,6 +1558,7 @@ exports[`Integration renders with custom styles applied 1`] = `
           {
             "color": "red",
             "fontSize": 48,
+            "lineHeight": 40,
           },
         ]
       }
@@ -1663,6 +1664,7 @@ exports[`Integration renders with custom styles applied 1`] = `
         style={
           {
             "color": "blue",
+            "fontWeight": "bold",
           }
         }
       >
@@ -1750,6 +1752,7 @@ exports[`Integration renders with custom styles applied 1`] = `
     }
   >
     <Image
+      accessible={false}
       source={
         {
           "uri": "https://example.com/image.png",
@@ -2064,7 +2067,6 @@ exports[`Integration renders with custom styles applied 1`] = `
     }
   >
     code block
-
   </Text>
   <View
     style={

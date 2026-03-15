@@ -180,4 +180,101 @@ describe('Markdown', () => {
 
     expect(first).not.toBe(second);
   });
+
+  describe('onLinkPress prop', () => {
+    it('renders with onLinkPress without crashing', () => {
+      const handler = jest.fn();
+      const tree = create(
+        <Markdown onLinkPress={handler}>{'[click](https://example.com)'}</Markdown>
+      );
+      expect(tree.toJSON()).toBeTruthy();
+    });
+  });
+
+  describe('mergeStyle prop', () => {
+    it('deep-merges styles by default (mergeStyle=true)', () => {
+      const customStyle = { heading1: { color: 'red' } };
+      const tree = create(<Markdown style={customStyle}>{'# Hello'}</Markdown>);
+      const json = JSON.stringify(tree.toJSON());
+      // Should render without crashing and include heading
+      expect(json).toContain('Hello');
+    });
+
+    it('shallow-replaces styles when mergeStyle=false', () => {
+      const customStyle = { heading1: { color: 'red' } };
+      const tree = create(
+        <Markdown style={customStyle} mergeStyle={false}>{'# Hello'}</Markdown>
+      );
+      expect(tree.toJSON()).toBeTruthy();
+    });
+  });
+
+  describe('debugPrintTree prop', () => {
+    it('logs tree structure when enabled', () => {
+      const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+      create(<Markdown debugPrintTree>{'# Hello'}</Markdown>);
+      expect(logSpy).toHaveBeenCalled();
+      logSpy.mockRestore();
+    });
+
+    it('does not log when debugPrintTree is false', () => {
+      const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+      create(<Markdown debugPrintTree={false}>{'# Hello'}</Markdown>);
+      expect(logSpy).not.toHaveBeenCalled();
+      logSpy.mockRestore();
+    });
+  });
+
+  describe('maxTopLevelChildren prop', () => {
+    it('limits rendered top-level children', () => {
+      const markdown = '# One\n\n# Two\n\n# Three\n\n# Four';
+      const tree = create(
+        <Markdown maxTopLevelChildren={2}>{markdown}</Markdown>
+      );
+      const root = tree.toJSON() as any;
+      // 2 children + 1 "..." exceeded item
+      expect(root.children.length).toBe(3);
+    });
+
+    it('uses custom topLevelMaxExceededItem', () => {
+      const markdown = '# One\n\n# Two\n\n# Three';
+      const tree = create(
+        <Markdown
+          maxTopLevelChildren={1}
+          topLevelMaxExceededItem={<Text key="more">SEE MORE</Text>}
+        >
+          {markdown}
+        </Markdown>
+      );
+      const json = JSON.stringify(tree.toJSON());
+      expect(json).toContain('SEE MORE');
+    });
+
+    it('renders all children when maxTopLevelChildren is not exceeded', () => {
+      const tree = create(
+        <Markdown maxTopLevelChildren={100}>{'# Just one heading'}</Markdown>
+      );
+      expect(tree.toJSON()).toBeTruthy();
+    });
+  });
+
+  describe('allowedImageHandlers and defaultImageHandler props', () => {
+    it('renders with custom allowedImageHandlers without crashing', () => {
+      const tree = create(
+        <Markdown allowedImageHandlers={['https://']}>
+          {'![alt](https://example.com/img.png)'}
+        </Markdown>
+      );
+      expect(tree.toJSON()).toBeTruthy();
+    });
+
+    it('renders with defaultImageHandler=null without crashing', () => {
+      const tree = create(
+        <Markdown defaultImageHandler={null}>
+          {'![alt](https://example.com/img.png)'}
+        </Markdown>
+      );
+      expect(tree.toJSON()).toBeTruthy();
+    });
+  });
 });

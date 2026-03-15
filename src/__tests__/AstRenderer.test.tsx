@@ -120,4 +120,111 @@ describe('AstRenderer', () => {
     expect(root.type).toBe('View');
     expect(root.children).toHaveLength(1);
   });
+
+  describe('options', () => {
+    it('accepts options as third constructor argument', () => {
+      const renderer = new AstRenderer(rules, mockStyles, {
+        onLinkPress: () => {},
+        debugPrintTree: false,
+        maxTopLevelChildren: 5,
+      });
+      expect(renderer).toBeDefined();
+    });
+
+    it('debugPrintTree logs node types to console', () => {
+      const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+      const renderer = new AstRenderer(rules, mockStyles, { debugPrintTree: true });
+      const node = makeNode({ type: 'text', content: 'hello' });
+      renderer.renderNode(node, []);
+      expect(logSpy).toHaveBeenCalledWith('text');
+      logSpy.mockRestore();
+    });
+
+    it('debugPrintTree logs depth-prefixed for nested nodes', () => {
+      const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+      const renderer = new AstRenderer(rules, mockStyles, { debugPrintTree: true });
+      const childNode = makeNode({ type: 'text', key: 'child-1', content: 'child' });
+      const parentNode = makeNode({ type: 'strong', key: 'parent-1', children: [childNode] });
+      renderer.renderNode(parentNode, []);
+      expect(logSpy).toHaveBeenCalledWith('strong');
+      expect(logSpy).toHaveBeenCalledWith('-text');
+      logSpy.mockRestore();
+    });
+
+    it('maxTopLevelChildren limits rendered children', () => {
+      const renderer = new AstRenderer(rules, mockStyles, { maxTopLevelChildren: 1 });
+      const nodes = [
+        makeNode({ type: 'text', key: 'n1', content: 'first' }),
+        makeNode({ type: 'text', key: 'n2', content: 'second' }),
+        makeNode({ type: 'text', key: 'n3', content: 'third' }),
+      ];
+      const result = renderer.render(nodes);
+      const tree = create(result);
+      const root = tree.toJSON() as any;
+      // 1 rendered node + 1 "..." exceeded item
+      expect(root.children).toHaveLength(2);
+    });
+
+    it('maxTopLevelChildren appends custom topLevelMaxExceededItem', () => {
+      const customExceeded = React.createElement('Text', { key: 'custom-exceeded' }, 'MORE...');
+      const renderer = new AstRenderer(rules, mockStyles, {
+        maxTopLevelChildren: 1,
+        topLevelMaxExceededItem: customExceeded,
+      });
+      const nodes = [
+        makeNode({ type: 'text', key: 'n1', content: 'first' }),
+        makeNode({ type: 'text', key: 'n2', content: 'second' }),
+      ];
+      const result = renderer.render(nodes);
+      const json = JSON.stringify(create(result).toJSON());
+      expect(json).toContain('MORE...');
+    });
+
+    it('does not limit children when maxTopLevelChildren is null', () => {
+      const renderer = new AstRenderer(rules, mockStyles, { maxTopLevelChildren: null });
+      const nodes = [
+        makeNode({ type: 'text', key: 'n1', content: 'first' }),
+        makeNode({ type: 'text', key: 'n2', content: 'second' }),
+      ];
+      const result = renderer.render(nodes);
+      const tree = create(result);
+      const root = tree.toJSON() as any;
+      expect(root.children).toHaveLength(2);
+    });
+
+    it('passes onLinkPress as extra arg for link nodes', () => {
+      const linkRule = jest.fn((node: ASTNode, children: any[], parent: any[], styles: any, ...args: any[]) => {
+        return React.createElement('Text', { key: node.key }, 'link');
+      });
+      const onLinkPress = jest.fn();
+      const renderer = new AstRenderer(
+        { ...rules, link: linkRule },
+        mockStyles,
+        { onLinkPress }
+      );
+      const linkNode = makeNode({ type: 'link', key: 'link-1', attributes: { href: 'https://example.com' } });
+      renderer.renderNode(linkNode, []);
+      expect(linkRule).toHaveBeenCalledWith(
+        linkNode, [], [], mockStyles, onLinkPress
+      );
+    });
+
+    it('passes allowedImageHandlers and defaultImageHandler as extra args for image nodes', () => {
+      const imageRule = jest.fn((node: ASTNode, children: any[], parent: any[], styles: any, ...args: any[]) => {
+        return React.createElement('Image', { key: node.key });
+      });
+      const handlers = ['https://'];
+      const defaultHandler = 'https://';
+      const renderer = new AstRenderer(
+        { ...rules, image: imageRule },
+        mockStyles,
+        { allowedImageHandlers: handlers, defaultImageHandler: defaultHandler }
+      );
+      const imageNode = makeNode({ type: 'image', key: 'img-1', attributes: { src: 'https://img.png' } });
+      renderer.renderNode(imageNode, []);
+      expect(imageRule).toHaveBeenCalledWith(
+        imageNode, [], [], mockStyles, handlers, defaultHandler
+      );
+    });
+  });
 });

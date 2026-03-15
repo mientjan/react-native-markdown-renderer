@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
+import { StyleSheet } from 'react-native';
 import parser from './lib/parser';
 import applyStyle from './lib/util/applyStyle';
 import getUniqueID from './lib/util/getUniqueID';
@@ -40,11 +41,47 @@ export interface MarkdownProps {
   renderer?: AstRenderer | ((nodes: ASTNode[]) => ReactElement);
   markdownit?: MarkdownIt;
   plugins?: PluginContainer[];
+  onLinkPress?: (url: string) => boolean | void;
+  mergeStyle?: boolean;
+  debugPrintTree?: boolean;
+  maxTopLevelChildren?: number | null;
+  topLevelMaxExceededItem?: ReactNode;
+  allowedImageHandlers?: string[];
+  defaultImageHandler?: string | null;
 }
 
 export type { MarkdownProps as MarkdownPropsType };
 
 const defaultMarkdownIt = MarkdownIt({ typographer: true });
+
+function mergeStyles(
+  defaultStyles: MarkdownStyles,
+  userStyles?: Partial<MarkdownStyles>,
+  shouldMerge: boolean = true
+): MarkdownStyles {
+  if (!userStyles) {
+    return defaultStyles;
+  }
+
+  if (!shouldMerge) {
+    return { ...defaultStyles, ...userStyles };
+  }
+
+  const merged: MarkdownStyles = { ...defaultStyles };
+
+  for (const key of Object.keys(userStyles)) {
+    if (key in merged) {
+      merged[key] = {
+        ...StyleSheet.flatten(merged[key] as any),
+        ...StyleSheet.flatten(userStyles[key] as any),
+      };
+    } else {
+      merged[key] = userStyles[key];
+    }
+  }
+
+  return merged;
+}
 
 export default function Markdown({
   children,
@@ -53,6 +90,13 @@ export default function Markdown({
   renderer: rendererProp,
   markdownit = defaultMarkdownIt,
   plugins = [],
+  onLinkPress,
+  mergeStyle = true,
+  debugPrintTree,
+  maxTopLevelChildren,
+  topLevelMaxExceededItem,
+  allowedImageHandlers,
+  defaultImageHandler,
 }: MarkdownProps): ReactElement {
   if (rendererProp && rules) {
     console.warn(
@@ -87,17 +131,26 @@ export default function Markdown({
       }
       throw new Error('Provided renderer is not compatible with function or AstRenderer. please change');
     }
+
+    const resolvedStyles = mergeStyles(styles, style, mergeStyle);
+
     return new AstRenderer(
       {
         ...defaultRenderRules,
         ...(rules || {}),
       },
+      resolvedStyles,
       {
-        ...styles,
-        ...style,
+        onLinkPress,
+        debugPrintTree,
+        maxTopLevelChildren,
+        topLevelMaxExceededItem,
+        allowedImageHandlers,
+        defaultImageHandler,
       }
     );
-  }, [rendererProp, rules, style]);
+  }, [rendererProp, rules, style, mergeStyle, onLinkPress, debugPrintTree,
+      maxTopLevelChildren, topLevelMaxExceededItem, allowedImageHandlers, defaultImageHandler]);
 
   const copy = useMemo(() => {
     return Array.isArray(children) ? children.join('') : children;
