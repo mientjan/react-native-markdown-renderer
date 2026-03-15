@@ -35,7 +35,8 @@ type RenderFunction = (
   node: ASTNode,
   children: ReactNode[],
   parentNodes: ASTNode[],
-  styles: MarkdownStyles
+  styles: MarkdownStyles,
+  ...args: unknown[]
 ) => ReactNode;
 ```
 
@@ -45,6 +46,16 @@ type RenderFunction = (
 | `children` | `ReactNode[]` | Already-rendered child elements |
 | `parentNodes` | `ASTNode[]` | Ancestor nodes (for context) |
 | `styles` | `MarkdownStyles` | The resolved style object |
+| `...args` | `unknown[]` | Extra arguments passed by the renderer (see below) |
+
+### Extra Arguments
+
+The built-in render rules receive additional arguments for certain node types. Custom rules can accept these or ignore them — the rest parameter keeps this backward-compatible.
+
+| Node Type | 5th Arg | 6th Arg |
+|-----------|---------|---------|
+| `link`, `blocklink` | `onLinkPress?: (url: string) => boolean \| void` | — |
+| `image` | `allowedImageHandlers: string[]` | `defaultImageHandler: string \| null` |
 
 ## ASTNode Type
 

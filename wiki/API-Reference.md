@@ -10,10 +10,17 @@ The default export. A function component that renders markdown as native React N
 |------|------|---------|-------------|
 | `children` | `string \| string[]` | *required* | Markdown content to render |
 | `rules` | `Partial<RenderRules>` | `{}` | Custom render rules merged with defaults |
-| `style` | `Partial<MarkdownStyles>` | `{}` | Custom styles merged with defaults |
+| `style` | `Partial<MarkdownStyles>` | `{}` | Custom styles (deep-merged with defaults by default) |
+| `mergeStyle` | `boolean` | `true` | Deep-merge custom styles with defaults per key. Set `false` for shallow replace |
 | `renderer` | `AstRenderer \| ((nodes: ASTNode[]) => ReactElement)` | — | Fully custom renderer (overrides `rules` and `style`) |
 | `markdownit` | `MarkdownIt` | `MarkdownIt({ typographer: true })` | Custom markdown-it instance |
 | `plugins` | `PluginContainer[]` | `[]` | markdown-it plugins |
+| `onLinkPress` | `(url: string) => boolean \| void` | — | Custom link press handler. Falls back to `Linking.openURL()` |
+| `debugPrintTree` | `boolean` | `false` | Log the AST tree structure to the console |
+| `maxTopLevelChildren` | `number \| null` | `null` | Limit rendered top-level children (preview mode) |
+| `topLevelMaxExceededItem` | `ReactNode` | `<Text>...</Text>` | Shown when `maxTopLevelChildren` is exceeded |
+| `allowedImageHandlers` | `string[]` | `['data:image/png;base64', ..., 'https://', 'http://']` | Allowed image URL prefixes |
+| `defaultImageHandler` | `string \| null` | `'http://'` | Prepended to images with unrecognized schemes. `null` to skip |
 
 ## Named Exports
 
@@ -23,14 +30,14 @@ The default export. A function component that renders markdown as native React N
 
 ```tsx
 class AstRenderer {
-  constructor(renderRules: RenderRules, style?: MarkdownStyles);
+  constructor(renderRules: RenderRules, style?: MarkdownStyles, options?: AstRendererOptions);
   getRenderFunction(type: string): RenderFunction;
   renderNode(node: ASTNode, parentNodes: ASTNode[]): ReactNode;
   render(nodes: ASTNode[]): ReactElement;
 }
 ```
 
-Combines render rules and styles into a renderer. See [Custom Renderer](Custom-Renderer).
+Combines render rules, styles, and options into a renderer. The optional `options` parameter configures link handling, image validation, debug logging, and preview mode. See [Custom Renderer](Custom-Renderer).
 
 #### `PluginContainer`
 
@@ -175,9 +182,12 @@ type RenderFunction = (
   node: ASTNode,
   children: ReactNode[],
   parentNodes: ASTNode[],
-  styles: MarkdownStyles
+  styles: MarkdownStyles,
+  ...args: unknown[]
 ) => ReactNode;
 ```
+
+The `...args` rest parameter allows built-in rules to receive extra arguments (e.g., `onLinkPress` for links, image handler config for images) without breaking custom rules that only use the first four parameters.
 
 ### `RenderRules`
 
@@ -193,6 +203,21 @@ interface RenderRules {
 type MarkdownStyles = Record<string, unknown>;
 ```
 
+### `AstRendererOptions`
+
+```tsx
+interface AstRendererOptions {
+  onLinkPress?: (url: string) => boolean | void;
+  debugPrintTree?: boolean;
+  maxTopLevelChildren?: number | null;
+  topLevelMaxExceededItem?: ReactNode;
+  allowedImageHandlers?: string[];
+  defaultImageHandler?: string | null;
+}
+```
+
+Configuration object for `AstRenderer`. See [Custom Renderer](Custom-Renderer) for usage.
+
 ### `MarkdownProps`
 
 ```tsx
@@ -200,8 +225,15 @@ interface MarkdownProps {
   children: string | string[];
   rules?: RenderRules;
   style?: Partial<MarkdownStyles>;
+  mergeStyle?: boolean;
   renderer?: AstRenderer | ((nodes: ASTNode[]) => ReactElement);
   markdownit?: MarkdownIt;
   plugins?: PluginContainer[];
+  onLinkPress?: (url: string) => boolean | void;
+  debugPrintTree?: boolean;
+  maxTopLevelChildren?: number | null;
+  topLevelMaxExceededItem?: ReactNode;
+  allowedImageHandlers?: string[];
+  defaultImageHandler?: string | null;
 }
 ```

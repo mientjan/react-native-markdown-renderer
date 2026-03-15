@@ -151,4 +151,18 @@ If your app relies on specific v3 default styles, provide custom styles via the 
 - Exported types: `ASTNode`, `RenderFunction`, `RenderRules`, `MarkdownStyles`, `MarkdownProps`
 - ESM module output via react-native-builder-bob
 - Proper memoization using `useMemo` hooks
-- 99 tests across 17 suites
+- 140 tests across 17 suites
+
+## New in v4.1.0
+
+- **`onLinkPress` prop** — custom link press handler instead of hardcoded `Linking.openURL()`
+- **`mergeStyle` prop** (default `true`) — deep-merge custom styles with defaults per key
+- **`debugPrintTree` prop** — log AST tree structure to console for debugging
+- **`maxTopLevelChildren` + `topLevelMaxExceededItem`** — preview mode to limit rendered children
+- **`allowedImageHandlers` + `defaultImageHandler`** — validate image URLs before rendering
+- **Image accessibility** — `accessibilityLabel` from image alt text
+- **Hardbreak fix** — renders as `<Text>{'\n'}</Text>` instead of `<View>` (fixes Android crash inside Text)
+- **Code block fix** — trims trailing newline from `code_block` and `fence` content
+- **Ordered list fix** — respects the `start` attribute (e.g. `57. foo` renders as 57)
+- **`RenderFunction` type** — extended with `...args: unknown[]` rest parameter for backward-compatible extra arguments
+- **`AstRendererOptions` interface** — new configuration object for `AstRenderer` constructor

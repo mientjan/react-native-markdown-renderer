@@ -12,12 +12,33 @@ The `AstRenderer` class combines render rules and styles into a single renderer 
 import { AstRenderer, renderRules, styles } from 'react-native-markdown-renderer';
 
 const renderer = new AstRenderer(renderRules, styles);
+
+// With options (v4.1.0+):
+const renderer = new AstRenderer(renderRules, styles, {
+  onLinkPress: (url) => console.log('Link:', url),
+  debugPrintTree: false,
+  maxTopLevelChildren: null,
+  allowedImageHandlers: ['https://', 'http://', 'data:image/png;base64'],
+  defaultImageHandler: 'http://',
+});
 ```
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `renderRules` | `RenderRules` | Object mapping node types to render functions |
 | `style` | `MarkdownStyles` (optional) | Styles passed to every render function |
+| `options` | `AstRendererOptions` (optional) | Configuration for link handling, image validation, debug logging, and preview mode |
+
+#### `AstRendererOptions`
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `onLinkPress` | `(url: string) => boolean \| void` | — | Custom link press handler, passed to `link`/`blocklink` rules |
+| `debugPrintTree` | `boolean` | `false` | Log depth-prefixed node types during rendering |
+| `maxTopLevelChildren` | `number \| null` | `null` | Limit top-level rendered children |
+| `topLevelMaxExceededItem` | `ReactNode` | `<Text>...</Text>` | Shown when limit is exceeded |
+| `allowedImageHandlers` | `string[]` | `['data:image/png;base64', ..., 'https://', 'http://']` | Allowed image URL prefixes |
+| `defaultImageHandler` | `string \| null` | `'http://'` | Prepended to unrecognized image URLs. `null` to skip |
 
 ### Example
 
@@ -42,7 +63,11 @@ const customStyles = {
   },
 };
 
-const renderer = new AstRenderer(renderRules, customStyles);
+const renderer = new AstRenderer(renderRules, customStyles, {
+  onLinkPress: (url) => {
+    console.log('Link pressed:', url);
+  },
+});
 
 const App = () => (
   <Markdown renderer={renderer}>
