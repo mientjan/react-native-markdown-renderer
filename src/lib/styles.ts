@@ -74,7 +74,6 @@ export const styles = StyleSheet.create({
   heading6: {
     fontSize: 13.6,
     lineHeight: 17,
-    color: '#656d76',
   },
   hr: {
     backgroundColor: '#d0d7de',

@@ -132,6 +132,19 @@ const renderer = new AstRenderer(renderRules, customStyles);
 <Markdown renderer={renderer}>{copy}</Markdown>
 ```
 
+### 8. Default Styles Overhauled
+
+Default styles were updated to more closely match VS Code's markdown preview. Key changes include:
+
+- **Headings**: added `lineHeight`, `fontWeight: '600'`, and bottom borders on h1/h2
+- **Spacing**: added `marginTop`/`marginBottom` to headings, paragraphs, lists, and code blocks
+- **Code blocks**: monospace font, updated background colors, rounded corners
+- **Blockquote**: left border instead of background color
+- **Text**: base font size changed to 16 with lineHeight 24
+- **Links**: default color changed to `#0969da`
+
+If your app relies on specific v3 default styles, provide custom styles via the `style` prop to preserve them.
+
 ## New in v4
 
 - Full TypeScript source with auto-generated type declarations
