@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.1.0
+
+### New Features
+
+- `onLinkPress` prop — custom link press handler, falls back to `Linking.openURL()`
+- `mergeStyle` prop (default `true`) — deep-merge custom styles with defaults per key instead of replacing entire style objects
+- `debugPrintTree` prop — log the AST tree structure to console for debugging
+- `maxTopLevelChildren` + `topLevelMaxExceededItem` props — preview mode to limit rendered top-level children
+- `allowedImageHandlers` + `defaultImageHandler` props — validate image URL schemes before rendering
+- Image accessibility — `accessibilityLabel` and `accessible` set from image alt text
+
+### Bug Fixes
+
+- Hardbreak renders as `<Text>{'\n'}</Text>` instead of `<View>` — fixes crash on Android when hardbreak is inside a Text node
+- Code block and fence rules trim trailing newline added by markdown-it parser
+- Ordered list respects the `start` attribute (e.g. `57. foo` now renders as 57 instead of 1)
+
+### Internal
+
+- `RenderFunction` type extended with `...args: unknown[]` rest parameter for backward-compatible extra arguments
+- New `AstRendererOptions` interface for renderer configuration
+- `AstRenderer` constructor accepts optional third `options` argument
+- 41 new unit tests (140 total across 17 suites)
+
 ## 4.0.1
 
 ### Bug Fixes

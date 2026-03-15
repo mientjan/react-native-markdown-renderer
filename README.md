@@ -86,11 +86,13 @@ import Markdown, {
 
 ## Custom Styles
 
+By default, custom styles are **deep-merged** with the built-in defaults — so you only need to specify properties you want to override. Set `mergeStyle={false}` to replace entire style objects instead.
+
 ```tsx
 import Markdown from 'react-native-markdown-renderer';
 
 const customStyles = {
-  heading1: { fontSize: 40, color: '#333' },
+  heading1: { fontSize: 40, color: '#333' },  // keeps default fontWeight, lineHeight, etc.
   strong: { fontWeight: '800' },
   paragraph: { marginVertical: 8 },
 };
@@ -142,16 +144,66 @@ const App = () => (
 );
 ```
 
+## Handling Links
+
+By default, links open via `Linking.openURL()`. Use the `onLinkPress` prop to customize:
+
+```tsx
+const App = () => (
+  <Markdown onLinkPress={(url) => {
+    console.log('Link pressed:', url);
+    // return nothing to prevent default behavior
+  }}>
+    {'[Visit Example](https://example.com)'}
+  </Markdown>
+);
+```
+
+## Image Validation
+
+Control which image URL schemes are allowed. Images with unrecognized schemes get the `defaultImageHandler` prepended, or are skipped entirely when set to `null`:
+
+```tsx
+<Markdown
+  allowedImageHandlers={['https://', 'data:image/png;base64']}
+  defaultImageHandler={null}  // skip images that don't match
+>
+  {'![photo](https://example.com/photo.png)'}
+</Markdown>
+```
+
+## Preview Mode
+
+Limit how many top-level elements render — useful for content previews:
+
+```tsx
+import { Text } from 'react-native';
+
+<Markdown
+  maxTopLevelChildren={3}
+  topLevelMaxExceededItem={<Text key="more">Read more...</Text>}
+>
+  {longMarkdownContent}
+</Markdown>
+```
+
 ## Props
 
-| Prop         | Type                                      | Description                              |
-| ------------ | ----------------------------------------- | ---------------------------------------- |
-| `children`   | `string \| string[]`                      | Markdown content to render (required)    |
-| `rules`      | `RenderRules`                             | Custom render rules for element types    |
-| `style`      | `Partial<MarkdownStyles>`                 | Custom styles merged with defaults       |
-| `renderer`   | `AstRenderer \| ((nodes) => ReactElement)` | Fully custom renderer (overrides rules/style) |
-| `markdownit` | `MarkdownIt`                              | Custom markdown-it instance              |
-| `plugins`    | `PluginContainer[]`                       | markdown-it plugins                      |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `children` | `string \| string[]` | — | Markdown content to render (required) |
+| `rules` | `RenderRules` | — | Custom render rules for element types |
+| `style` | `Partial<MarkdownStyles>` | — | Custom styles (merged with defaults by default) |
+| `mergeStyle` | `boolean` | `true` | Deep-merge custom styles with defaults per key. Set `false` for shallow replace |
+| `onLinkPress` | `(url: string) => boolean \| void` | — | Custom link press handler. Falls back to `Linking.openURL()` |
+| `renderer` | `AstRenderer \| ((nodes) => ReactElement)` | — | Fully custom renderer (overrides rules/style) |
+| `markdownit` | `MarkdownIt` | `MarkdownIt({ typographer: true })` | Custom markdown-it instance |
+| `plugins` | `PluginContainer[]` | `[]` | markdown-it plugins |
+| `debugPrintTree` | `boolean` | `false` | Log the AST tree structure to the console |
+| `maxTopLevelChildren` | `number \| null` | `null` | Limit rendered top-level children (preview mode) |
+| `topLevelMaxExceededItem` | `ReactNode` | `<Text>...</Text>` | Shown when `maxTopLevelChildren` is exceeded |
+| `allowedImageHandlers` | `string[]` | `['data:image/png;base64', ..., 'https://', 'http://']` | Allowed image URL prefixes |
+| `defaultImageHandler` | `string \| null` | `'http://'` | Prepended to images with unrecognized schemes. `null` to skip |
 
 ## Syntax Support
 
@@ -178,6 +230,18 @@ For comprehensive documentation, visit the [Wiki](https://github.com/mientjan/re
 - [Plugins](https://github.com/mientjan/react-native-markdown-renderer/wiki/Plugins)
 - [API Reference](https://github.com/mientjan/react-native-markdown-renderer/wiki/API-Reference)
 - [Migration from v3](https://github.com/mientjan/react-native-markdown-renderer/wiki/Migration-from-v3)
+
+## What's New in v4.1.0
+
+- **`onLinkPress` prop** — custom link press handler instead of hardcoded `Linking.openURL()`
+- **`mergeStyle` prop** (default `true`) — deep-merge custom styles with defaults per key
+- **`debugPrintTree` prop** — log AST tree structure to console for debugging
+- **`maxTopLevelChildren` + `topLevelMaxExceededItem`** — preview mode to limit rendered children
+- **`allowedImageHandlers` + `defaultImageHandler`** — validate image URLs before rendering
+- **Image accessibility** — `accessibilityLabel` from image alt text
+- **Hardbreak fix** — renders as `<Text>{'\n'}</Text>` instead of `<View>` (fixes Android crash inside Text)
+- **Code block fix** — trims trailing newline from `code_block` and `fence` content
+- **Ordered list fix** — respects the `start` attribute (e.g. `57. foo` renders as 57)
 
 ## Migration from v3 to v4
 
