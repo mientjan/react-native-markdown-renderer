@@ -14,12 +14,6 @@ A 100% CommonMark-compatible markdown renderer for React Native using native com
 npm install react-native-markdown-renderer
 ```
 
-or
-
-```sh
-yarn add react-native-markdown-renderer
-```
-
 ## Requirements
 
 | Dependency   | Version    |
