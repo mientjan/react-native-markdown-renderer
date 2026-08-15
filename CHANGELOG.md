@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+### Security
+
+- Bumped `markdown-it` from `^14.0.0` to `^14.3.0`, patching three advisories that reached
+  consumers through the library's only runtime dependency:
+  - [GHSA-6v5v-wf23-fmfq](https://github.com/advisories/GHSA-6v5v-wf23-fmfq) (moderate) —
+    quadratic-complexity DoS in the smartquotes rule. This one was reachable by default:
+    the advisory only triggers with `typographer: true`, which is exactly what
+    `Markdown`'s built-in parser instance sets.
+  - [GHSA-22p9-wv53-3rq4](https://github.com/advisories/GHSA-22p9-wv53-3rq4) (high) and
+    [GHSA-v245-v573-v5vm](https://github.com/advisories/GHSA-v245-v573-v5vm) — quadratic
+    complexity in `linkify-it`'s match scan loop, pulled in transitively. markdown-it 14.3.0
+    resolves `linkify-it` to 5.0.2.
+- No API changes. markdown-it 14.3.0 is a minor release; rendering output is unchanged
+  (all 140 tests and 3 snapshots pass untouched).
+
 ## 4.1.0
 
 ### New Features
