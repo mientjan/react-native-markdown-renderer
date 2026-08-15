@@ -193,7 +193,7 @@ describe('AstRenderer', () => {
     });
 
     it('passes onLinkPress as extra arg for link nodes', () => {
-      const linkRule = jest.fn((node: ASTNode, children: any[], parent: any[], styles: any, ...args: any[]) => {
+      const linkRule = jest.fn((node: ASTNode, _children: any[], _parent: any[], _styles: any, ..._args: any[]) => {
         return React.createElement('Text', { key: node.key }, 'link');
       });
       const onLinkPress = jest.fn();
@@ -210,7 +210,7 @@ describe('AstRenderer', () => {
     });
 
     it('passes allowedImageHandlers and defaultImageHandler as extra args for image nodes', () => {
-      const imageRule = jest.fn((node: ASTNode, children: any[], parent: any[], styles: any, ...args: any[]) => {
+      const imageRule = jest.fn((node: ASTNode, _children: any[], _parent: any[], _styles: any, ..._args: any[]) => {
         return React.createElement('Image', { key: node.key });
       });
       const handlers = ['https://'];
