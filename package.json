@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/mientjan/react-native-markdown-renderer#readme",
   "dependencies": {
-    "markdown-it": "^14.3.0"
+    "markdown-it": "^15.0.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
