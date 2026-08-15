@@ -1,6 +1,12 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "react-native-markdown-renderer": ["../src/index.tsx"],
+      "markdown-it": ["../node_modules/@types/markdown-it"],
+      "markdown-it/*": ["../node_modules/@types/markdown-it/*"]
+    }
   }
 }

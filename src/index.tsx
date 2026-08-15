@@ -36,7 +36,7 @@ export type { ASTNode, RenderFunction, RenderRules, MarkdownStyles };
 
 export interface MarkdownProps {
   children: string | string[];
-  rules?: RenderRules;
+  rules?: Partial<RenderRules>;
   style?: Partial<MarkdownStyles>;
   renderer?: AstRenderer | ((nodes: ASTNode[]) => ReactElement);
   markdownit?: MarkdownIt;
@@ -135,10 +135,12 @@ export default function Markdown({
     const resolvedStyles = mergeStyles(styles, style, mergeStyle);
 
     return new AstRenderer(
+      // defaultRenderRules supplies every key, so the merge is always a
+      // complete RenderRules even though `rules` is partial.
       {
         ...defaultRenderRules,
         ...(rules || {}),
-      },
+      } as RenderRules,
       resolvedStyles,
       {
         onLinkPress,
