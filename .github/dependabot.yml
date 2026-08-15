@@ -1,0 +1,33 @@
+version: 2
+
+updates:
+  # Published library. Its only runtime dependency is markdown-it, so anything
+  # in the production group actually ships to consumers -- keep it ungrouped
+  # from dev noise and review it on its own.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels: ["dependencies"]
+    groups:
+      production:
+        dependency-type: "production"
+        patterns: ["*"]
+      dev-toolchain:
+        dependency-type: "development"
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # Demo app. Not published; batch everything to keep PR noise down.
+  # Expo SDK majors are intentionally left to manual upgrades.
+  - package-ecosystem: "npm"
+    directory: "/example"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    labels: ["dependencies", "example"]
+    groups:
+      example-deps:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
