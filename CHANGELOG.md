@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.2
 
 ### Security
 
@@ -9,13 +9,39 @@
   - [GHSA-6v5v-wf23-fmfq](https://github.com/advisories/GHSA-6v5v-wf23-fmfq) (moderate) —
     quadratic-complexity DoS in the smartquotes rule. This one was reachable by default:
     the advisory only triggers with `typographer: true`, which is exactly what
-    `Markdown`'s built-in parser instance sets.
+    `Markdown`'s built-in parser instance sets. On a pathological input of 80k quote
+    characters, render time drops from ~2130 ms to ~19 ms.
   - [GHSA-22p9-wv53-3rq4](https://github.com/advisories/GHSA-22p9-wv53-3rq4) (high) and
     [GHSA-v245-v573-v5vm](https://github.com/advisories/GHSA-v245-v573-v5vm) — quadratic
     complexity in `linkify-it`'s match scan loop, pulled in transitively. markdown-it 14.3.0
     resolves `linkify-it` to 5.0.2.
-- No API changes. markdown-it 14.3.0 is a minor release; rendering output is unchanged
-  (all 140 tests and 3 snapshots pass untouched).
+- `npm audit --omit=dev` now reports 0 vulnerabilities.
+
+### Bug Fixes
+
+- `rules` prop is now typed `Partial<RenderRules>`. It was `RenderRules`, whose
+  `[name: string]: RenderFunction` index signature required *every* rule to be supplied,
+  even though the prop exists to override a subset. Passing a partial rule set no longer
+  produces a type error. Type-only widening — no runtime change, and existing code passing
+  a complete rule set still compiles.
+
+### Internal
+
+- Lockfiles are now tracked so Dependabot scans resolved transitive versions instead of a
+  stale snapshot of a manifest deleted back in v4.
+- Added `.github/dependabot.yml`; root production dependencies are grouped separately from
+  dev and example updates.
+- Example app: `tsconfig.json` now mirrors the metro alias, so `tsc` actually typechecks the
+  example screens. Overrode `postcss` to `^8.5.23` to clear four dev-only advisories.
+- No API or rendering changes; all 140 tests and 3 snapshots pass untouched.
+
+## 4.1.1
+
+### Security
+
+- `npm audit fix` across the dependency tree: `markdown-it` to 14.1.1 (ReDoS), `minimatch`
+  to 3.1.5+, `brace-expansion` to 1.1.13+, plus `ajv`, `flatted`, `picomatch` and `yaml`.
+  `handlebars` and `tar` dropped out of the tree.
 
 ## 4.1.0
 
