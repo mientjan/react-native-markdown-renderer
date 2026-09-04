@@ -41,6 +41,9 @@
   "dependencies": {
     "markdown-it": "^14.3.0"
   },
+  "overrides": {
+    "browserslist": "^4.28.7"
+  },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.73.0"
