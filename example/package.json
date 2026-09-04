@@ -27,6 +27,8 @@
   },
   "private": true,
   "overrides": {
-    "postcss": "^8.5.23"
+    "postcss": "^8.5.23",
+    "@xmldom/xmldom": "^0.8.15",
+    "decode-uri-component": "^0.5.0"
   }
 }
